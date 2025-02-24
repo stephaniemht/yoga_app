@@ -4,14 +4,18 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://luniversdessens-e3dc9d00a28d.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'heroku.com',
-    user_name: ENV['EMAIL_USER'],
-    password: ENV['EMAIL_PASS'],
+    address: ENV['MAILGUN_SMTP_SERVER'],
+    port: ENV['MAILGUN_SMTP_PORT'].to_i, # Assurez-vous que le port est bien un entier
+    domain: ENV['MAILGUN_DOMAIN'],
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
+
+
+  config.action_controller.permit_all_parameters = true
+
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
