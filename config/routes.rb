@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :courses
   resources :hikes
+  resources :contacts, only: [:new, :create]
+
 
   namespace :admin do
     get 'dashboard', to: 'admin#dashboard'

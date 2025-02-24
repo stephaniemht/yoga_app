@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
-  layout "mailer"
+  default from: 'no-reply@luniversdessens.com' # Remplace par un email valide
+  layout 'mailer'
 end
