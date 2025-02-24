@@ -1,0 +1,13 @@
+fr:
+  date:
+    month_names: [~, "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+    day_names: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
+    formats:
+      default: "%d/%m/%Y"
+      long: "%A %d %B %Y"
+      short: "%d %b"
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      long: "%A %d %B %Y à %Hh%M"
+      short: "%d %b à %Hh"

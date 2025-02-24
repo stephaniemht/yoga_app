@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+  get "admin/dashboard"
   devise_for :users
+
+  resources :courses
+  resources :hikes
+
+  namespace :admin do
+    get 'dashboard', to: 'admin#dashboard'
+  end
+
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

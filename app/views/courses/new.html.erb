@@ -1,0 +1,40 @@
+<h1>Créer un Cours de Yoga</h1>
+
+<%= form_with model: @course, url: courses_path, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Nom du cours" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :location, "Adresse" %>
+    <%= f.text_field :location, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Description" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :duration, "Durée du cours" %>
+    <%= f.text_field :duration, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date, "Date du cours" %>
+    <%= f.date_select :date, { order: [:day, :month, :year], use_month_names: I18n.t('date.month_names')[1..12], start_year: Date.today.year } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, "Tarif" %>
+    <%= f.number_field :price, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :photo, "Photo (optionnelle)" %>
+    <%= f.file_field :photo, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Créer le cours", class: "btn btn-success" %>
+<% end %>

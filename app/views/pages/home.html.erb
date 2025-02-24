@@ -1,2 +1,150 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner">
+  <h1>Reconnectez-vous avec la nature et vous-même</h1>
+  <p>Découvrez nos cours de yoga et nos randonnées bien-être.</p>
+</div>
+
+
+<div class="about-section">
+  <div class="about-content">
+    <h2>À propos</h2>
+    <p>Bienvenue dans l'Univers des Sens. Ma belle-sœur est une professeure de yoga passionnée qui propose des cours adaptés à tous les niveaux ainsi que des séjours bien-être en montagne.</p>
+    <p>Reconnectez-vous avec la nature et découvrez une expérience unique alliant relaxation, méditation et aventure.</p>
+  </div>
+  <div class="about-image">
+    <img src="<%= asset_path('meditation.jpg') %>" alt="Yoga en pleine nature">
+  </div>
+</div>
+
+<div class="practice-section">
+  <h2>Practice with Us</h2>
+  <div class="practice-container">
+    <div class="practice-item">
+      <a href="<%= courses_path %>">
+        <img src="<%= asset_path('yoga.jpg') %>" alt="Yoga">
+      </a>
+      <p>Yoga</p>
+      <a href="<%= courses_path %>" class="practice-link">Explore Classes →</a>
+    </div>
+
+    <div class="practice-item">
+      <a href="<%= hikes_path %>">
+        <img src="<%= asset_path('rando_montagne.jpg') %>" alt="Randonnée Yoga">
+      </a>
+      <p>Randonnées Yoga</p>
+      <a href="<%= hikes_path %>" class="practice-link">Explore Classes →</a>
+    </div>
+  </div>
+</div>
+
+<div class="events-section">
+  <h2>Prochains Événements</h2>
+  <div class="events-container">
+    <div class="events-content">
+      <h3>Découvrez nos prochains cours de yoga et randonnées bien-être.</h3>
+
+      <% @next_courses.each do |course| %>
+        <div class="event-item">
+          <strong><%= course.title %></strong> - <%= l(course.date, format: :long) %>
+          <a href="<%= course_path(course) %>" class="event-link">Voir plus →</a>
+        </div>
+      <% end %>
+
+      <% @next_hikes.each do |hike| %>
+        <div class="event-item">
+          <strong><%= hike.title %></strong> - <%= l(hike.date, format: :long) %>
+          <a href="<%= hike_path(hike) %>" class="event-link">Voir plus →</a>
+        </div>
+      <% end %>
+
+      <a href="<%= courses_path %>" class="events-link">Voir tous les cours</a>
+      <a href="<%= hikes_path %>" class="events-link">Voir toutes les randonnées</a>
+    </div>
+    <div class="events-image">
+      <img src="<%= asset_path('papillon.jpg') %>" alt="Upcoming events">
+    </div>
+  </div>
+</div>
+
+<div class="image-section">
+  <div class="image-container">
+    <img src="<%= asset_path('paysage_2.jpg') %>" class="main-image" alt="Grande image principale">
+    <img src="<%= asset_path('nature.jpg') %>" class="small-image top-right" alt="Petite image en haut à droite">
+    <img src="<%= asset_path('rendo.jpg') %>" class="small-image bottom-left" alt="Petite image en bas à gauche">
+  </div>
+</div>
+
+<div class="contact-section">
+  <div class="contact-container">
+    <div class="contact-form">
+      <h2>Contactez-nous</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="first_name">Prénom</label>
+          <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="last_name">Nom</label>
+          <input type="text" id="last_name" name="last_name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Numéro de téléphone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="contact-btn">Envoyer</button>
+      </form>
+    </div>
+    <div class="contact-image">
+      <img src="<%= asset_path('logement.jpg') %>" alt="Contact">
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="<%= asset_path('logo2.png') %>" alt="Logo Univers des Sens">
+    </div>
+
+    <!-- Contenu du footer -->
+    <div class="footer-content">
+      <!-- Colonne 1 : Réseaux Sociaux -->
+      <div class="footer-column">
+        <h3>Réseaux Sociaux</h3>
+        <ul>
+          <li><a href="https://www.facebook.com/randoubaye?locale=fr_FR" target="_blank">Facebook</a></li>
+          <li><a href="https://www.instagram.com/univers_des_sens/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.youtube.com/@jennycamp04yoga/videos" target="_blank">YouTube</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 2 : L'Univers des Sens -->
+      <div class="footer-column">
+        <h3>L'Univers des Sens</h3>
+        <ul>
+          <li><a href="#presentation">Présentation</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Événements -->
+      <div class="footer-column">
+        <h3>Événements</h3>
+        <ul>
+          <li><a href="#yoga">Yoga</a></li>
+          <li><a href="#randonnee">Séjour Randonnée</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

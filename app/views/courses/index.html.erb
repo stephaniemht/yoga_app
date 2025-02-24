@@ -1,0 +1,22 @@
+<h1>Prochains Cours de Yoga</h1>
+
+<div class="courses-list">
+  <% @courses.each do |course| %>
+    <div class="course-card">
+      <div class="course-image">
+        <% if course.photo.attached? %>
+          <%= image_tag course.photo, class: "course-photo" %>
+        <% else %>
+          <%= image_tag "default_course.jpg", class: "course-photo" %>
+        <% end %>
+      </div>
+      <div class="course-info">
+        <h2><%= course.title %></h2>
+        <p><strong>📍 Lieu :</strong> <%= course.location %></p>
+        <p><strong>📅 Date :</strong> <%= l(course.date, format: :long) %></p>
+        <p><strong>💰 Tarif :</strong> <%= course.price %> €</p>
+        <a href="<%= course_path(course) %>" class="btn btn-primary">Voir le cours</a>
+      </div>
+    </div>
+  <% end %>
+</div>

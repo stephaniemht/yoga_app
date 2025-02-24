@@ -1,0 +1,24 @@
+<h1>Prochaines Randonnées Yoga</h1>
+
+<div class="hikes-list">
+  <% @hikes.each do |hike| %>
+    <div class="hike-card">
+      <div class="hike-image">
+        <% if hike.photo.attached? %>
+          <%= image_tag hike.photo, class: "hike-photo" %>
+        <% else %>
+          <%= image_tag "default_hike.jpg", class: "hike-photo" %>
+        <% end %>
+      </div>
+      <div class="hike-info">
+        <h2><%= hike.title %></h2>
+        <p><strong>📍 Lieu :</strong> <%= hike.location %></p>
+        <p><strong>📅 Début :</strong> <%= hike.date.present? ? l(hike.date, format: :long) : "Date non définie" %></p>
+        <p><strong>📅 Fin :</strong> <%= hike.end_date.present? ? l(hike.end_date, format: :long) : "Date non définie" %></p>
+
+        <p><strong>💰 Tarif :</strong> <%= hike.price %> €</p>
+        <a href="<%= hike_path(hike) %>" class="btn btn-primary">Voir la randonnée</a>
+      </div>
+    </div>
+  <% end %>
+</div>
