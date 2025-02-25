@@ -3,7 +3,7 @@ class ContactMailer < ApplicationMailer
     @contact = contact_params
     mail(
       to: 'stephanie.mihut@gmail.com', # Remplace par ton email réel
-      from: "stephaniemihut@mail.luniversdessens.com", # Doit être un email autorisé par Mailgun
+      from: ENV['MAILGUN_SMTP_LOGIN'], # Utilise l'adresse validée par Mailgun
       reply_to: @contact[:email], # Permet de répondre à l'expéditeur réel
       subject: "Nouveau message de #{@contact[:first_name]} #{@contact[:last_name]}"
     )
