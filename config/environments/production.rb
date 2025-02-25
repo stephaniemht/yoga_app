@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'https://luniversdessens-e3dc9d00a28d.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://luniversdessens.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV['MAILGUN_SMTP_SERVER'],
