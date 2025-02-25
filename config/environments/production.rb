@@ -4,14 +4,15 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://www.luniversdessens.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV['MAILGUN_SMTP_SERVER'],
-    port: ENV['MAILGUN_SMTP_PORT'],
-    domain: ENV['MAILGUN_DOMAIN'],
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    address: ENV['MAILGUN_SMTP_SERVER'], # "smtp.mailgun.org"
+    port: ENV['MAILGUN_SMTP_PORT'], # 587
+    domain: 'luniversdessens.com',
+    user_name: ENV['MAILGUN_NO_REPLY_LOGIN'], # Assurez-vous que c'est bien l'utilisateur no-reply
+    password: ENV['MAILGUN_NO_REPLY_PASSWORD'], # Le mot de passe généré pour no-reply
     authentication: 'plain',
     enable_starttls_auto: true
   }
+
 
 
 
