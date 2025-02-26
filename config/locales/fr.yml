@@ -11,3 +11,6 @@ fr:
       default: "%d/%m/%Y %H:%M"
       long: "%A %d %B %Y à %Hh%M"
       short: "%d %b à %Hh"
+  errrors:
+    messages:
+      taken: "est déjà pris"
