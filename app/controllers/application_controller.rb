@@ -3,5 +3,8 @@ class ApplicationController < ActionController::Base
     (controller_name == 'pages' && action_name == 'home') ||
     (controller_name == 'contacts' && action_name == 'create')
   }
-end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || admin_dashboard_path # Remplace par la bonne route si nécessaire
+  end
+end
