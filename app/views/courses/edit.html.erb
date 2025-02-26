@@ -1,5 +1,9 @@
 <h1>Modifier le Cours de Yoga</h1>
 
+<p>Date actuelle enregistrée : <%= @course.date %></p>
+<p>Type de date : <%= @course.date.class %></p>
+
+
 <%= form_with model: @course, url: course_path(@course), local: true, method: :patch do |f| %>
   <div class="form-group">
     <%= f.label :title, "Nom du cours" %>

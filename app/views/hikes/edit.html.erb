@@ -1,5 +1,11 @@
 <h1>Modifier la Randonnée Yoga</h1>
 
+<p>Date actuelle enregistrée : <%= @hike.date %></p>
+<p>Type de date : <%= @hike.date.class %></p>
+<p>End date actuelle enregistrée : <%= @hike.end_date %></p>
+<p>Type de end_date : <%= @hike.end_date.class %></p>
+
+
 <%= form_with model: @hike, url: hike_path(@hike), local: true, method: :patch do |f| %>
   <div class="form-group">
     <%= f.label :title, "Nom de la randonnée" %>
