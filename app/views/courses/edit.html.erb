@@ -23,7 +23,7 @@
 
   <div class="form-group">
     <%= f.label :date, "Date du cours" %>
-    <%= f.date_select :date, class: "form-control" %>
+    <%= f.date_select :date, class: "form-control", default: @course.date.to_date %>
   </div>
 
   <div class="form-group">
