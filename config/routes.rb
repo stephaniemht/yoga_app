@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get "admin/dashboard"
   devise_for :users
+  get "admin/dashboard"
 
   resources :courses
   resources :hikes

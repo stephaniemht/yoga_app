@@ -11,8 +11,8 @@
 
   <div class="hike-info">
     <p><strong>📍 Lieu :</strong> <%= @hike.location %></p>
-    <p><strong>📅 Début :</strong> <%= l(@hike.date, format: :long) %></p>
-    <p><strong>📅 Fin :</strong> <%= l(@hike.end_date, format: :long) %></p>
+    <p><strong>📅 Début :</strong> <%= l(@hike.date, format: "%d %B %Y") %></p>
+    <p><strong>📅 Fin :</strong> <%= l(@hike.end_date, format: "%d %B %Y") %></p>
     <p><strong>💰 Tarif :</strong> <%= @hike.price %> €</p>
     <p><strong>📖 Description :</strong> <%= @hike.description %></p>
   </div>
