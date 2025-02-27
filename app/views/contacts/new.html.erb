@@ -1,26 +1,26 @@
-<%= form_with model: @contact, url: contacts_path, method: :post do |f| %>
+<%= form_with model: Contact.new, url: contacts_path, method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :first_name %>
+    <%= f.label :first_name, "Prénom" %>
     <%= f.text_field :first_name, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :last_name %>
+    <%= f.label :last_name, "Nom" %>
     <%= f.text_field :last_name, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :email %>
+    <%= f.label :email, "Email" %>
     <%= f.email_field :email, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :phone %>
+    <%= f.label :phone, "Téléphone" %>
     <%= f.telephone_field :phone, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :message %>
+    <%= f.label :message, "Message" %>
     <%= f.text_area :message, class: "form-control", required: true %>
   </div>
 
