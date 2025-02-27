@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def create
-    contact_params = params.require(:contact).permit(:first_name, :last_name, :email, :phone, :message)
+    contact_params = params.permit(:first_name, :last_name, :email, :phone, :message)
 
     if contact_params.values.all?(&:present?)
       ContactMailer.contact_email(contact_params).deliver_now
