@@ -1,10 +1,9 @@
 /* --- Navbar --- */
 .navbar {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: linear-gradient(to bottom, #a77e96 37%, #8F9779 100%);
+  opacity: 0.9; /* Légèrement transparent */
+  transition: background 0.3s ease-in-out;
+  padding: 10px 20px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -13,13 +12,33 @@
   z-index: 1000;
 }
 
-.navbar .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  text-decoration: none;
+.navbar-brand {
+  display: flex;
+  align-items: center;
 }
 
+/* --- Logo de la navbar --- */
+.navbar-brand img {
+  height: 50px; /* Taille fixe pour éviter qu'il soit énorme */
+  width: auto; /* Garde les proportions */
+  max-width: 120px; /* Empêche un logo trop large */
+  object-fit: contain; /* Assure un bon cadrage */
+  display: block;
+}
+
+/* --- Corrige le problème sur mobile --- */
+@media (max-width: 768px) {
+  .navbar-brand img {
+    height: 40px;
+    max-width: 100px;
+  }
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+/* --- Style des liens de navigation --- */
 .nav-links {
   list-style: none;
   padding: 0;
@@ -59,4 +78,3 @@
 .banner p {
   font-size: 18px;
 }
-

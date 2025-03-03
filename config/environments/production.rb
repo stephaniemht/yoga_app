@@ -12,7 +12,9 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
-
+  config.public_file_server.enabled = true
+  config.assets.compile = true
+  config.assets.digest = true
 
 
 

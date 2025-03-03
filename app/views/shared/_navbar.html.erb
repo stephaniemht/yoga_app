@@ -1,9 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a href="<%= root_path %>" class="navbar-brand">L'Univers des Sens</a>
+    <!-- Logo à gauche -->
+    <a href="<%= root_path %>" class="navbar-brand">
+      <%= image_tag 'logo.png', class: 'logo', alt: "L'Univers des Sens" %>
+    </a>
+
+
+    <!-- Bouton burger pour mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Liens du menu -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="<%= root_path %>">Accueil</a></li>
@@ -26,10 +34,9 @@
                 </form>
                 <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Déconnexion</a>
               </li>
-
             </ul>
           </li>
-        <% end %>
+        <% end %> <!-- 🔹 Fermeture correcte du if -->
       </ul>
     </div>
   </div>

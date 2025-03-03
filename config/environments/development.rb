@@ -8,6 +8,10 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
 
+  config.assets.debug = true
+  config.assets.compile = true
+  config.assets.check_precompiled_asset = false
+
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
