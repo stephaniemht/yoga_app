@@ -1,0 +1,189 @@
+/* --- Section Événements --- */
+.events-section {
+  background: #38546b;
+  padding: 40px 20px;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+/* --- Titre principal --- */
+.event-title1 {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 24px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* --- Conteneur général des événements (ligne horizontale) --- */
+.events-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* --- Ligne de l'événement --- */
+.event-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligne les éléments à gauche */
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 0px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  width: 100%;
+}
+
+.event-row:hover {
+  transform: translateY(-3px);
+}
+
+/* --- Image ronde de l'événement --- */
+.event-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Détails de l'événement (alignés horizontalement) --- */
+.event-details {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-grow: 1;
+  justify-content: space-between;
+  text-align: left;
+  padding-left: 15px;
+}
+
+/* --- Titre bien aligné verticalement avec les autres infos --- */
+.event-title {
+  margin-bottom: 0;
+  font-family: 'Work Sans';
+  font-size: 16px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  line-height: 1; /* Corrige l'alignement avec les infos */
+  display: flex;
+  align-items: center;
+}
+
+/* --- Infos bien alignées à droite --- */
+.event-info {
+  text-transform: capitalize;
+  font-size: 14px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+}
+
+/* --- Bouton Voir plus aligné proprement --- */
+.event-button {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  background-color: #a3de83;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 2px;
+  transition: background 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.event-button:hover {
+  background-color: white;
+  color: #38546b;
+}
+
+/* --- Lien vers toutes les sessions --- */
+.event-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.events-link {
+  padding: 10px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+.events-link:hover {
+  background: white;
+  color: #38546b;
+}
+
+/* --- Texte en cas d'absence d'événements --- */
+.no-event {
+  font-size: 14px;
+  font-weight: lighter;
+  opacity: 0.8;
+}
+
+/* --- Responsive design --- */
+@media (max-width: 768px) {
+  .events-container {
+    width: 100%;
+  }
+
+  .event-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .event-details {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event-title {
+    font-size: 14px;
+  }
+
+  .event-info {
+    font-size: 12px;
+  }
+
+  .event-button {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .event-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .event-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

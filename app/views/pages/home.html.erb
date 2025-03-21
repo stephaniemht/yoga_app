@@ -1,82 +1,136 @@
 <div class="banner">
-  <h1>Reconnectez-vous avec la nature et vous-même</h1>
-  <p>Découvrez nos cours de yoga et nos randonnées bien-être.</p>
+  <%= image_tag "udslogo.png", alt: "Logo", class: "logo" %>
 </div>
-
 
 <div class="about-section">
   <div class="about-content">
-    <h2>À propos</h2>
-    <p>Bienvenue dans l'Univers des Sens. Ma belle-sœur est une professeure de yoga passionnée qui propose des cours adaptés à tous les niveaux ainsi que des séjours bien-être en montagne.</p>
-    <p>Reconnectez-vous avec la nature et découvrez une expérience unique alliant relaxation, méditation et aventure.</p>
-  </div>
-  <div class="about-image">
-    <img src="<%= asset_path('meditation.jpg') %>" alt="Yoga en pleine nature">
+    <div class="about-images">
+      <%= image_tag asset_path('paysage.jpg'), class: 'about-image top-left', alt: 'Paysage' %>
+      <%= image_tag asset_path('meditation.jpg'), class: 'about-image top-right', alt: 'Méditation' %>
+      <%= image_tag asset_path('rando_montagne.jpg'), class: 'about-image bottom-left', alt: 'Randonnée' %>
+      <%= image_tag asset_path('nature.jpg'), class: 'about-image bottom-right', alt: 'Nature' %>
+    </div>
+
+    <h2>L’Univers Des Sens</h2>
+    <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
+    <p>Avec Jennifer Camp, accompagnatrice en montagne et professeure de Yoga Vinyasa, vivez une expérience unique alliant nature, mouvement et bien-être.
+        Marchez, respirez, vibrez : randonnez en pleine nature, pratiquez un yoga fluide et laissez-vous porter par l’instant.
+        Rejoignez L’Univers des Sens et offrez-vous une parenthèse de ressourcement.</p>
   </div>
 </div>
 
 <div class="practice-section">
-  <h2>Practice with Us</h2>
   <div class="practice-container">
-    <div class="practice-item">
-      <a href="<%= courses_path %>">
-        <img src="<%= asset_path('yoga.jpg') %>" alt="Yoga">
-      </a>
-      <p>Yoga</p>
-      <a href="<%= courses_path %>" class="practice-link">Explore Classes →</a>
-    </div>
 
-    <div class="practice-item">
-      <a href="<%= hikes_path %>">
-        <img src="<%= asset_path('rando_montagne.jpg') %>" alt="Randonnée Yoga">
-      </a>
-      <p>Randonnées Yoga</p>
-      <a href="<%= hikes_path %>" class="practice-link">Explore Classes →</a>
+    <!-- Titre principal -->
+    <h2 class="practice-title">Pratiquons Ensemble</h2>
+
+    <!-- Conteneur des cartes -->
+    <div class="practice-content">
+
+      <!-- Carte Yoga -->
+      <article class="card">
+        <img class="card__background" src="<%= asset_path('yoga.jpg') %>" alt="Yoga">
+        <div class="card__content flow">
+          <div class="card__content--container flow">
+            <h2 class="card__title">Yoga</h2>
+            <p class="card__description">Détendez votre esprit et renforcez votre corps avec nos cours de yoga adaptés à tous les niveaux. Retrouvez équilibre et sérénité à chaque séance..</p>
+          </div>
+          <a href="<%= courses_path %>" class="card__button">Explorer</a>
+        </div>
+      </article>
+
+      <!-- Carte Randonnée Yoga -->
+      <article class="card">
+        <img class="card__background" src="<%= asset_path('rando_nature.jpg') %>" alt="Randonnée Yoga">
+        <div class="card__content flow">
+          <div class="card__content--container flow">
+            <h2 class="card__title">Retraites Yoga</h2>
+            <p class="card__description">Reconnectez-vous à la nature avec nos retraites uniques alliant randonnée et yoga. Une expérience immersive pour ressourcer corps et esprit..</p>
+          </div>
+          <a href="<%= hikes_path %>" class="card__button">Explorer</a>
+        </div>
+      </article>
+
     </div>
   </div>
 </div>
+
 
 <div class="events-section">
-  <h2>Prochains Événements</h2>
+  <h2 class="event-title1">Prochains Événements Yoga & Randonnées</h2>
+
   <div class="events-container">
-    <div class="events-content">
-      <h3>Découvrez nos prochains cours de yoga et randonnées bien-être.</h3>
-
-      <% @next_courses.each do |course| %>
-        <div class="event-item">
-          <strong><%= course.title %></strong> - <%= l(course.date, format: :long) %>
-          <a href="<%= course_path(course) %>" class="event-link">Voir plus →</a>
+    <!-- Affichage du prochain cours de yoga -->
+    <% if @next_course %>
+      <div class="event-row">
+        <!-- Affichage de l’image du cours -->
+        <div class="event-image">
+          <% if @next_course.photo.attached? %>
+            <%= image_tag @next_course.photo, class: "event-photo" %>
+          <% else %>
+            <%= image_tag "default_course.jpg", class: "event-photo" %>
+          <% end %>
         </div>
-      <% end %>
 
-      <% @next_hikes.each do |hike| %>
-        <div class="event-item">
-          <strong><%= hike.title %></strong> - <%= l(hike.date, format: :long) %>
-          <a href="<%= hike_path(hike) %>" class="event-link">Voir plus →</a>
+        <div class="event-details">
+          <h3 class="event-title"><%= @next_course.title %></h3>
+          <span class="event-info"><strong>Date : </strong> <%= l(@next_course.date, format: :long) %></span>
+          <span class="event-info"><strong>Tarif : </strong> <%= @next_course.price %> €</span>
+          <a href="<%= course_path(@next_course) %>" class="event-button">Voir plus →</a>
         </div>
-      <% end %>
+      </div>
+    <% else %>
+      <p class="no-event">Aucun cours de yoga prévu prochainement.</p>
+    <% end %>
 
-      <a href="<%= courses_path %>" class="events-link">Voir tous les cours</a>
-      <a href="<%= hikes_path %>" class="events-link">Voir toutes les randonnées</a>
-    </div>
-    <div class="events-image">
-      <img src="<%= asset_path('papillon.jpg') %>" alt="Upcoming events">
-    </div>
+    <!-- Affichage de la prochaine randonnée yoga -->
+    <% if @next_hike %>
+      <div class="event-row">
+        <!-- Affichage de l’image de la randonnée -->
+        <div class="event-image">
+          <% if @next_hike.photo.attached? %>
+            <%= image_tag @next_hike.photo, class: "event-photo" %>
+          <% else %>
+            <%= image_tag "default_hike.jpg", class: "event-photo" %>
+          <% end %>
+        </div>
+
+        <div class="event-details">
+          <h3 class="event-title"><%= @next_hike.title %></h3>
+          <span class="event-info"><strong>Début : </strong> <%= l(@next_hike.date, format: :long) %></span>
+          <span class="event-info"><strong>Tarif : </strong> <%= @next_hike.price %> €</span>
+          <a href="<%= hike_path(@next_hike) %>" class="event-button">Voir plus →</a>
+        </div>
+      </div>
+    <% else %>
+      <p class="no-event">Aucune randonnée prévue prochainement.</p>
+    <% end %>
+  </div>
+
+  <!-- Liens vers toutes les sessions -->
+  <div class="event-links">
+    <a href="<%= courses_path %>" class="events-link">Voir tous les cours</a>
+    <a href="<%= hikes_path %>" class="events-link">Voir toutes les retraites</a>
   </div>
 </div>
+
+
+
+
 
 <div class="image-section">
   <div class="image-container">
-    <img src="<%= asset_path('paysage_2.jpg') %>" class="main-image" alt="Grande image principale">
-    <img src="<%= asset_path('nature.jpg') %>" class="small-image top-right" alt="Petite image en haut à droite">
-    <img src="<%= asset_path('rendo.jpg') %>" class="small-image bottom-left" alt="Petite image en bas à gauche">
+    <%= image_tag asset_path('paysage_2.jpg'), class: 'main-image', alt: 'Grande image principale' %>
+    <%= image_tag asset_path('papillon.jpg'), class: 'small-image top-right', alt: 'Petite image en haut à droite' %>
+    <%= image_tag asset_path('rando.jpg'), class: 'small-image bottom-left', alt: 'Petite image en bas à gauche' %>
   </div>
 </div>
 
 <div class="contact-section">
   <div class="contact-container">
     <div class="contact-form">
-      <h2>Contactez-nous</h2>
+      <h2>Contact</h2>
       <%= form_with url: contacts_path, method: :post, local: true do |f| %>
         <div class="form-group">
           <%= f.label :first_name, "Prénom" %>
@@ -98,53 +152,11 @@
           <%= f.label :message, "Message" %>
           <%= f.text_area :message, rows: 4, required: true, class: "form-control" %>
         </div>
-        <%= f.submit "Envoyer", class: "contact-btn" %>
+        <%= f.submit "Envoyer", class: "btn-primary" %>
       <% end %>
     </div>
     <div class="contact-image">
-      <img src="<%= asset_path('logement.jpg') %>" alt="Contact">
+      <%= image_tag asset_path('neige.jpg'), alt: 'Contact' %>
     </div>
   </div>
 </div>
-
-<hr>
-
-<footer class="footer-section">
-  <div class="footer-container">
-    <!-- Logo -->
-    <div class="footer-logo">
-      <img src="<%= asset_path('logo2.png') %>" alt="Logo Univers des Sens">
-    </div>
-
-    <!-- Contenu du footer -->
-    <div class="footer-content">
-      <!-- Colonne 1 : Réseaux Sociaux -->
-      <div class="footer-column">
-        <h3>Réseaux Sociaux</h3>
-        <ul>
-          <li><a href="https://www.facebook.com/randoubaye?locale=fr_FR" target="_blank">Facebook</a></li>
-          <li><a href="https://www.instagram.com/univers_des_sens/" target="_blank">Instagram</a></li>
-          <li><a href="https://www.youtube.com/@jennycamp04yoga/videos" target="_blank">YouTube</a></li>
-        </ul>
-      </div>
-
-      <!-- Colonne 2 : L'Univers des Sens -->
-      <div class="footer-column">
-        <h3>L'Univers des Sens</h3>
-        <ul>
-          <li><a href="#presentation">Présentation</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- Colonne 3 : Événements -->
-      <div class="footer-column">
-        <h3>Événements</h3>
-        <ul>
-          <li><a href="#yoga">Yoga</a></li>
-          <li><a href="#randonnee">Séjour Randonnée</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>

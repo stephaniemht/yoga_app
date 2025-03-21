@@ -1,0 +1,129 @@
+/* --- Section À propos --- */
+.about-section {
+  position: relative; /* Permet le positionnement absolu des images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px;
+  background-color: #f9f9f9;
+}
+
+.about-section h2 {
+  margin-top: 30px;
+  font-family: 'Work Sans', sans-serif;
+  color: #4a4a4a;
+}
+
+.about-section h3 {
+  font-size: 48px;
+  margin-top: 30px;
+  font-family: 'Work Sans', sans-serif;
+  color: #4a4a4a;
+}
+
+.about-section p {
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'Work Sans', sans-serif;
+  color: #4a4a4a;
+  margin-bottom: 30px;
+}
+
+.about-content h2,
+.about-content h3,
+.about-content p {
+  opacity: 0; /* Commence invisible */
+  transform: translateY(20px); /* Légèrement décalé vers le bas */
+  transition: opacity 3s ease-out, transform 3s ease-out;
+}
+
+/* Quand la section devient visible */
+.about-section.visible .about-content h2,
+.about-section.visible .about-content h3,
+.about-section.visible .about-content p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.about-content {
+  width: 50%;
+  z-index: 2; /* S'assurer que le texte est au-dessus des images */
+
+}
+
+.about-content h2 {
+  font-size: 28px;
+  margin-bottom: 50px;
+}
+
+
+/* --- Images autour du texte --- */
+.about-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.about-images img {
+  position: absolute;
+  width: 150px; /* Taille fixe, ajuste si besoin */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0px;
+  opacity: 0; /* Cachées au départ */
+  transform: translateY(100px); /* Positionnées plus bas */
+  transition: opacity 3s ease-out, transform 3s ease-out;
+}
+
+/* Classe qui sera ajoutée par JavaScript quand l'élément devient visible */
+.about-images img.visible {
+  opacity: 1;
+  transform: translateY(0); /* Revient à sa position normale */
+}
+
+
+/* --- Positionnement des images --- */
+.about-image.top-left {
+  height: 186px;
+  width: 288px;
+  top: -40px;
+  left: 10%;
+}
+
+.about-image.top-right {
+  height: 186px;
+  width: 288px;
+  top: -40px;
+  right: 10%;
+}
+
+.about-image.bottom-left {
+  height: 250px;
+  width: 229px;
+  bottom: 66px;
+  left: 5%;
+}
+
+.about-image.bottom-right {
+  height: 250px;
+  width: 229px;
+  bottom: 66px;
+  right: 5%;
+}
+
+/* --- Apparition des images avec un effet fluide --- */
+.about-section.visible .about-image {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Les images du haut chevauchent légèrement la bannière --- */
+.top-left, .top-right {
+  z-index: 1;
+}

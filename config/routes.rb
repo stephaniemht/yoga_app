@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   get "admin/dashboard"
+  get "/politique-de-confidentialite", to: "pages#privacy_policy", as: :privacy_policy
+  get "/mentions-legales", to: "pages#legal_mentions", as: :legal_mentions
 
   resources :courses
   resources :hikes

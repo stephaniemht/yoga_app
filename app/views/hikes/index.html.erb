@@ -1,24 +1,44 @@
-<h1>Prochaines Randonnées Yoga</h1>
+<div class="hike-index">
+  <!-- Image de bannière -->
+  <div class="hike-banner">
+    <%= image_tag "paysage_4.jpg", class: "hike-banner-image" %>
+  </div>
 
-<div class="hikes-list">
-  <% @hikes.each do |hike| %>
-    <div class="hike-card">
-      <div class="hike-image">
-        <% if hike.photo.attached? %>
-          <%= image_tag hike.photo, class: "hike-photo" %>
-        <% else %>
-          <%= image_tag "default_hike.jpg", class: "hike-photo" %>
-        <% end %>
-      </div>
-      <div class="hike-info">
-        <h2><%= hike.title %></h2>
-        <p><strong>📍 Lieu :</strong> <%= hike.location %></p>
-        <p><strong>📅 Début :</strong> <%= hike.date.present? ? l(hike.date, format: :long) : "Date non définie" %></p>
-        <p><strong>📅 Fin :</strong> <%= hike.end_date.present? ? l(hike.end_date, format: :long) : "Date non définie" %></p>
+  <div class="hike-content">
+    <h1 class="hike-title">Prochaines Randonnées Yoga</h1>
 
-        <p><strong>💰 Tarif :</strong> <%= hike.price %> €</p>
-        <a href="<%= hike_path(hike) %>" class="btn btn-primary">Voir la randonnée</a>
-      </div>
+    <div class="hike-list">
+      <% @hikes.each do |hike| %>
+        <div class="hike-card">
+          <!-- Image à gauche -->
+          <div class="hike-image">
+            <% if hike.photo.attached? %>
+              <%= image_tag hike.photo, class: "hike-photo" %>
+            <% else %>
+              <%= image_tag "default_hike.jpg", class: "hike-photo" %>
+            <% end %>
+          </div>
+
+          <!-- Contenu principal (texte + bouton) -->
+          <div class="hike-main-content">
+            <!-- Infos à droite -->
+            <div class="hike-info">
+              <h2 class="hike-card-title"><%= hike.title %></h2>
+              <p><strong>Lieu :</strong> <%= hike.location %></p>
+              <p><strong>Début :</strong> <%= l(hike.date, format: :long) %></p>
+              <p><strong>Fin :</strong> <%= l(hike.end_date, format: :long) %></p>
+              <p><strong>Tarif :</strong> <%= hike.price %> €</p>
+            </div>
+
+            <!-- Bouton à droite -->
+            <div class="hike-button-container">
+              <a href="<%= hike_path(hike) %>" class="btn btn-primary">Voir la randonnée</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+
+    <a href="<%= root_path %>" class="btn btn-secondary">← Retour à l'accueil</a>
+  </div>
 </div>

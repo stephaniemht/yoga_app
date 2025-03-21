@@ -1,29 +1,30 @@
-<h1><%= @hike.title %></h1>
-
-<div class="hike-details">
-  <div class="hike-image">
-    <% if @hike.photo.attached? %>
-      <%= image_tag @hike.photo, class: "event-photo" %>
-    <% else %>
-      <%= image_tag "default_hike.jpg", class: "event-photo" %>
-    <% end %>
+<div class="hike-show">
+  <!-- Image en pleine largeur -->
+  <div class="hike-banner">
+    <%= image_tag "paysage.jpg", class: "hike-banner-image" %>
   </div>
 
-  <div class="hike-info">
-    <p><strong>📍 Lieu :</strong> <%= @hike.location %></p>
-    <p><strong>📅 Début :</strong> <%= l(@hike.date, format: "%d %B %Y") %></p>
-    <p><strong>📅 Fin :</strong> <%= l(@hike.end_date, format: "%d %B %Y") %></p>
-    <p><strong>💰 Tarif :</strong> <%= @hike.price %> €</p>
-    <p><strong>📖 Description :</strong> <%= @hike.description %></p>
-  </div>
-  <% if user_signed_in? && current_user.admin? %>
-    <div class="admin-actions">
-      <%= link_to "Modifier", edit_hike_path(@hike), class: "btn btn-warning" %>
-      <%= link_to "Supprimer", hike_path(@hike), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr(e) de vouloir supprimer cette randonnée ?" }, class: "btn btn-danger" %>
+  <!-- Contenu principal -->
+  <div class="hike-content">
+    <h1 class="hike-title"><%= @hike.title %></h1>
+
+    <div class="hike-info-container">
+      <div class="hike-details">
+        <p><strong>Lieu :</strong> <%= @hike.location %></p>
+        <p><strong>Début :</strong> <%= l(@hike.date, format: "%d %B %Y") %></p>
+        <p><strong>Fin :</strong> <%= l(@hike.end_date, format: "%d %B %Y") %></p>
+        <p><strong>Tarif :</strong> <%= @hike.price %> €</p>
+        <p><strong>Description :</strong> <%= @hike.description %></p>
+      </div>
+
+      <% if user_signed_in? && current_user.admin? %>
+        <div class="admin-actions">
+          <%= link_to "Modifier", edit_hike_path(@hike), class: "btn btn-warning" %>
+          <%= link_to "Supprimer", hike_path(@hike), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr(e) de vouloir supprimer cette randonnée ?" }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
 
-
+    <a href="<%= hikes_path %>" class="hike-back-button">← Retour aux randonnées</a>
+  </div>
 </div>
-
-<a href="<%= hikes_path %>" class="btn btn-secondary">Retour aux randonnées</a>
