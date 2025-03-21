@@ -63,7 +63,7 @@
   padding: 40px;
 }
 
-.contact-form h2, .contact-form .h2 {
+.contact-form h2 {
   font-weight: bold;
   text-align: center;
   padding-bottom: 24px;
@@ -73,19 +73,32 @@
   margin-bottom: 20px;
 }
 
-.form-group {
+/* Formulaire contact scoped */
+.contact-form form {
+  max-width: 100%;
+  margin: 0;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
+}
+
+.contact-form .form-group {
   margin-bottom: 15px;
 }
 
-.form-group label {
+.contact-form .form-group label {
   display: block;
   font-size: 14px;
   margin-bottom: 5px;
   color: #38546b;
+  font-weight: normal;
 }
 
-.form-group input,
-.form-group textarea {
+.contact-form .form-control,
+.contact-form input,
+.contact-form textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
@@ -93,24 +106,29 @@
   border-bottom: 1px solid #ccc;
   outline: none;
   background: transparent;
+  border-radius: 0;
 }
 
-.contact-btn {
+/* Bouton spécifique contact */
+.contact-form .btn-primary {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background: white;
-  color: black;
-  border: 1px solid #38546b;
+  background: #a3de83;
+  color: #38546b;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
 }
 
-.contact-btn:hover {
-  background: #38546b;
-  color: white;
+.contact-form .btn-primary:hover {
+  background: #38546b !important;
+  color: #a3de83;
 }
 
+/* Image à droite */
 .contact-image {
   flex: 1;
   background: #ddd;
@@ -123,6 +141,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 
 
 /* --- Footer Général --- */

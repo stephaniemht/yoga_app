@@ -25,8 +25,18 @@
             <div class="hike-info">
               <h2 class="hike-card-title"><%= hike.title %></h2>
               <p><strong>Lieu :</strong> <%= hike.location %></p>
-              <p><strong>Début :</strong> <%= l(hike.date, format: :long) %></p>
-              <p><strong>Fin :</strong> <%= l(hike.end_date, format: :long) %></p>
+
+              <% if hike.date.present? && hike.time.present? %>
+                <% datetime = DateTime.new(hike.date.year, hike.date.month, hike.date.day, hike.time.hour, hike.time.min) %>
+                <p><strong>Départ :</strong> <%= l(datetime, format: :long) %></p>
+              <% else %>
+                <p><strong>Départ :</strong> <%= l(hike.date, format: "%A %d %B %Y") %></p>
+              <% end %>
+
+              <% if hike.end_date.present? %>
+                <p><strong>Retour :</strong> <%= l(hike.end_date, format: "%d %B %Y") %></p>
+              <% end %>
+
               <p><strong>Tarif :</strong> <%= hike.price %> €</p>
             </div>
 

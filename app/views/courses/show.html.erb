@@ -1,3 +1,6 @@
+<% require 'time' %>
+
+
 <div class="course-show">
   <!-- Image en pleine largeur -->
   <div class="course-banner">
@@ -11,7 +14,10 @@
     <div class="course-info-container">
       <div class="course-details">
         <p><strong>Lieu :</strong> <%= @course.location %></p>
-        <p><strong>Date :</strong> <%= l(@course.date, format: :long) %></p>
+        <p><strong>Date :</strong> <%= l(@course.date, format: "%A %d %B %Y") %></p>
+        <% if @course.time.present? %>
+          <p><strong>Heure :</strong> <%= @course.time.strftime("%Hh%M") %></p>
+        <% end %>
         <p><strong>Durée :</strong> <%= @course.duration %></p>
         <p><strong>Tarif :</strong> <%= @course.price %> €</p>
         <p><strong>Description :</strong> <%= @course.description %></p>

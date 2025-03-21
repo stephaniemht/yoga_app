@@ -1,4 +1,4 @@
-<h1>Créer une Randonnée Yoga</h1>
+<h1 class="edit-title">Créer une Randonnée Yoga</h1>
 
 <%= form_with model: @hike, url: hikes_path, local: true do |f| %>
   <div class="form-group">
@@ -22,6 +22,12 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :time, "Heure de départ" %>
+    <%= f.time_select :time, { prompt: { hour: 'Heure', minute: 'Minute' } }, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
     <%= f.label :end_date, "Date de fin du séjour" %>
     <%= f.date_select :end_date, { order: [:day, :month, :year], use_month_names: I18n.t('date.month_names')[1..12], start_year: Date.today.year } %>
   </div>
@@ -36,5 +42,5 @@
     <%= f.file_field :photo, class: "form-control" %>
   </div>
 
-  <%= f.submit "Créer la randonnée", class: "btn btn-success" %>
+  <%= f.submit "Créer la randonnée", class: "btn-primary" %>
 <% end %>

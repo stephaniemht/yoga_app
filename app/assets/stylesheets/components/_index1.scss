@@ -50,7 +50,7 @@
 
 /* --- Cartes des événements (plus larges) --- */
 .course-card, .hike-card {
-  text-transform: capitalize;
+  text-transform: initial;
   display: flex;
   align-items: center;
   width: 100%;

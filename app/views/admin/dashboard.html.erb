@@ -1,15 +1,19 @@
-<h1>Que souhaitez-vous faire ?</h1>
+<div class="admin-dashboard">
+  <h1 class="admin-title">Que souhaitez-vous faire ?</h1>
 
-<div class="admin-actions">
-  <div class="admin-option">
-    <h2>Créer un nouvel événement - Cours de Yoga</h2>
-    <p>Ajoutez un cours de yoga avec toutes ses informations.</p>
-    <a href="<%= new_course_path %>" class="admin-btn">Créer un cours</a>
-  </div>
+  <div class="admin-actions">
+    <!-- Bloc Cours de Yoga -->
+    <div class="admin-option">
+      <h2>Cours de Yoga</h2>
+      <p>Ajoutez un cours de yoga avec toutes ses informations : lieu, date, durée, tarif et description.</p>
+      <a href="<%= new_course_path %>" class="admin-btn">Créer un cours</a>
+    </div>
 
-  <div class="admin-option">
-    <h2>Créer un nouvel événement - Rando Yoga</h2>
-    <p>Ajoutez une randonnée yoga avec toutes ses informations.</p>
-    <a href="<%= new_hike_path %>" class="admin-btn">Créer une randonnée</a>
+    <!-- Bloc Randonnée Yoga -->
+    <div class="admin-option">
+      <h2>Randonnée Yoga</h2>
+      <p>Ajoutez une randonnée yoga avec toutes ses informations : lieu, dates, tarif et description.</p>
+      <a href="<%= new_hike_path %>" class="admin-btn">Créer une randonnée</a>
+    </div>
   </div>
 </div>

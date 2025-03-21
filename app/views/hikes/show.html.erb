@@ -11,8 +11,18 @@
     <div class="hike-info-container">
       <div class="hike-details">
         <p><strong>Lieu :</strong> <%= @hike.location %></p>
-        <p><strong>Début :</strong> <%= l(@hike.date, format: "%d %B %Y") %></p>
-        <p><strong>Fin :</strong> <%= l(@hike.end_date, format: "%d %B %Y") %></p>
+
+        <% if @hike.date.present? && @hike.time.present? %>
+          <% datetime = DateTime.new(@hike.date.year, @hike.date.month, @hike.date.day, @hike.time.hour, @hike.time.min) %>
+          <p><strong>Départ :</strong> <%= l(datetime, format: :long) %></p>
+        <% else %>
+          <p><strong>Départ :</strong> <%= l(@hike.date, format: "%A %d %B %Y") %></p>
+        <% end %>
+
+        <% if @hike.end_date.present? %>
+          <p><strong>Retour :</strong> <%= l(@hike.end_date, format: "%d %B %Y") %></p>
+        <% end %>
+
         <p><strong>Tarif :</strong> <%= @hike.price %> €</p>
         <p><strong>Description :</strong> <%= @hike.description %></p>
       </div>
