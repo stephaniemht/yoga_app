@@ -29,17 +29,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :start_time, "Date et heure du cours" %>
-      <%= f.datetime_select :start_time,
-          {
-            order: [:day, :month, :year],
-            use_month_names: I18n.t('date.month_names')[1..12],
-            prompt: {
-              day: 'Jour', month: 'Mois', year: 'Année',
-              hour: 'Heure', minute: 'Minute'
-            }
-          },
-          { class: "form-control" } %>
+      <%= f.label :start_time, "Date et Heure du cours" %>
+      <%= f.datetime_select :start_time %>
     </div>
 
     <div class="form-group">
