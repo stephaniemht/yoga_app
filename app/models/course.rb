@@ -2,10 +2,12 @@ class Course < ApplicationRecord
   belongs_to :user
   has_one_attached :photo
 
-  # Si la colonne :date n’existe plus, retire-la des validations
   validates :title, :start_time, :description, :location, :price, presence: true
 
-  # S’il n’y a plus de colonne `date`, supprime aussi la validation sur `:date`
-  # et assure-toi de ne plus faire Course.order(date: :asc)
+  def start_time
+    raw = super
+    return nil if raw.nil?
+    return raw if raw.is_a?(Time) || raw.is_a?(DateTime) || raw.is_a?(ActiveSupport::TimeWithZone)
+    Time.zone.parse(raw.to_s) rescue nil
+  end
 end
-
