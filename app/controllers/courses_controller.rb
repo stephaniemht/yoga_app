@@ -11,9 +11,7 @@ class CoursesController < ApplicationController
   end
 
   def new
-    # Nouvel objet, on initialise start_time à l'heure actuelle
-    @course = Course.new
-    @course.start_time = Time.zone.now
+    @course = Course.new(start_time: Time.zone.now)
   end
 
   def create
