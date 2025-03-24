@@ -11,7 +11,8 @@ class CoursesController < ApplicationController
   end
 
   def new
-    @course = Course.new(start_time: Time.zone.now)
+    @course = Course.new
+    @course.start_time = Time.zone.now
   end
 
   def start_time
