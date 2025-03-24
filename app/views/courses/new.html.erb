@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <%= f.label :start_time, "Date et Heure du cours" %>
-      <%# <%= f.datetime_select :start_time %>
+      <%= f.datetime_select :start_time, default: Time.zone.parse("2025-03-25 09:00") %>
     </div>
 
     <div class="form-group">
