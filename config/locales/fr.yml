@@ -6,11 +6,55 @@ fr:
       default: "%d/%m/%Y"
       long: "%A %d %B %Y"
       short: "%d %b"
+
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
       long: "%A %d %B %Y à %Hh%M"
       short: "%d %b à %Hh"
+
   errors:
+    format: "%{attribute} %{message}"
     messages:
+      blank: "doit être renseigné"
       taken: "est déjà pris"
+      too_short: "est trop court"
+      too_long: "est trop long"
+      invalid: "n'est pas valide"
+      not_a_number: "n'est pas un nombre"
+      greater_than: "doit être supérieur à %{count}"
+      less_than: "doit être inférieur à %{count}"
+
+  activerecord:
+    models:
+      course: "Cours de yoga"
+    attributes:
+      course:
+        title: "Nom du cours"
+        location: "Adresse"
+        description: "Description"
+        date: "Date"
+        start_time: "Heure du cours"
+        duration: "Durée"
+        price: "Tarif"
+        photo: "Photo"
+
+    errors:
+      models:
+        course:
+          attributes:
+            title:
+              blank: "doit être renseigné"
+            location:
+              blank: "doit être renseignée"
+            description:
+              blank: "doit être renseignée"
+            date:
+              blank: "doit être sélectionnée"
+            start_time:
+              blank: "doit être renseignée"
+            duration:
+              blank: "doit être précisée"
+            price:
+              blank: "doit être renseigné"
+              not_a_number: "doit être un nombre"
