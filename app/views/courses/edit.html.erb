@@ -2,6 +2,17 @@
   <h1>Modifier un Cours de Yoga</h1>
 
   <%= form_with model: @course, local: true do |f| %>
+    <% if @course.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@course.errors.count, "erreur") %> empêchent la mise à jour du cours :</h4>
+        <ul>
+          <% @course.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="form-group">
       <%= f.label :title, "Nom du cours" %>
       <%= f.text_field :title, class: "form-control" %>
@@ -18,16 +29,13 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :start_time, "Date et Heure du cours" %>
-      <%= f.datetime_select :start_time,
-            {
-              order: [:day, :month, :year],
-              use_month_names: I18n.t('date.month_names')[1..12],
-              start_year: Date.today.year
-            },
-            {
-              class: "form-control"
-            } %>
+      <%= f.label :date, "Date du cours" %>
+      <%= f.date_select :date, { order: [:day, :month, :year], use_month_names: I18n.t('date.month_names')[1..12], start_year: Date.today.year } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :start_time, "Heure du cours" %>
+      <%= f.datetime_select :start_time, { prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure', minute: 'Minute' } } %>
     </div>
 
     <div class="form-group">
