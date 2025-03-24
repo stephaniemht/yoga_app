@@ -18,13 +18,16 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :date, "Date du cours" %>
-      <%= f.date_select :date, { order: [:day, :month, :year], use_month_names: I18n.t('date.month_names')[1..12], start_year: Date.today.year } %>
-    </div>
-
-    <div class="form-group">
-      <%= f.datetime_select :start_time, "Heure du cours" %>
-      <%= f.time_select :time, { prompt: { hour: 'Heure', minute: 'Minute' } }, class: "form-control" %>
+      <%= f.label :start_time, "Date et Heure du cours" %>
+      <%= f.datetime_select :start_time,
+            {
+              order: [:day, :month, :year],
+              use_month_names: I18n.t('date.month_names')[1..12],
+              start_year: Date.today.year
+            },
+            {
+              class: "form-control"
+            } %>
     </div>
 
     <div class="form-group">
