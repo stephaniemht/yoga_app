@@ -14,6 +14,16 @@ class CoursesController < ApplicationController
     @course = Course.new(start_time: Time.zone.now)
   end
 
+  def start_time
+    raw = super
+    # Si raw est nil, retourne nil
+    return nil if raw.nil?
+    # Si raw est déjà un objet Time, ActiveSupport::TimeWithZone ou DateTime, on le retourne directement
+    return raw if raw.is_a?(ActiveSupport::TimeWithZone) || raw.is_a?(DateTime) || raw.is_a?(Time)
+    # Sinon, on essaie de le convertir en temps
+    Time.zone.parse(raw.to_s) rescue nil
+  end
+
   def create
     @course = Course.new(course_params)
     @course.user = current_user
