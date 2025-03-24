@@ -15,8 +15,8 @@
       <div class="course-details">
         <p><strong>Lieu :</strong> <%= @course.location %></p>
         <p><strong>Date :</strong> <%= l(@course.date, format: "%A %d %B %Y") %></p>
-        <% if @course.time.present? %>
-          <p><strong>Heure :</strong> <%= @course.time.strftime("%Hh%M") %></p>
+        <% if @course.start_time.present? %>
+          <p><strong>Heure :</strong> <%= @course.start_time.strftime("%Hh%M") %></p>
         <% end %>
         <p><strong>Durée :</strong> <%= @course.duration %></p>
         <p><strong>Tarif :</strong> <%= @course.price %> €</p>

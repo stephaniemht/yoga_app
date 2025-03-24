@@ -23,7 +23,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :time, "Heure du cours" %>
+      <%= f.datetime_select :start_time, "Heure du cours" %>
       <%= f.time_select :time, { prompt: { hour: 'Heure', minute: 'Minute' } }, class: "form-control" %>
     </div>
 
