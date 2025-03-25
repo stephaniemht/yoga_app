@@ -13,14 +13,15 @@
 
     <div class="course-info-container">
       <div class="course-details">
+        <p><strong>Description :</strong> <%= @course.description %></p>
+        <hr>
         <p><strong>Lieu :</strong> <%= @course.location %></p>
-        <p><strong>Date :</strong> <%= l(@course.date, format: "%A %d %B %Y") %></p>
         <% if @course.start_time.present? %>
+          <p><strong>Date :</strong> <%= l(@course.start_time.to_date, format: "%A %d %B %Y") %></p>
           <p><strong>Heure :</strong> <%= @course.start_time.strftime("%Hh%M") %></p>
         <% end %>
         <p><strong>Durée :</strong> <%= @course.duration %></p>
         <p><strong>Tarif :</strong> <%= @course.price %> €</p>
-        <p><strong>Description :</strong> <%= @course.description %></p>
       </div>
 
       <% if user_signed_in? && current_user.admin? %>

@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @course.start_time = nil
   end
 
   def create

@@ -25,7 +25,13 @@
             <div class="course-info">
               <h2 class="course-card-title"><%= course.title %></h2>
               <p><strong>Lieu :</strong> <%= course.location %></p>
-              <p><strong>Date :</strong> <%= l(course.date, format: :long) %></p>
+<% if course.start_time.present? %>
+  <p><strong>Date :</strong> <%= l(course.start_time.to_date, format: :long) %></p>
+  <p><strong>Heure :</strong> <%= course.start_time.strftime("%Hh%M") %></p>
+<% else %>
+  <p><strong>Date :</strong> à venir</p>
+<% end %>
+
               <p><strong>Tarif :</strong> <%= course.price %> €</p>
             </div>
 

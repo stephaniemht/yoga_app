@@ -76,7 +76,8 @@ Rejoignez L’Univers des Sens et offrez-vous une véritable parenthèse de bien
 
         <div class="event-details">
           <h3 class="event-title"><%= @next_course.title %></h3>
-          <span class="event-info"><strong>Date :</strong>&nbsp;<%= l(@next_course.date, format: "%A %d %B %Y") %></span>
+          <span class="event-info"><strong>Date :</strong>&nbsp;<%= l(@next_course.start_time.to_date, format: "%A %d %B %Y") %> à <%= @next_course.start_time.strftime("%Hh%M") %>
+</span>
           <span class="event-info"><strong>Tarif : </strong>&nbsp;<%= @next_course.price %> €</span>
           <a href="<%= course_path(@next_course) %>" class="event-button">Plus d'informations →</a>
         </div>
