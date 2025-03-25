@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <!-- Logo -->
-    <a href="<%= root_path %>" class="navbar-brand">
-      <%= image_tag "udslogo.png", alt: "Logo", class: "navbar-logo" %>
-    </a>
+   <%= link_to root_path, data: { turbo: false }, class: "navbar-brand" do %>
+    <%= image_tag "udslogo.png", alt: "Logo", class: "navbar-logo" %>
+   <% end %>
+
 
     <!-- Burger -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +14,7 @@
     <!-- Liens -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="<%= root_path %>">Accueil</a></li>
+        <li class="nav-item"><%= link_to "Accueil", root_path, class: "nav-link", data: { turbo: false } %></li>
         <li class="nav-item"><a class="nav-link" href="<%= courses_path %>">Yoga</a></li>
         <li class="nav-item"><a class="nav-link" href="<%= hikes_path %>">Randonnées</a></li>
         <li class="nav-item"><a class="nav-link" href="<%= root_path(anchor: 'evenements') %>">Événements</a></li>
