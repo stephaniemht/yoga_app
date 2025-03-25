@@ -1,6 +1,17 @@
 <h1 class="edit-title">Modifier la Randonnée Yoga</h1>
 
-<%= form_with model: @hike, url: hike_path(@hike), method: :patch, local: true do |f| %>
+<%= form_with model: @hike, local: true do |f| %>
+  <% if @hike.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@hike.errors.count, "erreur") %> empêchent la mise à jour de la randonnée :</h4>
+      <ul>
+        <% @hike.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :title, "Nom de la randonnée" %>
     <%= f.text_field :title, class: "form-control" %>
@@ -18,7 +29,10 @@
 
   <div class="form-group">
     <%= f.label :date, "Date de début du séjour" %>
-    <%= f.date_select :date, { order: [:day, :month, :year], use_month_names: I18n.t('date.month_names')[1..12], start_year: Date.today.year } %>
+    <%= f.text_field :date,
+          type: "date",
+          value: (@hike.date ? @hike.date.strftime("%Y-%m-%d") : ""),
+          class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -28,7 +42,10 @@
 
   <div class="form-group">
     <%= f.label :end_date, "Date de fin du séjour" %>
-    <%= f.date_select :end_date, { order: [:day, :month, :year], use_month_names: I18n.t('date.month_names')[1..12], start_year: Date.today.year } %>
+    <%= f.text_field :end_date,
+          type: "date",
+          value: (@hike.end_date ? @hike.end_date.strftime("%Y-%m-%d") : ""),
+          class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -41,5 +58,7 @@
     <%= f.file_field :photo, class: "form-control" %>
   </div>
 
-  <%= f.submit "Mettre à jour la randonnée", class: "btn-primary" %>
+  <div class="form-actions">
+    <%= f.submit "Mettre à jour la randonnée", class: "btn-submit" %>
+  </div>
 <% end %>

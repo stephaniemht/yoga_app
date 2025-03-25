@@ -34,7 +34,7 @@
               <% end %>
 
               <% if hike.end_date.present? %>
-                <p><strong>Retour :</strong> <%= l(hike.end_date, format: "%d %B %Y") %></p>
+                <p><strong>Retour :</strong> <%= l(hike.end_date, format: "%A %d %B %Y") %></p>
               <% end %>
 
               <p><strong>Tarif :</strong> <%= hike.price %> €</p>

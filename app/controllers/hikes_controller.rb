@@ -20,6 +20,7 @@ class HikesController < ApplicationController
     if @hike.save
       redirect_to hike_path(@hike), notice: "Événement créé avec succès."
     else
+      puts @hike.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end

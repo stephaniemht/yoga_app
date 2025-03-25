@@ -10,6 +10,8 @@
 
     <div class="hike-info-container">
       <div class="hike-details">
+        <p><strong>Description :</strong> <%= @hike.description %></p>
+        <hr>
         <p><strong>Lieu :</strong> <%= @hike.location %></p>
 
         <% if @hike.date.present? && @hike.time.present? %>
@@ -20,11 +22,10 @@
         <% end %>
 
         <% if @hike.end_date.present? %>
-          <p><strong>Retour :</strong> <%= l(@hike.end_date, format: "%d %B %Y") %></p>
+          <p><strong>Retour :</strong> <%= l(@hike.end_date, format: "%A %d %B %Y") %></p>
         <% end %>
 
         <p><strong>Tarif :</strong> <%= @hike.price %> €</p>
-        <p><strong>Description :</strong> <%= @hike.description %></p>
       </div>
 
       <% if user_signed_in? && current_user.admin? %>
