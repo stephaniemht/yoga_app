@@ -30,9 +30,9 @@
   <div class="form-group">
     <%= f.label :date, "Date de début du séjour" %>
     <%= f.text_field :date,
-          type: "date",
+          class: "form-control",
           value: (@hike.date ? @hike.date.strftime("%Y-%m-%d") : ""),
-          class: "form-control" %>
+          data: { controller: "flatpickr" } %>
   </div>
 
   <div class="form-group">
@@ -43,9 +43,9 @@
   <div class="form-group">
     <%= f.label :end_date, "Date de fin du séjour" %>
     <%= f.text_field :end_date,
-          type: "date",
+          class: "form-control",
           value: (@hike.end_date ? @hike.end_date.strftime("%Y-%m-%d") : ""),
-          class: "form-control" %>
+          data: { controller: "flatpickr" } %>
   </div>
 
   <div class="form-group">

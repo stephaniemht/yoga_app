@@ -269,3 +269,10 @@
 .forgot-password-link:hover {
   color: #000;
 }
+
+.flatpickr-time {
+  display: flex !important;
+  visibility: visible !important;
+  height: auto !important;
+  opacity: 1 !important;
+}

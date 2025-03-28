@@ -4,6 +4,10 @@
     <title><%= content_for(:title) || "L Univers Des Sens" %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,6 +19,10 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Flatpickr JS + localisation FR -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
   </head>
 
   <body>
@@ -25,15 +33,12 @@
 
     <footer class="footer-section">
       <div class="footer-container">
-
-        <!-- Logo centré -->
         <div class="footer-logo">
           <%= link_to root_path, data: { turbo: false } do %>
             <%= image_tag "udslogo.png", alt: "Logo", class: "footer-logo-img" %>
           <% end %>
         </div>
 
-        <!-- Liens de navigation -->
         <nav class="footer-nav">
           <ul>
             <li><%= link_to "Accueil", root_path, data: { turbo: false } %></li>
@@ -44,26 +49,21 @@
           </ul>
         </nav>
 
-        <!-- Icônes réseaux sociaux -->
         <div class="footer-social">
           <a href="https://www.facebook.com/randoubaye?locale=fr_FR" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/univers_des_sens/" target="_blank"><i class="fab fa-instagram"></i></a>
           <a href="https://www.youtube.com/@jennycamp04yoga/videos" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
 
-        <!-- Séparateur -->
         <hr class="footer-divider">
-
-        <!-- Phrase de droits réservés -->
         <p class="footer-rights">&copy; <%= Time.now.year %> L'Univers des Sens - Tous droits réservés.</p>
-
       </div>
     </footer>
 
-    <!-- Importation des fichiers JS -->
+    <!-- JS Rails -->
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
 
-    <!-- Animation du logo -->
+    <!-- Animation logo -->
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const logo = document.querySelector(".logo");
@@ -76,7 +76,7 @@
       });
     </script>
 
-    <!-- Animation de la navbar au scroll -->
+    <!-- Navbar scroll effect -->
     <script>
       function handleNavbarScroll() {
         const navbar = document.querySelector(".navbar");
@@ -90,14 +90,13 @@
           }
         }
 
-        window.removeEventListener("scroll", onScroll); // Pour éviter les doublons
+        window.removeEventListener("scroll", onScroll);
         window.addEventListener("scroll", onScroll);
-        onScroll(); // Pour l'état initial (si on recharge au milieu de la page)
+        onScroll();
       }
 
       document.addEventListener("turbo:load", handleNavbarScroll);
     </script>
-
 
     <!-- Scroll fluide vers les ancres -->
     <script>
@@ -124,7 +123,7 @@
       });
     </script>
 
-    <!-- Force le rechargement après retour arrière -->
+    <!-- Rechargement après retour arrière -->
     <script>
       window.addEventListener("pageshow", function (event) {
         if (event.persisted || window.performance.navigation.type === 2) {
