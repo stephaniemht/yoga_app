@@ -6,28 +6,28 @@
   justify-content: center;
   text-align: center;
   padding: 100px 20px;
-  background-color: #f9f9f9;
+  background-color: #38546b;
 }
 
 .about-section h2 {
   margin-top: 30px;
   font-family: 'Work Sans', sans-serif;
-  color: #4a4a4a;
+  color: #ffffff;
 }
 
 .about-section h3 {
-  font-size: 48px;
-  margin-top: 30px;
+  font-size: 28px;
+  margin-top: -30px;
   font-family: 'Work Sans', sans-serif;
-  color: #4a4a4a;
+  color: #ffffff;
 }
 
 .about-section p {
   margin-top: 30px;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 2.6;
   font-family: 'Work Sans', sans-serif;
-  color: #4a4a4a;
+  color: #ffffff;
   margin-bottom: 30px;
 }
 
@@ -126,4 +126,40 @@
 /* --- Les images du haut chevauchent légèrement la bannière --- */
 .top-left, .top-right {
   z-index: 1;
+}
+
+/* --- Carrousel centré --- */
+.carousel-container {
+  max-width: 800px;
+  margin: 0 auto 40px auto; /* centré + espace avec le texte */
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  animation: slide 25s infinite ease-in-out;
+}
+
+.carousel-image {
+  min-width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* --- Animation du carrousel --- */
+@keyframes slide {
+  0%    { transform: translateX(0%); }
+  20%   { transform: translateX(0%); }
+  25%   { transform: translateX(-100%); }
+  45%   { transform: translateX(-100%); }
+  50%   { transform: translateX(-200%); }
+  70%   { transform: translateX(-200%); }
+  75%   { transform: translateX(-300%); }
+  95%   { transform: translateX(-300%); }
+  100%  { transform: translateX(-400%); }
 }

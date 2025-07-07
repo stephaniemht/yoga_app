@@ -4,21 +4,32 @@
 
 <div class="about-section">
   <div class="about-content">
-    <div class="about-images">
-      <%= image_tag asset_path('paysage.jpg'), class: 'about-image top-left', alt: 'Paysage' %>
-      <%= image_tag asset_path('meditation.jpg'), class: 'about-image top-right', alt: 'Méditation' %>
-      <%= image_tag asset_path('rando_montagne.jpg'), class: 'about-image bottom-left', alt: 'Randonnée' %>
-      <%= image_tag asset_path('nature.jpg'), class: 'about-image bottom-right', alt: 'Nature' %>
+
+    <!-- Texte en haut -->
+    <div class="about-text">
+      <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
+      <p>
+        Avec Jennifer Camp, accompagnatrice en montagne et professeure de Yoga Vinyasa, explorez deux façons uniques de vous reconnecter à vous-même.
+        Participez à des randonnées yoga au cœur de la nature, alliant marche consciente et pratiques de pleine présence.
+        Découvrez des cours de Yoga Vinyasa fluides et dynamiques, pour harmoniser souffle, mouvement et énergie.
+        Rejoignez L’Univers des Sens et offrez-vous une véritable parenthèse de bien-être et de ressourcement.
+      </p>
     </div>
 
-    <h2>L’Univers des sens</h2>
-    <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
-    <p>Avec Jennifer Camp, accompagnatrice en montagne et professeure de Yoga Vinyasa, explorez deux façons uniques de vous reconnecter à vous-même.
-Participez à des randonnées yoga au cœur de la nature, alliant marche consciente et pratiques de pleine présence.
-Découvrez des cours de Yoga Vinyasa fluides et dynamiques, pour harmoniser souffle, mouvement et énergie.
-Rejoignez L’Univers des Sens et offrez-vous une véritable parenthèse de bien-être et de ressourcement.</p>
+    <!-- Carrousel en bas -->
+    <div class="carousel-container">
+      <div class="carousel">
+        <%= image_tag asset_path('diapo 1.jpg'), class: 'carousel-image', alt: 'Image 1' %>
+        <%= image_tag asset_path('diapo 2.jpg'), class: 'carousel-image', alt: 'Image 2' %>
+        <%= image_tag asset_path('diapo 3.jpg'), class: 'carousel-image', alt: 'Image 3' %>
+        <%= image_tag asset_path('diapo 4.jpg'), class: 'carousel-image', alt: 'Image 4' %>
+        <%= image_tag asset_path('diapo 5.jpg'), class: 'carousel-image', alt: 'Image 5' %>
+      </div>
+    </div>
+
   </div>
 </div>
+
 
 <div class="practice-section" style="background-image: url(<%= asset_path('paysage_3.jpg') %>)">
   <div class="practice-container">
