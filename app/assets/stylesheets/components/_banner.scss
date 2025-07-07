@@ -7,8 +7,8 @@
 }
 
 .logo {
-  padding-top: 46px;
-  width: 400px; /* Ajuste la taille selon ton besoin */
+  padding-top: 0px;
+  width: 300px; /* Ajuste la taille selon ton besoin */
   opacity: 0; /* Rend le logo transparent au début */
   transform: scale(0.8); /* Effet de zoom */
   transition: opacity 3s ease-in-out, transform 3s ease-in-out;
