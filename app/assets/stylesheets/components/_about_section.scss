@@ -1,157 +1,44 @@
-/* --- Section À propos --- */
+/* --- SECTION À PROPOS --- */
 .about-section {
-  position: relative; /* Permet le positionnement absolu des images */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  background-color: #1f2a38;
   padding: 100px 20px;
-  background-color: #38546b;
 }
-
-.about-section h2 {
-  margin-top: 30px;
-  font-family: 'Work Sans', sans-serif;
-  color: #ffffff;
-}
-
-.about-section h3 {
-  font-size: 28px;
-  margin-top: -30px;
-  font-family: 'Work Sans', sans-serif;
-  color: #ffffff;
-}
-
-.about-section p {
-  margin-top: 30px;
-  font-size: 14px;
-  line-height: 2.6;
-  font-family: 'Work Sans', sans-serif;
-  color: #ffffff;
-  margin-bottom: 30px;
-}
-
-.about-content h2,
-.about-content h3,
-.about-content p {
-  opacity: 0; /* Commence invisible */
-  transform: translateY(20px); /* Légèrement décalé vers le bas */
-  transition: opacity 3s ease-out, transform 3s ease-out;
-}
-
-/* Quand la section devient visible */
-.about-section.visible .about-content h2,
-.about-section.visible .about-content h3,
-.about-section.visible .about-content p {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
 
 .about-content {
-  width: 50%;
-  z-index: 2; /* S'assurer que le texte est au-dessus des images */
-
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
 }
 
-.about-content h2 {
-  font-size: 28px;
-  margin-bottom: 50px;
-}
-
-
-/* --- Images autour du texte --- */
-.about-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.about-images img {
-  position: absolute;
-  width: 150px; /* Taille fixe, ajuste si besoin */
-  height: 150px;
-  object-fit: cover;
-  border-radius: 0px;
-  opacity: 0; /* Cachées au départ */
-  transform: translateY(100px); /* Positionnées plus bas */
-  transition: opacity 3s ease-out, transform 3s ease-out;
-}
-
-/* Classe qui sera ajoutée par JavaScript quand l'élément devient visible */
-.about-images img.visible {
-  opacity: 1;
-  transform: translateY(0); /* Revient à sa position normale */
-}
-
-
-/* --- Positionnement des images --- */
-.about-image.top-left {
-  height: 186px;
-  width: 288px;
-  top: -40px;
-  left: 10%;
-}
-
-.about-image.top-right {
-  height: 186px;
-  width: 288px;
-  top: -40px;
-  right: 10%;
-}
-
-.about-image.bottom-left {
-  height: 250px;
-  width: 229px;
-  bottom: 66px;
-  left: 5%;
-}
-
-.about-image.bottom-right {
-  height: 250px;
-  width: 229px;
-  bottom: 66px;
-  right: 5%;
-}
-
-/* --- Apparition des images avec un effet fluide --- */
-.about-section.visible .about-image {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* --- Les images du haut chevauchent légèrement la bannière --- */
-.top-left, .top-right {
-  z-index: 1;
-}
-
-/* --- Carrousel centré --- */
 .carousel-container {
-  max-width: 800px;
-  margin: 0 auto 40px auto; /* centré + espace avec le texte */
+  flex: 1 1 500px;
+  min-width: 300px;
+  max-width: 600px;
+  height: 400px;
   overflow: hidden;
-  border-radius: 4px;
-  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .carousel {
   display: flex;
   width: 100%;
+  height: 100%;
   animation: slide 25s infinite ease-in-out;
 }
 
 .carousel-image {
   min-width: 100%;
-  height: 400px;
+  height: 100%;
   object-fit: cover;
-  transition: opacity 1s ease-in-out;
   flex-shrink: 0;
 }
 
-/* --- Animation du carrousel --- */
 @keyframes slide {
   0%    { transform: translateX(0%); }
   20%   { transform: translateX(0%); }
@@ -162,4 +49,264 @@
   75%   { transform: translateX(-300%); }
   95%   { transform: translateX(-300%); }
   100%  { transform: translateX(-400%); }
+}
+
+.about-text {
+  flex: 1 1 400px;
+  color: white;
+  font-size: 16px;
+  line-height: 1;
+  font-family: 'Work Sans', sans-serif;
+  padding: 20px;
+}
+
+.about-text h3 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  margin-bottom: 20px;
+  line-height: 1;
+  color: white;
+  white-space: normal; /* IMPORTANT si tu avais mis pre-line avant */
+}
+
+/* --- SECTION PRACTICE --- */
+.practice-section {
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  color: white;
+}
+
+.practice-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.practice-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 60px;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.practice-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card__background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__content {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.card__description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.card__button {
+  background: #ffffff;
+  color: #1f2a38;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  align-self: flex-start;
+    margin: 0 auto; /* ⬅️ centrer horizontalement */
+
+}
+
+/* --- SECTION ÉVÉNEMENTS --- */
+.events-section {
+  background: #f9f9f9;
+  padding: 80px 20px;
+}
+
+.event-title1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 60px;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.events-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.event-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  align-items: center;
+  gap: 20px;
+}
+
+.event-image {
+  flex: 1 1 300px;
+}
+
+.event-photo {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  height: 100%;
+  max-height: 300px;
+}
+
+.event-details {
+  flex: 2 1 400px;
+}
+
+.event-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.event-info {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.event-button {
+  display: inline-block;
+  background: #1f2a38;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.event-links {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.events-link {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #1f2a38;
+  font-weight: bold;
+}
+
+/* --- SECTION CONTACT --- */
+/* --- SECTION CONTACT REVISITÉE --- */
+.contact-section {
+  background: #ffffff; /* fond blanc pur */
+padding: 60px 0;
+}
+
+.contact-container {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 0;
+  overflow: hidden;
+  background: white;
+}
+
+.contact-image-wrapper {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+}
+
+.contact-image-wrapper img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.contact-form {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+}
+
+.contact-form h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-family: 'Work Sans', sans-serif;
+  color: #1f2a38;
+}
+
+.contact-form-wrapper .form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background: #1f2a38;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #314a60;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .contact-image-wrapper {
+    max-width: 100%;
+  }
+
+  .contact-image-wrapper img {
+    height: 300px;
+  }
+
+  .contact-form {
+    padding: 40px 20px;
+  }
 }

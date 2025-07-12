@@ -3,20 +3,9 @@
 </div>
 
 <div class="about-section">
-  <div class="about-content">
+  <div class="about-content row-layout">
 
-    <!-- Texte en haut -->
-    <div class="about-text">
-      <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
-      <p>
-        Avec Jennifer Camp, accompagnatrice en montagne et professeure de Yoga Vinyasa, explorez deux façons uniques de vous reconnecter à vous-même.
-        Participez à des randonnées yoga au cœur de la nature, alliant marche consciente et pratiques de pleine présence.
-        Découvrez des cours de Yoga Vinyasa fluides et dynamiques, pour harmoniser souffle, mouvement et énergie.
-        Rejoignez L’Univers des Sens et offrez-vous une véritable parenthèse de bien-être et de ressourcement.
-      </p>
-    </div>
-
-    <!-- Carrousel en bas -->
+    <!-- Colonne gauche : Carrousel -->
     <div class="carousel-container">
       <div class="carousel">
         <%= image_tag asset_path('diapo 1.jpg'), class: 'carousel-image', alt: 'Image 1' %>
@@ -27,7 +16,35 @@
       </div>
     </div>
 
+    <!-- Colonne droite : Texte -->
+    <div class="about-text">
+      <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
+  <p>
+    Je vous invite à venir vous déposer sur un tapis de yoga pour une séance de Vinyasa, au studio Mouv’&Fit à Barcelonnette ou en plein air durant la belle saison.
+  </p>
+
+  <p>
+    Le yoga, c’est l’union de la respiration, des ressentis, des émotions, des pensées et du corps.
+  </p>
+
+  <p>
+    Le Vinyasa est une pratique en mouvement, où le souffle guide chaque posture pour créer de l’espace dans le corps et l’esprit. Les flows (enchaînements) sont variés afin de renforcer et relâcher le corps, et ainsi créer harmonie, équilibre, calme…
+    Vous êtes votre propre photosynthèse !
+  </p>
+
+  <p>
+    Professeure de yoga Vinyasa certifiée et accompagnatrice en montagne, la nature, le corps et l’esprit m’animent. Je vous accompagne pour une pratique de yoga adaptée à vous.
+  </p>
+
+  <p>
+    <strong>Les mercredis à 18h30 et les vendredis à 10h</strong><br>
+    Séance d’1h15 avec Jennifer. Tapis et matériel fournis.<br>
+    <strong>Tarif :</strong> 12 €, à régler sur place (espèces et chèques acceptés).
+  </p>
+    </div>
+
   </div>
+
 </div>
 
 
@@ -145,13 +162,20 @@
 <div class="image-section">
   <div class="image-container">
     <%= image_tag asset_path('paysage_2.jpg'), class: 'main-image', alt: 'Grande image principale' %>
-    <%= image_tag asset_path('papillon.jpg'), class: 'small-image top-right', alt: 'Petite image en haut à droite' %>
-    <%= image_tag asset_path('rando.jpg'), class: 'small-image bottom-left', alt: 'Petite image en bas à gauche' %>
+    <%= image_tag asset_path('1.jpg'), class: 'small-image top-right', alt: 'Petite image en haut à droite' %>
+    <%= image_tag asset_path('2.jpg'), class: 'small-image bottom-left', alt: 'Petite image en bas à gauche' %>
   </div>
 </div>
 
 <div class="contact-section" id="contact">
   <div class="contact-container">
+
+    <!-- Image à droite -->
+    <div class="contact-image-wrapper">
+      <%= image_tag asset_path('neige.jpg'), alt: 'Contact' %>
+    </div>
+
+    <!-- Formulaire à gauche -->
     <div class="contact-form">
       <h2>Contact</h2>
       <%= form_with url: contacts_path, method: :post, local: true, html: { class: "contact-form-wrapper" } do |f| %>
@@ -178,8 +202,7 @@
         <%= f.submit "Envoyer", class: "btn-primary" %>
       <% end %>
     </div>
-    <div class="contact-image">
-      <%= image_tag asset_path('neige.jpg'), alt: 'Contact' %>
-    </div>
+
   </div>
 </div>
+
