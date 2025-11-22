@@ -7,45 +7,89 @@
 
     <!-- Colonne gauche : Carrousel -->
     <div class="carousel-container">
-      <div class="carousel">
-        <%= image_tag asset_path('diapo 1.jpg'), class: 'carousel-image', alt: 'Image 1' %>
-        <%= image_tag asset_path('diapo 2.jpg'), class: 'carousel-image', alt: 'Image 2' %>
-        <%= image_tag asset_path('diapo 3.jpg'), class: 'carousel-image', alt: 'Image 3' %>
-        <%= image_tag asset_path('diapo 4.jpg'), class: 'carousel-image', alt: 'Image 4' %>
-        <%= image_tag asset_path('diapo 5.jpg'), class: 'carousel-image', alt: 'Image 5' %>
+      <div class="carousel-inner-frame">
+        <div class="carousel">
+          <%= image_tag asset_path('diapo 1.jpg'), class: 'carousel-image', alt: 'Image 1' %>
+          <%= image_tag asset_path('diapo 2.jpg'), class: 'carousel-image', alt: 'Image 2' %>
+          <%= image_tag asset_path('diapo 3.jpg'), class: 'carousel-image', alt: 'Image 3' %>
+          <%= image_tag asset_path('diapo 4.jpg'), class: 'carousel-image', alt: 'Image 4' %>
+          <%= image_tag asset_path('diapo 5.jpg'), class: 'carousel-image', alt: 'Image 5' %>
+        </div>
       </div>
     </div>
 
     <!-- Colonne droite : Texte -->
     <div class="about-text">
       <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
-  <p>
-    Je vous invite à venir vous déposer sur un tapis de yoga pour une séance de Vinyasa, au studio Mouv’&Fit à Barcelonnette ou en plein air durant la belle saison.
-  </p>
 
-  <p>
-    Le yoga, c’est l’union de la respiration, des ressentis, des émotions, des pensées et du corps.
-  </p>
+      <p>
+        Je vous invite à venir vous déposer sur un tapis de yoga pour une séance de Vinyasa, au studio Mouv’&Fit à Barcelonnette ou en plein air durant la belle saison.
+      </p>
 
-  <p>
-    Le Vinyasa est une pratique en mouvement, où le souffle guide chaque posture pour créer de l’espace dans le corps et l’esprit. Les flows (enchaînements) sont variés afin de renforcer et relâcher le corps, et ainsi créer harmonie, équilibre, calme…
-    Vous êtes votre propre photosynthèse !
-  </p>
+      <p>
+        Le yoga, c’est l’union de la respiration, des ressentis, des émotions, des pensées et du corps.
+      </p>
 
-  <p>
-    Professeure de yoga Vinyasa certifiée et accompagnatrice en montagne, la nature, le corps et l’esprit m’animent. Je vous accompagne pour une pratique de yoga adaptée à vous.
-  </p>
+      <p>
+        Le Vinyasa est une pratique en mouvement, où le souffle guide chaque posture pour créer de l’espace dans le corps et l’esprit. Les flows (enchaînements) sont variés afin de renforcer et relâcher le corps, et ainsi créer harmonie, équilibre, calme… Vous êtes votre propre photosynthèse !
+      </p>
 
-  <p>
-    <strong>Les mercredis à 18h30 et les vendredis à 10h</strong><br>
-    Séance d’1h15 avec Jennifer. Tapis et matériel fournis.<br>
-    <strong>Tarif :</strong> 12 €, à régler sur place (espèces et chèques acceptés).
-  </p>
+      <p>
+        Professeure de yoga Vinyasa certifiée et accompagnatrice en montagne, la nature, le corps et l’esprit m’animent. Je vous accompagne pour une pratique de yoga adaptée à vous.
+      </p>
+
+      <p>
+        <strong>Les mercredis à 18h30 et les vendredis à 10h</strong><br>
+        Séance d’1h15 avec Jennifer. Tapis et matériel fournis.<br>
+        <strong>Tarif :</strong> 12 €, à régler sur place (espèces et chèques acceptés).
+      </p>
     </div>
 
   </div>
-
 </div>
+
+<!-- 🔸 NOUVELLE SECTION PRÉSENTATION 🔸 -->
+<div class="presentation-section">
+  <div class="presentation-container">
+
+    <div class="presentation-text">
+      <span class="presentation-badge">Présentation</span>
+      <h2>Je suis Jennifer</h2>
+
+      <p>
+        Je pratique le yoga depuis une dizaine d’années, en studio et lors de voyages, notamment au Népal où j’ai suivi un stage immersif. Au fil du temps, j’ai ressenti le besoin profond d’aller plus loin dans ma pratique, d’explorer au-delà des postures, et de me former pour transmettre à mon tour.
+      </p>
+
+      <p>
+        En décembre 2022, j’ai rejoint la formation de Yoga Vinyasa du Lab du Yoga. Cela a été une véritable aventure intérieure&nbsp;: un laboratoire avec moi-même, fait de découvertes, d’exploration du corps et de l’esprit, de joie, de rires… et parfois de larmes. Après avoir intégré la notion de calme et d’ancrage, j’ai choisi de compléter mon parcours avec une formation en Yin Yoga à partir de septembre 2025.
+      </p>
+
+      <p>
+        Aujourd’hui, je vous accompagne à travers des pratiques de yoga dynamiques et énergisantes autour du renforcement musculaire, de la mobilité, de la stabilité et de la création d’espace dans le corps. J’aime aussi proposer un yoga plus doux, axé sur le relâchement des tensions et l’apaisement du système nerveux, grâce aux pratiques de Yin Yoga.
+      </p>
+
+      <p>
+        Également accompagnatrice en montagne, j’organise des séjours alliant randonnée et yoga. La pratique du yoga, la nature et la marche forment un triangle harmonieux et subtil, propice au ressourcement, à l’énergie et à l’équilibre.
+      </p>
+
+      <p>
+        Pour moi, pratiquer le yoga, c’est cultiver son corps et son âme. C’est une union de la respiration, des ressentis, des émotions, des pensées et du corps.
+      </p>
+
+      <p class="presentation-slogan">
+        <strong>Mon mantra&nbsp;:</strong> RESPIRE, EXPLORE, RESSOURCE, RECHARGE et RELAX.
+      </p>
+    </div>
+
+    <div class="presentation-photo">
+      <%= image_tag asset_path('meditation.jpg'),
+            class: 'presentation-image',
+            alt: 'Jennifer en méditation' %>
+    </div>
+
+  </div>
+</div>
+<!-- 🔸 FIN SECTION PRÉSENTATION 🔸 -->
 
 
 <div class="practice-section" style="background-image: url(<%= asset_path('paysage_3.png') %>)">
@@ -59,11 +103,13 @@
 
       <!-- Carte Yoga -->
       <article class="card">
-        <img class="card__background" src="<%= asset_path('yoga.jpg') %>" alt="Yoga">
+        <img class="card__background card--down" src="<%= asset_path('yoga.jpg') %>" alt="Yoga">
         <div class="card__content flow">
           <div class="card__content--container flow">
             <h2 class="card__title">Yoga</h2>
-            <p class="card__description">Détendez votre esprit et renforcez votre corps avec des cours de yoga adaptés à tous les niveaux. Retrouvez équilibre et sérénité à chaque séance..</p>
+            <p class="card__description">
+              Détendez votre esprit et renforcez votre corps avec des cours de yoga adaptés à tous les niveaux. Retrouvez équilibre et sérénité à chaque séance.
+            </p>
           </div>
           <a href="<%= courses_path %>" class="card__button">Explorer</a>
         </div>
@@ -74,8 +120,10 @@
         <img class="card__background" src="<%= asset_path('rando_nature.jpg') %>" alt="Randonnée Yoga">
         <div class="card__content flow">
           <div class="card__content--container flow">
-            <h2 class="card__title">Randonée Yoga</h2>
-            <p class="card__description">Reconnectez-vous à la nature avec les randonnée yoga. Une expérience immersive pour ressourcer corps et esprit..</p>
+            <h2 class="card__title">Randonnée Yoga</h2>
+            <p class="card__description">
+              Reconnectez-vous à la nature avec les randonnées yoga. Une expérience immersive pour ressourcer corps et esprit.
+            </p>
           </div>
           <a href="<%= hikes_path %>" class="card__button">Explorer</a>
         </div>
@@ -87,7 +135,7 @@
 
 
 <div class="events-section" id="evenements">
-  <h2 class="event-title1">Prochains Événements Yoga & Randonnées</h2>
+  <h2 class="event-title1">Prochains Événements Yoga &amp; Randonnées</h2>
 
   <div class="events-container">
     <!-- Affichage du prochain cours de yoga -->
@@ -104,9 +152,14 @@
 
         <div class="event-details">
           <h3 class="event-title"><%= @next_course.title %></h3>
-          <span class="event-info"><strong>Date :</strong>&nbsp;<%= l(@next_course.start_time.to_date, format: "%A %d %B %Y") %> à <%= @next_course.start_time.strftime("%Hh%M") %>
-</span>
-          <span class="event-info"><strong>Tarif : </strong>&nbsp;<%= @next_course.price %> €</span>
+          <span class="event-info">
+            <strong>Date :</strong>&nbsp;
+            <%= l(@next_course.start_time.to_date, format: "%A %d %B %Y") %>
+            à <%= @next_course.start_time.strftime("%Hh%M") %>
+          </span>
+          <span class="event-info">
+            <strong>Tarif :</strong>&nbsp;<%= @next_course.price %> €
+          </span>
           <a href="<%= course_path(@next_course) %>" class="event-button">Plus d'informations →</a>
         </div>
       </div>
@@ -115,46 +168,52 @@
     <% end %>
 
     <!-- Affichage de la prochaine randonnée yoga -->
-<% if @next_hike %>
-  <div class="event-row">
-    <!-- Affichage de l’image de la randonnée -->
-    <div class="event-image">
-      <% if @next_hike.photo.attached? %>
-        <%= image_tag @next_hike.photo, class: "event-photo" %>
-      <% else %>
-        <%= image_tag "default_hike.jpg", class: "event-photo" %>
-      <% end %>
-    </div>
+    <% if @next_hike %>
+      <div class="event-row">
+        <!-- Affichage de l’image de la randonnée -->
+        <div class="event-image">
+          <% if @next_hike.photo.attached? %>
+            <%= image_tag @next_hike.photo, class: "event-photo" %>
+          <% else %>
+            <%= image_tag "default_hike.jpg", class: "event-photo" %>
+          <% end %>
+        </div>
 
-    <div class="event-details">
-      <h3 class="event-title"><%= @next_hike.title %></h3>
+        <div class="event-details">
+          <h3 class="event-title"><%= @next_hike.title %></h3>
 
-      <% if @next_hike.date.present? && @next_hike.time.present? %>
-        <% datetime = DateTime.new(
-              @next_hike.date.year,
-              @next_hike.date.month,
-              @next_hike.date.day,
-              @next_hike.time.hour,
-              @next_hike.time.min
-            ) %>
-        <span class="event-info"><strong>Départ :</strong>&nbsp;<%= l(datetime, format: :long) %></span>
-      <% else %>
-        <span class="event-info"><strong>Départ :</strong>&nbsp;<%= l(@next_hike.date, format: "%A %d %B %Y") %></span>
-      <% end %>
+          <% if @next_hike.date.present? && @next_hike.time.present? %>
+            <% datetime = DateTime.new(
+                  @next_hike.date.year,
+                  @next_hike.date.month,
+                  @next_hike.date.day,
+                  @next_hike.time.hour,
+                  @next_hike.time.min
+                ) %>
+            <span class="event-info">
+              <strong>Départ :</strong>&nbsp;<%= l(datetime, format: :long) %>
+            </span>
+          <% else %>
+            <span class="event-info">
+              <strong>Départ :</strong>&nbsp;<%= l(@next_hike.date, format: "%A %d %B %Y") %>
+            </span>
+          <% end %>
 
-      <span class="event-info"><strong>Tarif :</strong>&nbsp;<%= @next_hike.price %> €</span>
-      <a href="<%= hike_path(@next_hike) %>" class="event-button">Plus d'informations →</a>
-    </div>
-  </div>
-<% else %>
-  <p class="no-event">Aucune randonnée prévue prochainement.</p>
-<% end %>
+          <span class="event-info">
+            <strong>Tarif :</strong>&nbsp;<%= @next_hike.price %> €
+          </span>
+          <a href="<%= hike_path(@next_hike) %>" class="event-button">Plus d'informations →</a>
+        </div>
+      </div>
+    <% else %>
+      <p class="no-event">Aucune randonnée prévue prochainement.</p>
+    <% end %>
   </div>
 
   <!-- Liens vers toutes les sessions -->
   <div class="event-links">
     <a href="<%= courses_path %>" class="events-link">Voir tous les cours de yoga</a>
-    <a href="<%= hikes_path %>" class="events-link">Voir toutes les randonées</a>
+    <a href="<%= hikes_path %>" class="events-link">Voir toutes les randonnées</a>
   </div>
 </div>
 
