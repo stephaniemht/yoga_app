@@ -1,15 +1,5 @@
+/* --- Polices utilisées --- */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
-
-:root {
-  /* Couleurs */
-  --brand-color: #38546b;
-  --highlight-color: #a3de83;
-  --black: hsl(0, 0%, 0%);
-  --white: hsl(0, 0%, 100%);
-  /* Polices */
-  --font-title: "Montserrat", sans-serif;
-  --font-text: "Lato", sans-serif;
-}
 
 /* --- Section principale --- */
 .practice-section {
@@ -17,21 +7,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
+  padding: 70px 20px;
   position: relative;
   overflow: hidden;
+  background: var(--color-bg-section);
+  border-top: 1px solid rgba(199, 184, 255, 0.3);
 }
 
-/* --- Overlay pour l'effet de flou en arrière-plan --- */
+/* --- Overlay uni pastel (plus doux que le bleu) --- */
 .practice-section::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(98, 146, 184, 0.36);
-  backdrop-filter: blur(8px);
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 247, 245, 0.4),
+    rgba(199, 184, 255, 0.35),
+    rgba(255, 181, 194, 0.35)
+  );
+  backdrop-filter: blur(1px);
   z-index: 1;
 }
 
@@ -46,15 +40,28 @@
 
 /* --- Titre principal --- */
 .practice-title {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 24px;
-  font-weight: lighter !important;
-  color: white;
-  margin-bottom: 30px;
-  text-transform: uppercase;
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: 40px;
+  text-transform: none;
   letter-spacing: 1px;
   display: inline-block;
-  padding-bottom: 8px;
+  position: relative;
+}
+
+/* Soulignement pastel */
+.practice-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 40%;
+  height: 3px;
+  background: var(--color-primary);
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 /* --- Conteneur des cartes --- */
@@ -62,123 +69,118 @@
   display: flex;
   justify-content: center;
   gap: 40px;
-  flex-wrap: wrap; /* Pour être responsive */
+  flex-wrap: wrap;
 }
 
-/* --- Carte principale (sans agrandissement au survol) --- */
+/* --- Carte pastel --- */
 .card {
   display: grid;
   place-items: center;
   width: 80vw;
-  max-width: 21.875rem;
-  height: 28.125rem;
+  max-width: 22rem;
+  height: 28rem;
   overflow: hidden;
-  border-radius: 4PX;
-  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   position: relative;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- Image de la carte (zoom uniquement sur l'image) --- */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Image de la carte --- */
 .card__background {
   object-fit: cover;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   transition: transform 500ms ease-in-out;
 }
 
 .card:hover .card__background {
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 
-/* --- Contenu de la carte (titre, description, bouton) --- */
+/* --- Contenu de la carte --- */
 .card__content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
-  height: 50%;
+  height: 38%;
   padding: 1.5rem;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.6) 40%,
-    rgba(0, 0, 0, 0.9) 100%
+    rgba(255, 247, 245, 0) 0%,
+    rgba(199, 184, 255, 0.4) 40%,
+    rgba(199, 184, 255, 0.8) 100%
   );
+  backdrop-filter: blur(4px);
   opacity: 1;
-  transform: translateY(50%);
-  transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
-/* --- Afficher le texte au survol --- */
-.card:hover .card__content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* --- Titre de la carte avec soulignement fluide --- */
+/* --- Titre de carte --- */
 .card__title {
-  font-size: 16px;
+  font-size: 1.2rem;
   font-family: var(--font-title);
-  color: var(--white);
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 500;
   position: relative;
-  display: inline-block;
-  padding-bottom: 5px;
 }
 
-/* --- Ligne sous le titre (effet fluide) --- */
 .card__title::after {
   content: "";
   position: absolute;
-  height: 2px;
-  width: 50%;  /* Taille initiale centrée */
-  bottom: -5px;
+  height: 3px;
+  width: 60%;
+  bottom: -6px;
   left: 50%;
-  background-color: var(--highlight-color);
   transform: translateX(-50%);
-  transition: width 0.4s ease-in-out;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+  border-radius: 2px;
 }
 
-/* --- Agrandissement fluide du soulignement au survol --- */
 .card:hover .card__title::after {
-  width: 100%;
+  width: 90%;
 }
 
-/* --- Description de la carte (initialement invisible) --- */
+/* --- Description de la carte --- */
 .card__description {
-  font-weight: lighter !important;
-  font-size: 15px;
+  font-weight: lighter;
+  font-size: 0.9rem;
   font-family: var(--font-text);
-  color: var(--white);
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-}
-
-/* --- Afficher la description au survol --- */
-.card:hover .card__description {
-  opacity: 1;
+  color: white;
+  opacity: 0.9;
+  margin-bottom: 15px;
 }
 
 /* --- Bouton Explorer --- */
 .card__button {
   padding: 0.75em 1.6em;
-  font-weight: lighter !important;
-  border-radius: 2px;
-  background-color: var(--highlight-color);
+  font-weight: 500;
+  border-radius: 999px;
+  background-color: var(--color-primary);
   font-family: var(--font-title);
-  font-size: 14px;
+  font-size: 0.9rem;
   color: white;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .card__button:hover {
-  background-color: white;
-  color: #38546b;
+  background-color: var(--color-accent);
+  transform: translateY(-3px);
 }
 
 /* --- Adaptation mobile --- */
@@ -190,15 +192,10 @@
 
   .card {
     width: 100%;
-    height: 300px;
+    height: 26rem;
   }
 
   .card__title {
-    font-size: 20px;
-  }
-
-  .card__button {
-    font-size: 14px;
-    padding: 8px 15px;
+    font-size: 1.1rem;
   }
 }

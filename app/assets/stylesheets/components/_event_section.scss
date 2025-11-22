@@ -1,22 +1,40 @@
 /* --- Section Événements --- */
 .events-section {
-  background: #38546b;
-  padding: 40px 20px;
-  color: white;
+  background: var(--color-bg-section);
+  padding: 70px 20px;
+  color: var(--color-text-main);
   text-align: center;
   width: 100%;
+  border-top: 1px solid rgba(199, 184, 255, 0.3);
 }
+
+
 
 /* --- Titre principal --- */
 .event-title1 {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 24px;
-  font-weight: lighter;
-  text-transform: uppercase;
-  margin-bottom: 30px;
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  color: var(--color-text-main);
+  position: relative;
   display: inline-block;
-  padding-bottom: 5px;
 }
+
+/* Soulignement doux pastel */
+.event-title1::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 40%;
+  height: 3px;
+  background: var(--color-primary);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
 
 /* --- Conteneur général des événements (ligne horizontale) --- */
 .events-container {
@@ -27,33 +45,31 @@
   margin: auto;
 }
 
-/* --- Ligne de l'événement --- */
+/* --- Cartes events pastel --- */
 .event-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Aligne les éléments à gauche */
-  background: rgba(255, 255, 255, 0.1);
-  padding: 12px 20px;
-  border-radius: 2px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
+  background: white;
+  padding: 18px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   width: 100%;
 }
 
 .event-row:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
 }
+
 
 /* --- Image ronde de l'événement --- */
 .event-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .event-image img {
@@ -75,68 +91,57 @@
 
 /* --- Titre bien aligné verticalement avec les autres infos --- */
 .event-title {
-  margin-bottom: 0;
-  font-family: 'Work Sans';
-  font-size: 16px;
-  font-weight: bolder;
-  text-transform: uppercase;
-  line-height: 1; /* Corrige l'alignement avec les infos */
-  display: flex;
-  align-items: center;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-transform: none;
 }
+
 
 /* --- Infos bien alignées à droite --- */
 .event-info {
-  text-transform: capitalize;
-  font-size: 14px;
-  opacity: 0.9;
-  display: flex;
-  align-items: center;
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: var(--color-text-muted);
 }
+
 
 /* --- Bouton Voir plus aligné proprement --- */
 .event-button {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: var(--color-primary);
   color: white;
-  background-color: #a3de83;
+  padding: 7px 14px;
+  border-radius: 999px;
   text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 2px;
-  transition: background 0.3s ease-in-out;
-  display: flex;
-  align-items: center;
+  transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
 .event-button:hover {
-  background-color: white;
-  color: #38546b;
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
 }
 
 /* --- Lien vers toutes les sessions --- */
-.event-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
 .events-link {
-  padding: 10px 15px;
-  font-size: 12px;
-  font-weight: bold;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
   text-decoration: none;
-  background: transparent;
-  border: 1px solid white;
+  background: var(--color-primary);
   color: white;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-  border-radius: 2px;
+  border-radius: 50px;
+  transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
 .events-link:hover {
-  background: white;
-  color: #38546b;
+  background: var(--color-accent);
+  transform: translateY(-2px);
 }
+
 
 /* --- Texte en cas d'absence d'événements --- */
 .no-event {
@@ -162,10 +167,6 @@
   .event-details {
     flex-direction: column;
     gap: 8px;
-  }
-
-  .event-title {
-    font-size: 14px;
   }
 
   .event-info {

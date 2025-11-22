@@ -1,122 +1,204 @@
-/* --- Styles communs pour `show` --- */
-.course-show, .hike-show {
+/* --- PAGE SHOW : COURSES & HIKES --- */
+
+/* Wrapper général des pages show */
+.course-show,
+.hike-show {
   width: 100%;
-  color: white;
-  background: #1f2a38;
+  background: var(--color-bg-page);
+  color: var(--color-text-main);
+  padding-bottom: 40px;
 }
 
-/* --- Bannière pleine largeur, plus grande pour bien voir sous la navbar --- */
-.course-banner, .hike-banner {
+/* --- Bannière --- */
+.course-show .course-banner,
+.hike-show .hike-banner {
   width: 100%;
-  height: 400px; /* Augmenté pour une meilleure visibilité */
+  height: 360px;
   overflow: hidden;
   position: relative;
 }
 
-.course-banner-image, .hike-banner-image {
+/* Image de bannière */
+.course-show .course-banner-image,
+.hike-show .hike-banner-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(80%);
+  filter: grayscale(100%);
 }
 
-/* --- Contenu principal --- */
-.course-content, .hike-content {
+/* Voile sombre pour texte lisible si tu ajoutes du texte dessus plus tard */
+.course-show .course-banner::after,
+.hike-show .hike-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+
+/* --- Contenu principal : bloc sous la bannière --- */
+.course-show .course-content,
+.hike-show .hike-content {
   max-width: 900px;
-  margin: auto;
-  padding: 40px 20px;
-  text-align: center;
+  margin: 32px auto 0 !important; /* >>> FORCÉ sous la bannière <<< */
+  padding: 0 20px 0;
+  position: relative;
+  z-index: 2;
 }
 
-/* --- Titres spécifiques pour `course` et `hike` --- */
-.course-title, .hike-title {
-  font-family: "Work Sans", sans-serif;
-  font-size: 28px;
-  font-weight: lighter;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-/* --- Conteneur des informations --- */
-.course-info-container, .hike-info-container {
+/* Carte principale */
+.course-show .course-info-container,
+.hike-show .hike-info-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 26px 22px 24px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  text-align: left;
-  margin-bottom: 30px;
+  gap: 18px;
+  align-items: stretch;
 }
 
-/* --- Détails des événements (Lieu, Date, Tarif, etc.) --- */
-.course-details, .hike-details {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 1px;
+/* Titre */
+.course-show .course-title,
+.hike-show .hike-title {
+  font-family: var(--font-title);
+  font-size: 1.9rem;
+  font-weight: 500;
+  text-transform: none;
+  margin-bottom: 10px;
+  display: inline-block;
+  color: var(--color-text-main);
+  position: relative;
+}
+
+.course-show .course-title::after,
+.hike-show .hike-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* Détails : date, lieu, tarif, etc. */
+.course-show .course-details,
+.hike-show .hike-details {
+  background: rgba(248, 244, 255, 0.9);
+  padding: 18px 18px;
+  border-radius: 14px;
   width: 100%;
-  max-width: 600px;
   text-align: left;
   line-height: 1.6;
+  font-family: var(--font-text);
 }
 
-.course-details p, .hike-details p {
-  font-size: 16px;
-  margin: 5px 0;
+.course-show .course-details p,
+.hike-show .hike-details p {
+  font-size: 0.98rem;
+  margin: 4px 0;
+  color: var(--color-text-main);
 }
 
-/* --- Boutons d'action admin --- */
-.admin-actions {
+.course-show .course-details p strong,
+.hike-show .hike-details p strong {
+  font-weight: 600;
+}
+
+/* Actions admin */
+.course-show .admin-actions,
+.hike-show .admin-actions {
   display: flex;
   gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: flex-end;
+  margin-top: 10px;
+  flex-wrap: wrap;
 }
 
-/* --- Boutons de retour pour `course` et `hike` --- */
-.course-back-button, .hike-back-button {
+.course-show .admin-actions a,
+.hike-show .admin-actions a {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-family: var(--font-title);
   text-decoration: none;
-  background: #a3de83;
-  color: #1f2a38;
-  border-radius: 2px;
-  transition: background 0.3s ease-in-out;
+  border-radius: 999px;
+  border: 1px solid rgba(46, 42, 59, 0.25);
+  color: var(--color-text-main);
+  background: #fff;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
 }
 
-.course-back-button:hover, .hike-back-button:hover {
-  background: white;
-  color: #38546b;
+.course-show .admin-actions a:hover,
+.hike-show .admin-actions a:hover {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
-/* --- Responsive Design --- */
+/* Bouton retour */
+.course-show .course-back-button,
+.hike-show .hike-back-button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--font-title);
+  transition: background 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.course-show .course-back-button:hover,
+.hike-show .hike-back-button:hover {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
-  .course-content, .hike-content {
-    padding: 20px;
+  .course-show .course-banner,
+  .hike-show .hike-banner {
+    height: 280px;
   }
 
-  .course-title, .hike-title {
-    font-size: 24px;
+  .course-show .course-content,
+  .hike-show .hike-content {
+    margin: 24px auto 0 !important;
+    padding: 0 16px;
   }
 
-  .course-details, .hike-details {
-    width: 100%;
-    max-width: 100%;
+  .course-show .course-info-container,
+  .hike-show .hike-info-container {
+    padding: 22px 18px 20px;
   }
 
-  .admin-actions {
+  .course-show .course-title,
+  .hike-show .hike-title {
+    font-size: 1.6rem;
+  }
+
+  .course-show .admin-actions,
+  .hike-show .admin-actions {
+    justify-content: flex-start;
     flex-direction: column;
+    align-items: flex-start;
   }
 
-  .course-back-button, .hike-back-button {
-    font-size: 12px;
-    padding: 10px 15px;
-  }
-
-  .course-banner, .hike-banner {
-    height: 300px; /* Ajustement sur mobile */
+  .course-show .course-back-button,
+  .hike-show .hike-back-button {
+    font-size: 0.85rem;
+    padding: 9px 16px;
   }
 }

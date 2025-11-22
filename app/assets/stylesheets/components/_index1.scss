@@ -1,144 +1,230 @@
 /* --- Styles communs pour `index` --- */
-.course-index, .hike-index {
+.course-index,
+.hike-index {
   width: 100%;
-  color: white;
-  background: #1f2a38;
+  background: var(--color-bg-page);
+  color: var(--color-text-main);
 }
 
 /* --- Bannière pleine largeur --- */
-.course-banner, .hike-banner {
+.course-index .course-banner,
+.hike-index .hike-banner {
   width: 100%;
-  height: 350px;
+  height: 320px;
   overflow: hidden;
   position: relative;
 }
 
-.course-banner-image, .hike-banner-image {
+/* Image de bannière */
+.course-index .course-banner-image,
+.hike-index .hike-banner-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(80%);
+}
+
+/* Voile léger sur la bannière */
+.course-index .course-banner::after,
+.hike-index .hike-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.55)
+  );
 }
 
 /* --- Contenu principal --- */
-.course-content, .hike-content {
+.course-index .course-content,
+.hike-index .hike-content {
   max-width: 1100px;
-  margin: auto;
-  padding: 40px 20px;
+  margin: -70px auto 40px; /* carte qui remonte sous la bannière */
+  padding: 0 20px 40px;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
-/* --- Titres principaux --- */
-.course-title, .hike-title {
-  font-family: "Work Sans", sans-serif;
-  font-size: 28px;
-  font-weight: lighter;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+/* --- Titre principal --- */
+.course-index .course-title,
+.hike-index .hike-title {
+  font-family: var(--font-title);
+  font-size: 1.9rem;
+  font-weight: 500;
+  text-transform: none;
+  margin-bottom: 26px;
   display: inline-block;
-  padding-bottom: 5px;
+  color:#f8f9fa;
+  position: relative;
+}
+
+.course-index .course-title::after,
+.hike-index .hike-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 50%;
+  height: 3px;
+  background: var(--color-primary);
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 /* --- Conteneur des événements --- */
-.course-list, .hike-list {
+.course-index .course-list,
+.hike-index .hike-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
   margin-bottom: 30px;
 }
 
-/* --- Cartes des événements (plus larges) --- */
-.course-card, .hike-card {
+/* --- Cartes des événements --- */
+.course-index .course-card,
+.hike-index .hike-card {
   text-transform: initial;
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  background: #ffffff;
+  border-radius: 16px;
   overflow: hidden;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 18px 20px;
 }
 
-/* --- Image bien à gauche --- */
-.course-image, .hike-image {
-  width: 180px;
-  height: 180px;
+/* Hover */
+.course-index .course-card:hover,
+.hike-index .hike-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Image à gauche --- */
+.course-index .course-image,
+.hike-index .hike-image {
+  width: 170px;
+  height: 170px;
   overflow: hidden;
   flex-shrink: 0;
-  border-radius: 2px;
+  border-radius: 14px;
 }
 
-.course-photo, .hike-photo {
+.course-index .course-photo,
+.hike-index .hike-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* --- Contenu (Texte + Bouton à droite) --- */
-.course-main-content, .hike-main-content {
+/* --- Contenu texte + bouton à droite --- */
+.course-index .course-main-content,
+.hike-index .hike-main-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-grow: 1;
   padding: 0 20px;
+  gap: 18px;
 }
 
-/* --- Infos à droite qui prennent toute la largeur disponible --- */
-.course-info, .hike-info {
+/* --- Infos texte --- */
+.course-index .course-info,
+.hike-index .hike-info {
   flex-grow: 1;
   text-align: left;
-  color: white;
-  white-space: nowrap;
+  color: var(--color-text-main);
+  white-space: normal;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.course-card-title, .hike-card-title {
-  font-family: 'Work Sans';
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  margin-top: 23px;
+.course-index .course-card-title,
+.hike-index .hike-card-title {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: none;
+  margin-bottom: 6px;
+}
+
+.course-index .course-info p,
+.hike-index .hike-info p {
+  margin: 2px 0;
+  font-size: 0.95rem;
+  font-family: var(--font-text);
+  color: var(--color-text-muted);
 }
 
 /* --- Bouton à droite du texte --- */
-.course-button-container, .hike-button-container {
+.course-index .course-button-container,
+.hike-index .hike-button-container {
   flex-shrink: 0;
 }
 
-.btn-primary, .btn-secondary {
-  border: none !important;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
+/* Boutons spécifiques à l’index */
+.course-index .btn-primary,
+.hike-index .btn-primary,
+.course-index .btn-secondary,
+.hike-index .btn-secondary {
+  border: none;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
   text-decoration: none;
-  border-radius: 2px;
-  transition: background 0.3s ease-in-out;
+  border-radius: 999px;
+  transition: background 0.3s ease-in-out, transform 0.2s ease;
+  font-family: var(--font-title);
 }
 
-.btn-primary {
-  background: #a3de83 !important;
-  color: #1f2a38;
+/* Bouton principal dans les cartes index */
+.course-index .btn-primary,
+.hike-index .btn-primary {
+  background: var(--color-primary);
+  color: #fff;
 }
 
-.btn-primary:hover {
-  background: white !important;
-  color: #38546b;
+.course-index .btn-primary:hover,
+.hike-index .btn-primary:hover {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
-  .course-card, .hike-card {
-    flex-direction: column;
+  .course-index .course-banner,
+  .hike-index .hike-banner {
+    height: 260px;
   }
 
-  .course-main-content, .hike-main-content {
+  .course-index .course-content,
+  .hike-index .hike-content {
+    margin: -50px auto 30px;
+    padding: 0 16px 30px;
+  }
+
+  .course-index .course-card,
+  .hike-index .hike-card {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  .course-index .course-main-content,
+  .hike-index .hike-main-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0 0;
+  }
+
+  .course-index .course-image,
+  .hike-index .hike-image {
+    width: 100%;
+    height: 220px;
   }
 }

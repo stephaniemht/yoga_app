@@ -1,107 +1,136 @@
+/* --- New / Edit Course & Hike wrapper --- */
 .new-course-wrapper {
-  background-color: #38546b;
+  background-color: var(--color-bg-page);
   padding: 60px 20px;
-  color: white;
-  font-family: 'Work Sans', sans-serif;
+  color: var(--color-text-main);
+  font-family: var(--font-text);
   min-height: 100vh;
   text-align: center;
 }
 
+/* Titre principal */
 .new-course-wrapper h1 {
-  font-family: 'work sans';
   padding-top: 80px;
-  font-size: 24px;
-  font-weight: lighter;
-  margin-bottom: 40px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 30px;
   text-transform: uppercase;
-  display: inline-block;
-  padding-bottom: 10px;
+  font-family: var(--font-title);
+  letter-spacing: 0.08em;
 }
 
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.08);
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  text-align: left;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-  color: white;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  outline: none;
-}
-
-textarea.form-control {
-  resize: vertical;
-}
-
-.btn-submit {
-  background-color: #a3de83;
-  color: #38546b;
-  font-weight: bold;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn-submit:hover {
-  background-color: white;
-  color: #38546b;
-}
-
-.form-actions {
-  text-align: center;
-  margin-top: 30px;
-}
-
-select {
-  padding: 10px;
-  border-radius: 4px;
-  border: none;
-  font-size: 14px;
-  margin-right: 5px;
-}
-
+/* Titre d’édition */
 .edit-title {
-  padding-top: 100px;
+  padding-top: 80px;
   text-transform: uppercase;
-  color: white;
+  color: var(--color-text-main);
   text-align: center;
-  font-family: 'Work Sans', sans-serif;
-  font-size: 24px;
+  font-family: var(--font-title);
+  font-size: 1.5rem;
   margin-bottom: 30px;
 }
 
+/* --- Formulaire scoped UNIQUEMENT à cette page --- */
+.new-course-wrapper form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px 24px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
 
+/* Groupes de champs */
+.new-course-wrapper .form-group {
+  margin-bottom: 18px;
+}
 
+/* Labels */
+.new-course-wrapper .form-group label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text-main);
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+}
 
+/* Champs textes */
+.new-course-wrapper .form-control {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  outline: none;
+  font-family: var(--font-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Textarea */
+.new-course-wrapper textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Focus pastel */
+.new-course-wrapper .form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(199, 184, 255, 0.35);
+}
+
+/* Select */
+.new-course-wrapper select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  font-size: 0.95rem;
+  font-family: var(--font-text);
+  background-color: #fff;
+}
+
+/* Bouton submit */
+.new-course-wrapper .btn-submit {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 500;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+}
+
+/* Hover bouton */
+.new-course-wrapper .btn-submit:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Actions */
+.new-course-wrapper .form-actions {
+  text-align: center;
+  margin-top: 24px;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
-  .new-course-wrapper h1 {
-    font-size: 22px;
+  .new-course-wrapper h1,
+  .edit-title {
+    font-size: 1.4rem;
   }
 
-  .btn-submit {
+  .new-course-wrapper form {
+    padding: 24px 18px;
+  }
+
+  .new-course-wrapper .btn-submit {
     width: 100%;
   }
 }

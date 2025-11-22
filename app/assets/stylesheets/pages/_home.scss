@@ -1,62 +1,95 @@
-/* --- Bannière --- */
+/* --- Bannière pastel yoga --- */
 .banner {
   position: relative;
   background: url('paysage_3.png') center/cover no-repeat;
-  text-align: center;
   color: white;
-  padding: 100px 20px;
-  margin-top: 0px;
+  margin-top: 0;
+  min-height: 80vh; /* grande bannière mais pas agressive */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 80px; /* espace pour la navbar fixe + bas */
 }
 
+/* Overlay pastel doux */
 .banner::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2); /* Ajoute un filtre sombre */
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 247, 245, 0.85),
+    rgba(199, 184, 255, 0.55),
+    rgba(255, 181, 194, 0.55)
+  );
+  mix-blend-mode: soft-light;
 }
 
 .banner h1,
 .banner p {
   position: relative;
-  z-index: 1; /* S'assurer que le texte est au-dessus du filtre */
+  z-index: 1; /* pour rester au-dessus de l’overlay */
 }
 
+/* Titre principal doux & moderne */
 .banner h1 {
-  line-height: 135px;
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, 5vw, 3.5rem);
+  line-height: 1.2;
   text-align: left;
-  font-family: 'Work sans';
-  font-size: 142px;
-  margin-bottom: 0;
-  font-weight: 600;
+  max-width: 540px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
 }
 
+/* Sous-texte */
 .banner p {
-  font-size: 18px;
+  font-family: var(--font-text);
+  font-size: 1.05rem;
+  max-width: 520px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 24px;
 }
 
 
 .links {
-  text-align: center;
-  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  margin-top: 10px;
 }
 
+/* Boutons hero */
 .btn {
-  border: solid 1px white;
   display: inline-block;
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: #4c77af00;
-  color: white;
+  padding: 10px 22px;
+  margin: 8px 12px 0 0;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 500;
   text-decoration: none;
-  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
+
+.btn:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+}
+
 
 body {
-  background-color: #38546b;
-  font-family: 'Work Sans', sans-serif !important;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
+  font-family: var(--font-text) !important;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
