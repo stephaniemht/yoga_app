@@ -2,8 +2,8 @@ class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # On suppose que tu veux trier par start_time au lieu de :date
-    @courses = Course.order(start_time: :asc)
+    # On n'affiche pas les cours suspendus
+    @courses = Course.where(suspended: false).order(:title)
   end
 
   def show
@@ -12,7 +12,9 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    # Par défaut : cours non récurrent, date libre si besoin
     @course.start_time = nil
+    @course.recurring = false
   end
 
   def create
@@ -32,6 +34,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
+
     if @course.update(course_params)
       redirect_to @course, notice: "Le cours a bien été mis à jour."
     else
@@ -48,7 +51,22 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    # IMPORTANT : on utilise :start_time, pas :time, ni :date
-    params.require(:course).permit(:title, :description, :start_time, :location, :duration, :price, :photo)
+    # On garde :start_time pour les cours ponctuels
+    # + nouveaux champs pour les cours récurrents
+    params.require(:course).permit(
+      :title,
+      :description,
+      :start_time,
+      :location,
+      :duration,
+      :price,
+      :photo,
+      :recurring,   # boolean
+      :day_1,       # integer (0 = dimanche, 1 = lundi, etc.)
+      :time_1,      # type :time
+      :day_2,       # optionnel
+      :time_2,      # optionnel
+      :suspended    # boolean pour suspendre le cours
+    )
   end
 end
