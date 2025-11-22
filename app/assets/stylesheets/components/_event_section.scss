@@ -46,21 +46,21 @@
 }
 
 /* --- Cartes events pastel --- */
-.event-row {
-  display: flex;
-  align-items: center;
-  background: white;
-  padding: 18px 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  width: 100%;
-}
+// .event-row {
+//   display: flex;
+//   align-items: center;
+//   background: white;
+//   padding: 18px 20px;
+//   border-radius: 12px;
+//   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+//   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+//   width: 100%;
+// }
 
-.event-row:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
-}
+// .event-row:hover {
+//   transform: translateY(-4px);
+//   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.10);
+// }
 
 
 /* --- Image ronde de l'événement --- */

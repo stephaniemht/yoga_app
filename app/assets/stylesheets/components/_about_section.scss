@@ -2,20 +2,34 @@
 .about-section {
   position: relative;
   background: radial-gradient(circle at top left,
-    rgba(199, 184, 255, 0.28),
+    rgba(199, 184, 255, 0.35),
     transparent 55%)
     ,
     var(--color-bg-page);
-  padding: 80px 20px;
+  padding: 90px 20px;
 }
 
-/* Conteneur général */
+/* Halo pastel décoratif */
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle,
+    rgba(255, 181, 194, 0.4),
+    transparent 60%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
 .about-content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 50px;
   max-width: 1150px;
   margin: 0 auto;
   align-items: center;
@@ -23,7 +37,7 @@
   text-align: left;
 }
 
-/* CARROUSEL à gauche : on utilise directement .carousel-container + .carousel */
+/* Carrousel à gauche, style “photo flottante” */
 .carousel-container {
   flex: 1 1 420px;
   min-width: 280px;
@@ -32,28 +46,31 @@
   position: relative;
 }
 
-/* Carte principale “photo flottante” */
-.carousel-container {
+/* Carte principale */
+.carousel-inner-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 26px;
   overflow: hidden;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-  background: #fff;
   transform: rotate(-2deg);
+  background: #fff;
 }
 
-/* Ombre décalée derrière pour l’effet carte */
+/* Ombre décalée derrière, effet carte */
 .carousel-container::after {
   content: "";
   position: absolute;
-  inset: 14px -18px auto auto;
-  height: 82%;
+  inset: 18px -18px auto auto;
+  height: 85%;
   border-radius: 26px;
   background: rgba(199, 184, 255, 0.35);
   z-index: -1;
-  transform: rotate(3deg);
+  transform: rotate(2deg);
 }
 
-/* Carrousel interne (tel que dans ton HTML) */
+/* Carrousel */
 .carousel {
   display: flex;
   width: 100%;
@@ -68,7 +85,7 @@
   flex-shrink: 0;
 }
 
-/* Animation existante (on la garde telle quelle) */
+/* Animation inchangée */
 @keyframes slide {
   0%    { transform: translateX(0%); }
   20%   { transform: translateX(0%); }
@@ -81,7 +98,22 @@
   100%  { transform: translateX(-400%); }
 }
 
-/* TEXTE à droite */
+/* Badge “À propos” optionnel dans ton HTML si tu veux :
+   <span class="about-badge">À propos</span> */
+.about-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(199, 184, 255, 0.2);
+  color: var(--color-text-main);
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Texte à droite, style éditorial = moins “gros bloc” */
 .about-text {
   flex: 1 1 420px;
   color: var(--color-text-main);
@@ -91,11 +123,10 @@
   padding: 10px 4px;
 }
 
-/* Titre */
 .about-text h3 {
   font-family: var(--font-title);
   font-size: 2rem;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   position: relative;
   font-weight: 500;
 }
@@ -111,11 +142,18 @@
   border-radius: 2px;
 }
 
-/* Paragraphes */
 .about-text p {
   margin-bottom: 14px;
   color: var(--color-text-muted);
-  white-space: normal;
+}
+
+/* Petite phrase mise en avant (si tu veux) :
+   <p class="about-highlight">…</p> */
+.about-highlight {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--color-text-main);
+  margin-top: 4px;
 }
 
 /* Responsive */
@@ -126,15 +164,15 @@
 
   .carousel-container {
     max-width: 100%;
-    transform: rotate(0deg);
+    order: 1;
   }
 
-  .carousel-container::after {
-    display: none;
+  .carousel-inner-frame {
+    height: 320px;
   }
 
   .about-text {
-    padding-top: 10px;
+    order: 2;
   }
 }
 
@@ -143,7 +181,7 @@
     padding: 60px 16px;
   }
 
-  .carousel-container {
+  .carousel-inner-frame {
     height: 260px;
   }
 
@@ -151,7 +189,6 @@
     font-size: 1.7rem;
   }
 }
-
 
 /* --- SECTION PRACTICE (version pastel harmonisée) --- */
 .practice-section {
@@ -384,65 +421,65 @@
   gap: 24px;
 }
 
-/* Ligne événement */
+/* Ligne événement : carte douce pastel */
 .event-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
   padding: 18px 20px;
   background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Image à gauche */
+/* Image ronde pastel */
 .event-image {
-  flex: 1 1 260px;
-  max-width: 320px;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
 }
 
 .event-photo {
-  width: 100%;
-  border-radius: 12px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* Petit cercle */
   object-fit: cover;
-  height: 100%;
-  max-height: 260px;
+  border: 3px solid var(--color-primary);
 }
 
-/* Texte à droite */
+/* Texte */
 .event-details {
-  flex: 2 1 360px;
+  flex: 1;
   text-align: left;
 }
 
 .event-title {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
   font-family: var(--font-title);
   color: var(--color-text-main);
 }
 
 .event-info {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-family: var(--font-text);
   color: var(--color-text-muted);
+  margin-bottom: 4px;
 }
 
-/* Bouton "voir plus" */
+/* Bouton "voir plus" : compact & joli */
 .event-button {
   display: inline-block;
   background: var(--color-primary);
   color: white;
-  padding: 8px 18px;
+  padding: 6px 14px;
   text-decoration: none;
   border-radius: 999px;
-  margin-top: 12px;
-  font-size: 0.9rem;
+  margin-top: 10px;
+  font-size: 0.85rem;
   font-family: var(--font-title);
   font-weight: 500;
+  white-space: nowrap; /* NE PAS aller à la ligne */
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -450,6 +487,20 @@
   background: var(--color-accent);
   transform: translateY(-2px);
 }
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .event-row {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .event-details {
+    text-align: center;
+  }
+}
+
 
 /* Liens "tous les événements" */
 .event-links {
