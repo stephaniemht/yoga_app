@@ -2,8 +2,10 @@ class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # On n'affiche pas les cours suspendus
-    @courses = Course.where(suspended: false).order(:title)
+    # On cache les cours suspendus, et on trie par date de prochaine séance connue
+    @courses = Course
+      .where(suspended: [false, nil])
+      .order(start_time: :asc)
   end
 
   def show
@@ -12,14 +14,14 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    # Par défaut : cours non récurrent, date libre si besoin
-    @course.start_time = nil
+    # valeurs par défaut
     @course.recurring = false
+    @course.suspended = false
   end
 
   def create
     @course = Course.new(course_params)
-    @course.user = current_user  # si tu lies chaque cours à un user
+    @course.user = current_user if defined?(current_user)
 
     if @course.save
       redirect_to @course, notice: "Événement créé avec succès."
@@ -34,7 +36,6 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-
     if @course.update(course_params)
       redirect_to @course, notice: "Le cours a bien été mis à jour."
     else
@@ -51,8 +52,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    # On garde :start_time pour les cours ponctuels
-    # + nouveaux champs pour les cours récurrents
+    # on ajoute ici tous les nouveaux champs
     params.require(:course).permit(
       :title,
       :description,
@@ -61,12 +61,12 @@ class CoursesController < ApplicationController
       :duration,
       :price,
       :photo,
-      :recurring,   # boolean
-      :day_1,       # integer (0 = dimanche, 1 = lundi, etc.)
-      :time_1,      # type :time
-      :day_2,       # optionnel
-      :time_2,      # optionnel
-      :suspended    # boolean pour suspendre le cours
+      :recurring,   # booléen : cours régulier ?
+      :day_1,       # premier jour récurrent (integer)
+      :time_1,      # horaire du premier jour (time)
+      :day_2,       # deuxième jour récurrent (integer, optionnel)
+      :time_2,      # horaire du deuxième jour (time, optionnel)
+      :suspended    # booléen : cours suspendu ?
     )
   end
 end

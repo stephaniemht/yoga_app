@@ -13,49 +13,92 @@
       </div>
     <% end %>
 
+    <!-- Nom -->
     <div class="form-group">
       <%= f.label :title, "Nom du cours" %>
       <%= f.text_field :title, class: "form-control" %>
     </div>
 
+    <!-- Lieu -->
     <div class="form-group">
       <%= f.label :location, "Adresse" %>
       <%= f.text_field :location, class: "form-control" %>
     </div>
 
+    <!-- Description -->
     <div class="form-group">
       <%= f.label :description, "Description" %>
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
+    <!-- RÉCURRENCE -->
     <div class="form-group">
-      <%= f.label :start_time, "Date et Heure du cours" %>
-      <%= f.text_field :start_time,
+      <%= f.label :recurring, "Ce cours est-il régulier ?" %><br>
+      <%= f.check_box :recurring %> Oui, c’est un cours régulier
+    </div>
+
+    <!-- Jour(s) de récurrence -->
+    <div class="form-group">
+      <%= f.label :recurring_days, "Jours du cours régulier" %>
+      <%= f.select :recurring_days,
+            [["Lundi", "monday"], ["Mardi", "tuesday"], ["Mercredi", "wednesday"],
+             ["Jeudi", "thursday"], ["Vendredi", "friday"], ["Samedi", "saturday"],
+             ["Dimanche", "sunday"]],
+            {},
+            multiple: true,
+            class: "form-control" %>
+      <small>Maintenez CTRL (ou cmd sur Mac) pour sélectionner plusieurs jours.</small>
+    </div>
+
+    <!-- Horaires par jour -->
+    <div class="form-group">
+      <%= f.label :recurring_times, "Horaires du cours régulier" %>
+      <%= f.text_field :recurring_times,
             class: "form-control",
-            value: (@course.start_time ? @course.start_time.strftime("%Y-%m-%d %H:%M") : ""),
+            placeholder: "Exemple : monday=08:00, thursday=18:00" %>
+      <small>Format : jour=heure séparés par des virgules</small>
+    </div>
+
+    <!-- Suspension -->
+    <div class="form-group">
+      <%= f.label :suspended, "Suspendre ce cours ?" %><br>
+      <%= f.check_box :suspended %> Oui, mettre en pause temporairement
+    </div>
+
+    <!-- prochaine séance (optionnel) -->
+    <div class="form-group">
+      <%= f.label :next_session_time, "Date et Heure d'une prochaine séance (optionnel)" %>
+      <%= f.text_field :next_session_time,
+            class: "form-control",
+            value: (@course.next_session_time ? @course.next_session_time.strftime("%Y-%m-%d %H:%M") : ""),
             data: {
               controller: "flatpickr",
               flatpickr_enable_time_value: true
             } %>
     </div>
 
+    <!-- Durée -->
     <div class="form-group">
       <%= f.label :duration, "Durée du cours" %>
       <%= f.text_field :duration, class: "form-control" %>
     </div>
 
+    <!-- Prix -->
     <div class="form-group">
       <%= f.label :price, "Tarif" %>
-      <%= f.number_field :price, class: "form-control" %>
+      <%= f.number_field :price, step: "0.01", class: "form-control" %>
     </div>
 
+    <!-- Photo -->
     <div class="form-group">
       <%= f.label :photo, "Photo (optionnelle)" %>
       <%= f.file_field :photo, class: "form-control" %>
     </div>
 
+    <!-- Bouton -->
     <div class="form-actions">
       <%= f.submit "Mettre à jour le cours", class: "btn-submit" %>
     </div>
+
   <% end %>
 </div>
