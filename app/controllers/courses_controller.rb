@@ -54,19 +54,19 @@ class CoursesController < ApplicationController
   def course_params
     # on ajoute ici tous les nouveaux champs
     params.require(:course).permit(
-      :title,
-      :description,
-      :start_time,
-      :location,
-      :duration,
-      :price,
-      :photo,
-      :recurring,   # booléen : cours régulier ?
-      :day_1,       # premier jour récurrent (integer)
-      :time_1,      # horaire du premier jour (time)
-      :day_2,       # deuxième jour récurrent (integer, optionnel)
-      :time_2,      # horaire du deuxième jour (time, optionnel)
-      :suspended    # booléen : cours suspendu ?
+    :title,
+    :description,
+    :location,
+    :duration,
+    :price,
+    :photo,
+    :start_time,   # pour les cours ponctuels
+    :recurring,
+    :day_1,
+    :time_1,
+    :day_2,
+    :time_2,
+    :suspended   # booléen : cours suspendu ?
     )
   end
 end
