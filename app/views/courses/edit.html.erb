@@ -31,60 +31,89 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
-    <!-- Cours régulier ? -->
-    <div class="form-group">
-      <%= f.label :recurring, "Ce cours est-il régulier ?" %><br>
-      <%= f.check_box :recurring %> Oui, c'est un cours régulier
-    </div>
-
-    <!-- Bloc pour les cours RÉGULIERS -->
-    <div class="recurring-block">
-      <h3>Récurrence du cours</h3>
-
+    <!-- 🔁 RÉCURRENCE + PONCTUEL PILOTÉS PAR STIMULUS -->
+    <div data-controller="course-recurring">
+      <!-- Cours régulier ? -->
       <div class="form-group">
-        <%= f.label :day_1, "Premier jour de la semaine" %>
-        <%= f.select :day_1, Date::DAYNAMES.each_with_index.map { |d, i| [d.capitalize, i] },
-                     { include_blank: "Choisir un jour" },
-                     class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :time_1, "Heure du cours ce jour-là" %>
-        <%= f.time_field :time_1, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :day_2, "Deuxième jour (optionnel)" %>
-        <%= f.select :day_2,
-                     Date::DAYNAMES.each_with_index.map { |d, i| [d.capitalize, i] },
-                     { include_blank: "Aucun deuxième jour" },
-                     class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :time_2, "Heure du cours ce deuxième jour (optionnel)" %>
-        <%= f.time_field :time_2, class: "form-control" %>
-      </div>
-
-      <!-- Suspendre un cours régulier -->
-      <div class="form-group">
-        <%= f.label :suspended, "Suspendre temporairement ce cours ?" %><br>
+        <%= f.label :recurring, "Ce cours est-il régulier ?" %><br>
         <label>
-          <%= f.check_box :suspended %>
-          <span>Oui, ce cours est temporairement suspendu</span>
+          <%= f.check_box :recurring,
+                data: {
+                  "course-recurring-target": "checkbox",
+                  action: "change->course-recurring#toggle"
+                } %>
+          <span>Oui, c'est un cours régulier</span>
         </label>
       </div>
 
-    <!-- Bloc pour les cours PONCTUELS -->
-    <div class="form-group">
-      <%= f.label :start_time, "Date et heure du cours (si cours ponctuel)" %>
-      <%= f.text_field :start_time,
-            class: "form-control",
-            value: (@course.start_time ? @course.start_time.strftime("%Y-%m-%d %H:%M") : ""),
-            data: {
-              controller: "flatpickr",
-              flatpickr_enable_time_value: true
-            } %>
+      <!-- Bloc pour les cours RÉGULIERS -->
+      <div class="recurring-block <%= 'is-hidden' unless @course.recurring? %>"
+           data-course-recurring-target="block">
+        <h3>Récurrence du cours</h3>
+
+        <div class="form-group">
+          <%= f.label :day_1, "Premier jour de la semaine" %>
+          <%= f.select :day_1,
+                [
+                  ["Lundi", 1],
+                  ["Mardi", 2],
+                  ["Mercredi", 3],
+                  ["Jeudi", 4],
+                  ["Vendredi", 5],
+                  ["Samedi", 6],
+                  ["Dimanche", 7]
+                ],
+                { include_blank: "Choisir un jour" },
+                class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :time_1, "Heure du cours ce jour-là" %>
+          <%= f.time_field :time_1, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :day_2, "Deuxième jour (optionnel)" %>
+          <%= f.select :day_2,
+                [
+                  ["Lundi", 1],
+                  ["Mardi", 2],
+                  ["Mercredi", 3],
+                  ["Jeudi", 4],
+                  ["Vendredi", 5],
+                  ["Samedi", 6],
+                  ["Dimanche", 7]
+                ],
+                { include_blank: "Aucun deuxième jour" },
+                class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :time_2, "Heure du cours ce deuxième jour (optionnel)" %>
+          <%= f.time_field :time_2, class: "form-control" %>
+        </div>
+
+        <!-- Suspendre un cours régulier -->
+        <div class="form-group">
+          <%= f.label :suspended, "Suspendre temporairement ce cours ?" %><br>
+          <label>
+            <%= f.check_box :suspended %>
+            <span>Oui, ce cours est temporairement suspendu</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Bloc pour les cours PONCTUELS -->
+      <div class="form-group">
+        <%= f.label :start_time, "Date et heure du cours (si cours ponctuel)" %>
+        <%= f.text_field :start_time,
+              class: "form-control",
+              value: (@course.start_time ? @course.start_time.strftime("%Y-%m-%d %H:%M") : ""),
+              data: {
+                controller: "flatpickr",
+                flatpickr_enable_time_value: true
+              } %>
+      </div>
     </div>
 
     <!-- Durée -->

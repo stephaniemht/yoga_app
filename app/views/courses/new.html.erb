@@ -29,89 +29,110 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
-    <!-- 🔁 RÉCURRENCE -->
-    <hr>
-    <div class="form-group">
-      <%= f.label :recurring, "Ce cours est-il récurrent ?" %><br>
-      <label>
-        <%= f.check_box :recurring %>
-        <span>Oui, ce cours a lieu toutes les semaines</span>
-      </label>
-      <small class="text-muted d-block" style="margin-top: 4px;">
-        Par exemple : tous les lundis à 8h et les jeudis à 18h.
-      </small>
-    </div>
+    <!-- 🔁 RÉCURRENCE + PONCTUEL PILOTÉS PAR STIMULUS -->
+    <div data-controller="course-recurring">
+      <!-- Cours récurrent ? -->
+      <hr>
+      <div class="form-group">
+        <%= f.label :recurring, "Ce cours est-il récurrent ?" %><br>
+        <label>
+          <%= f.check_box :recurring,
+                data: {
+                  "course-recurring-target": "checkbox",
+                  action: "change->course-recurring#toggle"
+                } %>
+          <span>Oui, ce cours a lieu toutes les semaines</span>
+        </label>
+        <small class="text-muted d-block" style="margin-top: 4px;">
+          Par exemple : tous les lundis à 8h et les jeudis à 18h.
+        </small>
+      </div>
 
-    <!-- Premier créneau -->
-    <div class="form-group">
-      <h3 style="font-size: 1rem; margin-bottom: 8px;">Premier créneau</h3>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <div style="flex: 1 1 180px;">
-          <%= f.label :day_1, "Jour" %>
-          <%= f.select :day_1,
-                options_for_select([
-                  ["Lundi", 1],
-                  ["Mardi", 2],
-                  ["Mercredi", 3],
-                  ["Jeudi", 4],
-                  ["Vendredi", 5],
-                  ["Samedi", 6],
-                  ["Dimanche", 7]
-                ], @course.day_1),
-                { include_blank: "Choisir un jour" },
-                class: "form-control" %>
+      <!-- Bloc pour les cours RÉGULIERS -->
+      <div class="recurring-block is-hidden" data-course-recurring-target="block">
+        <h3 style="font-size: 1rem; margin-bottom: 8px;">Récurrence du cours</h3>
+
+        <!-- Premier créneau -->
+        <div class="form-group">
+          <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Premier créneau</h4>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1 1 180px;">
+              <%= f.label :day_1, "Jour" %>
+              <%= f.select :day_1,
+                    [
+                      ["Lundi", 1],
+                      ["Mardi", 2],
+                      ["Mercredi", 3],
+                      ["Jeudi", 4],
+                      ["Vendredi", 5],
+                      ["Samedi", 6],
+                      ["Dimanche", 7]
+                    ],
+                    { include_blank: "Choisir un jour" },
+                    class: "form-control" %>
+            </div>
+
+            <div style="flex: 1 1 160px;">
+              <%= f.label :time_1, "Heure" %>
+              <%= f.time_field :time_1, class: "form-control" %>
+            </div>
+          </div>
         </div>
 
-        <div style="flex: 1 1 160px;">
-          <%= f.label :time_1, "Heure" %>
-          <%= f.time_field :time_1, class: "form-control" %>
+        <!-- Deuxième créneau optionnel -->
+        <div class="form-group">
+          <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Deuxième créneau (optionnel)</h4>
+          <small class="text-muted d-block" style="margin-bottom: 6px;">
+            À remplir uniquement si le même cours a un deuxième jour/heure (ex. jeudi 18h).
+          </small>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <div style="flex: 1 1 180px;">
+              <%= f.label :day_2, "Jour" %>
+              <%= f.select :day_2,
+                    [
+                      ["Lundi", 1],
+                      ["Mardi", 2],
+                      ["Mercredi", 3],
+                      ["Jeudi", 4],
+                      ["Vendredi", 5],
+                      ["Samedi", 6],
+                      ["Dimanche", 7]
+                    ],
+                    { include_blank: "Aucun deuxième jour" },
+                    class: "form-control" %>
+            </div>
+
+            <div style="flex: 1 1 160px;">
+              <%= f.label :time_2, "Heure" %>
+              <%= f.time_field :time_2, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Suspendre un cours régulier (optionnel dès la création) -->
+        <div class="form-group">
+          <%= f.label :suspended, "Suspendre temporairement ce cours ?" %><br>
+          <label>
+            <%= f.check_box :suspended %>
+            <span>Oui, ce cours est temporairement suspendu</span>
+          </label>
         </div>
       </div>
-    </div>
 
-    <!-- Deuxième créneau optionnel -->
-    <div class="form-group">
-      <h3 style="font-size: 1rem; margin-bottom: 8px;">Deuxième créneau (optionnel)</h3>
-      <small class="text-muted d-block" style="margin-bottom: 6px;">
-        À remplir uniquement si le même cours a un deuxième jour/heure (ex. jeudi 18h).
-      </small>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <div style="flex: 1 1 180px;">
-          <%= f.label :day_2, "Jour" %>
-          <%= f.select :day_2,
-                options_for_select([
-                  ["Lundi", 1],
-                  ["Mardi", 2],
-                  ["Mercredi", 3],
-                  ["Jeudi", 4],
-                  ["Vendredi", 5],
-                  ["Samedi", 6],
-                  ["Dimanche", 7]
-                ], @course.day_2),
-                { include_blank: "Aucun deuxième jour" },
-                class: "form-control" %>
-        </div>
-
-        <div style="flex: 1 1 160px;">
-          <%= f.label :time_2, "Heure" %>
-          <%= f.time_field :time_2, class: "form-control" %>
-        </div>
+      <!-- 📅 Cours ponctuel (optionnel) -->
+      <hr>
+      <div class="form-group">
+        <%= f.label :start_time, "Date et Heure d'une prochaine séance (optionnel)" %>
+        <%= f.text_field :start_time,
+              class: "form-control",
+              data: {
+                controller: "flatpickr",
+                flatpickr_enable_time_value: true
+              } %>
+        <small class="text-muted d-block" style="margin-top: 4px;">
+          Utilise ce champ pour un cours ponctuel (atelier, événement) ou pour planifier la prochaine date précise.
+        </small>
       </div>
-    </div>
-
-    <!-- 📅 Cours ponctuel (optionnel) -->
-    <hr>
-    <div class="form-group">
-      <%= f.label :start_time, "Date et Heure d'une prochaine séance (optionnel)" %>
-      <%= f.text_field :start_time,
-            class: "form-control",
-            data: {
-              controller: "flatpickr",
-              flatpickr_enable_time_value: true
-            } %>
-      <small class="text-muted d-block" style="margin-top: 4px;">
-        Utilise ce champ pour un cours ponctuel (atelier, événement) ou pour planifier la prochaine date précise.
-      </small>
     </div>
 
     <!-- ⏱ Durée / tarif / photo -->
