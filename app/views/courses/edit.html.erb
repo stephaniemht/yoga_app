@@ -34,7 +34,7 @@
     <!-- Cours régulier ? -->
     <div class="form-group">
       <%= f.label :recurring, "Ce cours est-il régulier ?" %><br>
-      <%= f.check_box :recurring %> Oui, c'est un cours récurrent
+      <%= f.check_box :recurring %> Oui, c'est un cours régulier
     </div>
 
     <!-- Bloc pour les cours RÉGULIERS -->
@@ -68,10 +68,12 @@
 
       <!-- Suspendre un cours régulier -->
       <div class="form-group">
-        <%= f.label :paused, "Suspendre temporairement ce cours régulier ?" %><br>
-        <%= f.check_box :paused %> Oui, le cours est suspendu pour le moment
+        <%= f.label :suspended, "Suspendre temporairement ce cours ?" %><br>
+        <label>
+          <%= f.check_box :suspended %>
+          <span>Oui, ce cours est temporairement suspendu</span>
+        </label>
       </div>
-    </div>
 
     <!-- Bloc pour les cours PONCTUELS -->
     <div class="form-group">

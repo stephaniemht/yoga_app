@@ -66,7 +66,6 @@ class CoursesController < ApplicationController
     :time_1,
     :day_2,
     :time_2,
-    :paused,
     :suspended
     )
   end
