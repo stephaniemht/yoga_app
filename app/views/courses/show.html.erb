@@ -26,6 +26,35 @@
           <p><strong>Lieu :</strong> <%= @course.location %></p>
         <% end %>
 
+        <%# --- Affichage du planning si cours récurrent --- %>
+        <% if @course.recurring? %>
+          <% days = {
+            1 => "Lundi",
+            2 => "Mardi",
+            3 => "Mercredi",
+            4 => "Jeudi",
+            5 => "Vendredi",
+            6 => "Samedi",
+            7 => "Dimanche"
+          } %>
+
+          <p><strong>Cours régulier :</strong></p>
+          <ul class="course-recurring-list">
+            <% if @course.day_1.present? && @course.time_1.present? %>
+              <li>
+                <%= "#{days[@course.day_1]} à #{@course.time_1.strftime('%Hh%M')}" %>
+              </li>
+            <% end %>
+
+            <% if @course.day_2.present? && @course.time_2.present? %>
+              <li>
+                <%= "#{days[@course.day_2]} à #{@course.time_2.strftime('%Hh%M')}" %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%# --- Date ponctuelle / prochaine séance si renseignée --- %>
         <% if @course.start_time.present? %>
           <p><strong>Date :</strong> <%= l(@course.start_time.to_date, format: "%A %d %B %Y") %></p>
           <p><strong>Heure :</strong> <%= @course.start_time.strftime("%Hh%M") %></p>
@@ -36,7 +65,10 @@
         <% end %>
 
         <% if @course.price.present? %>
-          <p><strong>Tarif :</strong> <%= @course.price %> €</p>
+          <p>
+            <strong>Tarif :</strong>
+            <%= number_with_precision(@course.price, precision: 2, separator: ",", delimiter: " ") %> €
+          </p>
         <% end %>
       </div>
 
