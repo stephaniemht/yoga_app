@@ -60,13 +60,14 @@ class CoursesController < ApplicationController
     :duration,
     :price,
     :photo,
-    :start_time,   # pour les cours ponctuels
+    :start_time,
     :recurring,
     :day_1,
     :time_1,
     :day_2,
     :time_2,
-    :suspended   # booléen : cours suspendu ?
+    :paused,
+    :suspended
     )
   end
 end

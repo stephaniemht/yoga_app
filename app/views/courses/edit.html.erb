@@ -13,13 +13,13 @@
       </div>
     <% end %>
 
-    <!-- Nom -->
+    <!-- Nom du cours -->
     <div class="form-group">
       <%= f.label :title, "Nom du cours" %>
       <%= f.text_field :title, class: "form-control" %>
     </div>
 
-    <!-- Lieu -->
+    <!-- Adresse -->
     <div class="form-group">
       <%= f.label :location, "Adresse" %>
       <%= f.text_field :location, class: "form-control" %>
@@ -31,46 +31,54 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
-    <!-- RÉCURRENCE -->
+    <!-- Cours régulier ? -->
     <div class="form-group">
       <%= f.label :recurring, "Ce cours est-il régulier ?" %><br>
-      <%= f.check_box :recurring %> Oui, c’est un cours régulier
+      <%= f.check_box :recurring %> Oui, c'est un cours récurrent
     </div>
 
-    <!-- Jour(s) de récurrence -->
-    <div class="form-group">
-      <%= f.label :recurring_days, "Jours du cours régulier" %>
-      <%= f.select :recurring_days,
-            [["Lundi", "monday"], ["Mardi", "tuesday"], ["Mercredi", "wednesday"],
-             ["Jeudi", "thursday"], ["Vendredi", "friday"], ["Samedi", "saturday"],
-             ["Dimanche", "sunday"]],
-            {},
-            multiple: true,
-            class: "form-control" %>
-      <small>Maintenez CTRL (ou cmd sur Mac) pour sélectionner plusieurs jours.</small>
+    <!-- Bloc pour les cours RÉGULIERS -->
+    <div class="recurring-block">
+      <h3>Récurrence du cours</h3>
+
+      <div class="form-group">
+        <%= f.label :day_1, "Premier jour de la semaine" %>
+        <%= f.select :day_1, Date::DAYNAMES.each_with_index.map { |d, i| [d.capitalize, i] },
+                     { include_blank: "Choisir un jour" },
+                     class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :time_1, "Heure du cours ce jour-là" %>
+        <%= f.time_field :time_1, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :day_2, "Deuxième jour (optionnel)" %>
+        <%= f.select :day_2,
+                     Date::DAYNAMES.each_with_index.map { |d, i| [d.capitalize, i] },
+                     { include_blank: "Aucun deuxième jour" },
+                     class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :time_2, "Heure du cours ce deuxième jour (optionnel)" %>
+        <%= f.time_field :time_2, class: "form-control" %>
+      </div>
+
+      <!-- Suspendre un cours régulier -->
+      <div class="form-group">
+        <%= f.label :paused, "Suspendre temporairement ce cours régulier ?" %><br>
+        <%= f.check_box :paused %> Oui, le cours est suspendu pour le moment
+      </div>
     </div>
 
-    <!-- Horaires par jour -->
+    <!-- Bloc pour les cours PONCTUELS -->
     <div class="form-group">
-      <%= f.label :recurring_times, "Horaires du cours régulier" %>
-      <%= f.text_field :recurring_times,
+      <%= f.label :start_time, "Date et heure du cours (si cours ponctuel)" %>
+      <%= f.text_field :start_time,
             class: "form-control",
-            placeholder: "Exemple : monday=08:00, thursday=18:00" %>
-      <small>Format : jour=heure séparés par des virgules</small>
-    </div>
-
-    <!-- Suspension -->
-    <div class="form-group">
-      <%= f.label :suspended, "Suspendre ce cours ?" %><br>
-      <%= f.check_box :suspended %> Oui, mettre en pause temporairement
-    </div>
-
-    <!-- prochaine séance (optionnel) -->
-    <div class="form-group">
-      <%= f.label :next_session_time, "Date et Heure d'une prochaine séance (optionnel)" %>
-      <%= f.text_field :next_session_time,
-            class: "form-control",
-            value: (@course.next_session_time ? @course.next_session_time.strftime("%Y-%m-%d %H:%M") : ""),
+            value: (@course.start_time ? @course.start_time.strftime("%Y-%m-%d %H:%M") : ""),
             data: {
               controller: "flatpickr",
               flatpickr_enable_time_value: true
@@ -83,10 +91,10 @@
       <%= f.text_field :duration, class: "form-control" %>
     </div>
 
-    <!-- Prix -->
+    <!-- Tarif -->
     <div class="form-group">
       <%= f.label :price, "Tarif" %>
-      <%= f.number_field :price, step: "0.01", class: "form-control" %>
+      <%= f.number_field :price, class: "form-control", step: 0.01 %>
     </div>
 
     <!-- Photo -->
@@ -95,10 +103,8 @@
       <%= f.file_field :photo, class: "form-control" %>
     </div>
 
-    <!-- Bouton -->
     <div class="form-actions">
       <%= f.submit "Mettre à jour le cours", class: "btn-submit" %>
     </div>
-
   <% end %>
 </div>
