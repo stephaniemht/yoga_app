@@ -11,38 +11,28 @@
       <% @courses.each do |course| %>
         <div class="course-card">
           <!-- Image à gauche -->
-        <div class="course-image" style="position: relative;">
-          <% if course.suspended? && user_signed_in? && current_user.admin? %>
-            <div class="suspended-ribbon">
-              Suspendu
-            </div>
-          <% end %>
+          <div class="course-image" style="position: relative;">
+            <% if course.suspended? && user_signed_in? && current_user.admin? %>
+              <div class="suspended-ribbon">
+                Suspendu
+              </div>
+            <% end %>
 
-          <% if course.photo.attached? %>
-            <%= image_tag course.photo, class: "course-photo" %>
-          <% else %>
-            <%= image_tag "default_course.jpg", class: "course-photo" %>
-          <% end %>
-        </div>
-
+            <% if course.photo.attached? %>
+              <%= image_tag course.photo, class: "course-photo" %>
+            <% else %>
+              <%= image_tag "default_course.jpg", class: "course-photo" %>
+            <% end %>
+          </div>
 
           <!-- Contenu principal (texte + bouton) -->
           <div class="course-main-content">
             <!-- Infos à droite -->
             <div class="course-info">
-              <h2 class="course-card-title">
-                <%= course.title %>
-
-                <%# Badge "Suspendu" visible seulement pour l'admin (dans index admin) %>
-                <% if user_signed_in? && current_user.admin? && course.suspended? %>
-                  <span class="course-badge-suspended-inline">Suspendu</span>
-                <% end %>
-              </h2>
-
+              <h2 class="course-card-title"><%= course.title %></h2>
               <p><strong>Lieu :</strong> <%= course.location %></p>
 
-              <%# --- Si cours récurrent : on affiche les jours/horaires --- %>
-              <% if course.recurring? %>
+              <% if course.recurring? && course.course_schedules.any? %>
                 <% days = {
                   1 => "Lundi",
                   2 => "Mardi",
@@ -52,34 +42,18 @@
                   6 => "Samedi",
                   7 => "Dimanche"
                 } %>
-
-                <p><strong>Cours régulier :</strong></p>
+                <p><strong>Créneaux réguliers :</strong></p>
                 <ul class="course-recurring-list">
-                  <% if course.day_1.present? && course.time_1.present? %>
-                    <li><%= "#{days[course.day_1]} à #{course.time_1.strftime('%Hh%M')}" %></li>
-                  <% end %>
-
-                  <% if course.day_2.present? && course.time_2.present? %>
-                    <li><%= "#{days[course.day_2]} à #{course.time_2.strftime('%Hh%M')}" %></li>
+                  <% course.course_schedules.order(:weekday, :time).each do |schedule| %>
+                    <% next if schedule.weekday.blank? || schedule.time.blank? %>
+                    <li><%= "#{days[schedule.weekday]} à #{schedule.time.strftime('%Hh%M')}" %></li>
                   <% end %>
                 </ul>
-
-                <%# Optionnel : si tu as aussi une prochaine date ponctuelle renseignée %>
-                <% if course.start_time.present? %>
-                  <p><strong>Prochaine date ponctuelle :</strong>
-                    <%= l(course.start_time.to_date, format: :long) %> à
-                    <%= course.start_time.strftime("%Hh%M") %>
-                  </p>
-                <% end %>
-
+              <% elsif course.start_time.present? %>
+                <p><strong>Date :</strong> <%= l(course.start_time.to_date, format: :long) %></p>
+                <p><strong>Heure :</strong> <%= course.start_time.strftime("%Hh%M") %></p>
               <% else %>
-                <%# --- Cours non récurrent : comme avant --- %>
-                <% if course.start_time.present? %>
-                  <p><strong>Date :</strong> <%= l(course.start_time.to_date, format: :long) %></p>
-                  <p><strong>Heure :</strong> <%= course.start_time.strftime("%Hh%M") %></p>
-                <% else %>
-                  <p><strong>Date :</strong> à venir</p>
-                <% end %>
+                <p><strong>Date :</strong> à venir</p>
               <% end %>
 
               <% if course.price.present? %>

@@ -1,7 +1,6 @@
 <div class="course-show">
   <!-- Bannière pleine largeur -->
   <div class="course-banner" style="position: relative;">
-
     <% if @course.suspended? && user_signed_in? && current_user.admin? %>
       <div class="suspended-ribbon">
         Suspendu
@@ -15,22 +14,12 @@
     <% end %>
   </div>
 
-
   <!-- Contenu principal sous la bannière -->
   <div class="course-content">
     <div class="course-info-container">
 
       <!-- Titre du cours -->
-      <h1 class="course-title">
-        <%= @course.title %>
-
-        <%# Badge "Suspendu" visible uniquement pour l'admin %>
-        <% if user_signed_in? && current_user.admin? && @course.suspended? %>
-          <span class="course-badge-suspended">
-            Suspendu (non visible pour les visiteurs)
-          </span>
-        <% end %>
-      </h1>
+      <h1 class="course-title"><%= @course.title %></h1>
 
       <!-- Bloc détails -->
       <div class="course-details">
@@ -44,7 +33,7 @@
         <% end %>
 
         <%# --- Affichage du planning si cours récurrent --- %>
-        <% if @course.recurring? %>
+        <% if @course.recurring? && @course.ordered_schedules.any? %>
           <% days = {
             1 => "Lundi",
             2 => "Mardi",
@@ -57,15 +46,10 @@
 
           <p><strong>Cours régulier :</strong></p>
           <ul class="course-recurring-list">
-            <% if @course.day_1.present? && @course.time_1.present? %>
+            <% @course.ordered_schedules.each do |schedule| %>
+              <% next if schedule.weekday.blank? || schedule.time.blank? %>
               <li>
-                <%= "#{days[@course.day_1]} à #{@course.time_1.strftime('%Hh%M')}" %>
-              </li>
-            <% end %>
-
-            <% if @course.day_2.present? && @course.time_2.present? %>
-              <li>
-                <%= "#{days[@course.day_2]} à #{@course.time_2.strftime('%Hh%M')}" %>
+                <%= "#{days[schedule.weekday]} à #{schedule.time.strftime('%Hh%M')}" %>
               </li>
             <% end %>
           </ul>
