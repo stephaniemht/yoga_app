@@ -4,3 +4,18 @@
   right: 16px;
   z-index: 1000;
 }
+
+/* 🔮 Étiquette "Suspendu" en haut à droite */
+.suspended-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(128, 0, 128, 0.8); /* violet + transparence */
+  color: white;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-bottom-left-radius: 8px;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
