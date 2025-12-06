@@ -13,6 +13,14 @@
       </div>
     <% end %>
 
+    <!-- Badge si cours suspendu -->
+    <% if @course.suspended? %>
+      <div class="alert alert-warning" style="margin-bottom: 20px;">
+        ⚠️ Ce cours est actuellement <strong>suspendu</strong>.
+        Il n'est pas visible par les visiteurs du site.
+      </div>
+    <% end %>
+
     <!-- Nom du cours -->
     <div class="form-group">
       <%= f.label :title, "Nom du cours" %>

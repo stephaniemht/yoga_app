@@ -2,14 +2,24 @@ class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # On cache les cours suspendus, et on trie par date de prochaine séance connue
-    @courses = Course
-      .where(suspended: [false, nil])
-      .order(start_time: :asc)
+    # 👀 Pour les visiteurs : on cache les cours suspendus
+    # 👩‍💻 Pour l'admin : on voit tout, y compris les suspendus
+    if user_signed_in? && current_user.admin?
+      @courses = Course.order(start_time: :asc, title: :asc)
+    else
+      @courses = Course
+        .where(suspended: [false, nil])
+        .order(start_time: :asc, title: :asc)
+    end
   end
 
   def show
     @course = Course.find(params[:id])
+
+    # Si le cours est suspendu, seul l'admin peut le voir
+    if @course.suspended? && !(user_signed_in? && current_user.admin?)
+      redirect_to courses_path, alert: "Ce cours n'est pas disponible pour le moment."
+    end
   end
 
   def new
@@ -21,7 +31,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-    @course.user = current_user if defined?(current_user)
+    @course.user = current_user if defined?(current_user) && current_user.present?
 
     if @course.save
       redirect_to @course, notice: "Événement créé avec succès."
@@ -52,21 +62,20 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    # on ajoute ici tous les nouveaux champs
     params.require(:course).permit(
-    :title,
-    :description,
-    :location,
-    :duration,
-    :price,
-    :photo,
-    :start_time,
-    :recurring,
-    :day_1,
-    :time_1,
-    :day_2,
-    :time_2,
-    :suspended
+      :title,
+      :description,
+      :location,
+      :duration,
+      :price,
+      :photo,
+      :start_time,
+      :recurring,
+      :day_1,
+      :time_1,
+      :day_2,
+      :time_2,
+      :suspended
     )
   end
 end

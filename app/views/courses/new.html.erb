@@ -29,9 +29,8 @@
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
-    <!-- 🔁 RÉCURRENCE + PONCTUEL PILOTÉS PAR STIMULUS -->
+    <!-- 🔁 RÉCURRENCE (pilotée par Stimulus) -->
     <div data-controller="course-recurring">
-      <!-- Cours récurrent ? -->
       <hr>
       <div class="form-group">
         <%= f.label :recurring, "Ce cours est-il récurrent ?" %><br>
@@ -107,15 +106,6 @@
               <%= f.time_field :time_2, class: "form-control" %>
             </div>
           </div>
-        </div>
-
-        <!-- Suspendre un cours régulier (optionnel dès la création) -->
-        <div class="form-group">
-          <%= f.label :suspended, "Suspendre temporairement ce cours ?" %><br>
-          <label>
-            <%= f.check_box :suspended %>
-            <span>Oui, ce cours est temporairement suspendu</span>
-          </label>
         </div>
       </div>
 

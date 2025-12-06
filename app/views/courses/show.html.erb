@@ -13,7 +13,16 @@
     <div class="course-info-container">
 
       <!-- Titre du cours -->
-      <h1 class="course-title"><%= @course.title %></h1>
+      <h1 class="course-title">
+        <%= @course.title %>
+
+        <%# Badge "Suspendu" visible uniquement pour l'admin %>
+        <% if user_signed_in? && current_user.admin? && @course.suspended? %>
+          <span class="course-badge-suspended">
+            Suspendu (non visible pour les visiteurs)
+          </span>
+        <% end %>
+      </h1>
 
       <!-- Bloc détails -->
       <div class="course-details">
