@@ -134,44 +134,114 @@
 
 
 <div class="events-section" id="evenements">
-  <h2 class="event-title1">Prochains Événements Yoga &amp; Randon Yoga</h2>
+  <h2 class="event-title1">Prochains Événements Yoga &amp; Rando Yoga</h2>
 
   <div class="events-container">
-    <!-- Affichage du prochain cours de yoga -->
-    <% if @next_course %>
-      <div class="event-row">
-        <!-- Affichage de l’image du cours -->
-        <div class="event-image">
-          <% if @next_course.photo.attached? %>
-            <%= image_tag @next_course.photo, class: "event-photo" %>
-          <% else %>
-            <%= image_tag "default_course.jpg", class: "event-photo" %>
-          <% end %>
-        </div>
+    <% weekdays = {
+      1 => "Lundi",
+      2 => "Mardi",
+      3 => "Mercredi",
+      4 => "Jeudi",
+      5 => "Vendredi",
+      6 => "Samedi",
+      7 => "Dimanche"
+    } %>
 
-        <div class="event-details">
-          <h3 class="event-title"><%= @next_course.title %></h3>
-          <span class="event-info">
-            <strong>Date :</strong>&nbsp;
-            <%= l(@next_course.start_time.to_date, format: "%A %d %B %Y") %>
-            à <%= @next_course.start_time.strftime("%Hh%M") %>
-          </span>
-          <span class="event-info">
-            <strong>Tarif :</strong>&nbsp;<%= @next_course.price %> €
-          </span>
-          <a href="<%= course_path(@next_course) %>" class="event-button">Plus d'informations →</a>
+    <%# === 1. Cours de yoga RÉGULIERS (hebdomadaires) === %>
+    <% if @recurring_courses.present? %>
+      <% @recurring_courses.each do |course| %>
+        <div class="event-row">
+          <!-- Image -->
+          <div class="event-image">
+            <% if course.photo&.attached? %>
+              <%= image_tag course.photo, class: "event-photo" %>
+            <% else %>
+              <%= image_tag "default_course.jpg", class: "event-photo" %>
+            <% end %>
+          </div>
+
+          <div class="event-details">
+            <h3 class="event-title"><%= course.title %></h3>
+
+            <p class="event-info">
+              <strong>Type :</strong>&nbsp;Cours de yoga régulier
+            </p>
+
+            <% schedules = course.course_schedules
+                               .reject { |cs| cs.weekday.blank? || cs.time.blank? }
+                               .sort_by { |cs| [cs.weekday, cs.time] } %>
+
+            <% if schedules.any? %>
+              <p class="event-info">
+                <strong>Horaires hebdomadaires :</strong>
+              </p>
+              <ul class="course-recurring-list">
+                <% schedules.each do |cs| %>
+                  <li>
+                    <%= weekdays[cs.weekday] %> à <%= cs.time.strftime("%Hh%M") %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <% if course.price.present? %>
+              <p class="event-info">
+                <strong>Tarif :</strong>&nbsp;
+                <%= number_with_precision(course.price, precision: 2, separator: ",", delimiter: " ") %> €
+              </p>
+            <% end %>
+
+            <a href="<%= course_path(course) %>" class="event-button">Plus d'informations →</a>
+          </div>
         </div>
-      </div>
-    <% else %>
-      <p class="no-event">Aucun cours de yoga prévu prochainement.</p>
+      <% end %>
     <% end %>
 
-    <!-- Affichage de la prochaine randonnée yoga -->
+    <%# === 2. Prochains COURS PONCTUELS (non récurrents) === %>
+    <% if @upcoming_courses.present? %>
+      <% @upcoming_courses.each do |course| %>
+        <div class="event-row">
+          <!-- Image -->
+          <div class="event-image">
+            <% if course.photo&.attached? %>
+              <%= image_tag course.photo, class: "event-photo" %>
+            <% else %>
+              <%= image_tag "default_course.jpg", class: "event-photo" %>
+            <% end %>
+          </div>
+
+          <div class="event-details">
+            <h3 class="event-title"><%= course.title %></h3>
+
+            <% if course.start_time.present? %>
+              <span class="event-info">
+                <strong>Date :</strong>&nbsp;
+                <%= l(course.start_time.to_date, format: "%A %d %B %Y") %>
+                à <%= course.start_time.strftime("%Hh%M") %>
+              </span>
+            <% end %>
+
+            <% if course.price.present? %>
+              <span class="event-info">
+                <strong>Tarif :</strong>&nbsp;
+                <%= number_with_precision(course.price, precision: 2, separator: ",", delimiter: " ") %> €
+              </span>
+            <% end %>
+
+            <a href="<%= course_path(course) %>" class="event-button">Plus d'informations →</a>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="no-event">Aucun cours de yoga ponctuel prévu prochainement.</p>
+    <% end %>
+
+    <%# === 3. Prochaine RANDONNÉE YOGA === %>
     <% if @next_hike %>
       <div class="event-row">
-        <!-- Affichage de l’image de la randonnée -->
+        <!-- Image de la rando -->
         <div class="event-image">
-          <% if @next_hike.photo.attached? %>
+          <% if @next_hike.photo&.attached? %>
             <%= image_tag @next_hike.photo, class: "event-photo" %>
           <% else %>
             <%= image_tag "default_hike.jpg", class: "event-photo" %>
@@ -192,15 +262,18 @@
             <span class="event-info">
               <strong>Départ :</strong>&nbsp;<%= l(datetime, format: :long) %>
             </span>
-          <% else %>
+          <% elsif @next_hike.date.present? %>
             <span class="event-info">
               <strong>Départ :</strong>&nbsp;<%= l(@next_hike.date, format: "%A %d %B %Y") %>
             </span>
           <% end %>
 
-          <span class="event-info">
-            <strong>Tarif :</strong>&nbsp;<%= @next_hike.price %> €
-          </span>
+          <% if @next_hike.price.present? %>
+            <span class="event-info">
+              <strong>Tarif :</strong>&nbsp;<%= @next_hike.price %> €
+            </span>
+          <% end %>
+
           <a href="<%= hike_path(@next_hike) %>" class="event-button">Plus d'informations →</a>
         </div>
       </div>
@@ -215,6 +288,7 @@
     <a href="<%= hikes_path %>" class="events-link">Voir toutes les randonnées</a>
   </div>
 </div>
+
 
 
 <div class="image-section">

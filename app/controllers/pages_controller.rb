@@ -1,9 +1,23 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
-
+  
   def home
-    @next_course = Course.where("start_time >= ?", Time.zone.now).order(:start_time).first
-    @next_hike = Hike.where("date >= ?", Date.today).order(:date).first
-  end
+    # 🌿 Cours de yoga ponctuels (non récurrents) à venir : on en prend 2
+    @upcoming_courses = Course
+      .where(recurring: [false, nil], suspended: [false, nil])
+      .where("start_time >= ?", Time.current)
+      .order(:start_time)
+      .limit(2)
 
+    # 🔁 Cours de yoga réguliers (toujours visibles tant qu'ils ne sont pas suspendus)
+    @recurring_courses = Course
+      .where(recurring: true, suspended: [false, nil])
+      .includes(:course_schedules)
+
+    # 🥾 Prochaine randonnée (tu peux garder ta logique actuelle si elle était différente)
+    @next_hike = Hike
+      .where("date >= ?", Date.current)
+      .order(:date, :time)
+      .first
+  end
 end
