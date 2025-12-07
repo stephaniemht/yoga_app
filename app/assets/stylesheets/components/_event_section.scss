@@ -184,7 +184,7 @@
   padding: 0.6em 1.4em;
   border-radius: 999px;
   text-decoration: none;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background:var(--color-primary);
   color: #ffffff;
   white-space: nowrap;
   box-shadow: 0 8px 18px rgba(94, 77, 140, 0.25);
@@ -212,8 +212,8 @@
   font-size: 0.85rem;
   font-weight: 500;
   text-decoration: none;
-  background: #ffffff;
-  color: var(--color-text-main);
+  background: var(--color-primary);
+  color: #ffffff;
   border-radius: 999px;
   border: 1px solid rgba(199, 184, 255, 0.6);
   box-shadow: 0 6px 16px rgba(94, 77, 140, 0.12);
@@ -221,7 +221,7 @@
 }
 
 .events-link:hover {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: var(--color-accent);
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(94, 77, 140, 0.24);
