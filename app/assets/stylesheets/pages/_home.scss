@@ -16,14 +16,24 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 247, 245, 0.85),
-    rgba(199, 184, 255, 0.55),
-    rgba(255, 181, 194, 0.55)
-  );
+
+  /* couche sombre discrète */
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.35)
+    ),
+    linear-gradient(
+      120deg,
+      rgba(255, 247, 245, 0.85),
+      rgba(199, 184, 255, 0.55),
+      rgba(255, 181, 194, 0.55)
+    );
+
   mix-blend-mode: soft-light;
+  z-index: 0;
 }
+
 
 .banner h1,
 .banner p {
