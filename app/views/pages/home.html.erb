@@ -183,26 +183,37 @@
             <% end %>
           </div>
 
-      <div class="event-details">
-        <div class="event-main-text">
-          <h3 class="event-title"><%= @next_course.title %></h3>
-          <div class="event-infos-line">
-            <span class="event-info">
-              <strong>Date :</strong>
-              <%= l(@next_course.start_time.to_date, format: "%A %d %B %Y") %>
-              à <%= @next_course.start_time.strftime("%Hh%M") %>
-            </span>
-            <span class="event-info">
-              <strong>Tarif :</strong> <%= @next_course.price %> €
-            </span>
+          <div class="event-details">
+            <h3 class="event-title"><%= course.title %></h3>
+
+            <p class="event-info">
+              <strong>Type :</strong>&nbsp;Cours de yoga régulier
+            </p>
+
+            <% schedules = course.course_schedules
+                               .reject { |cs| cs.weekday.blank? || cs.time.blank? }
+                               .sort_by { |cs| [cs.weekday, cs.time] } %>
+
+            <% if schedules.any? %>
+              <% formatted_slots = schedules.map { |cs|
+                   "#{weekdays[cs.weekday]} à #{cs.time.strftime('%Hh%M')}"
+                 }.join(" • ")
+              %>
+              <p class="event-info">
+                <strong>Horaires hebdomadaires :</strong>&nbsp;
+                <%= formatted_slots %>
+              </p>
+            <% end %>
+
+            <% if course.price.present? %>
+              <p class="event-info">
+                <strong>Tarif :</strong>&nbsp;
+                <%= number_with_precision(course.price, precision: 2, separator: ",", delimiter: " ") %> €
+              </p>
+            <% end %>
+
+            <a href="<%= course_path(course) %>" class="event-button">Plus d'informations →</a>
           </div>
-        </div>
-
-        <a href="<%= course_path(@next_course) %>" class="event-button">
-          Plus d'informations →
-        </a>
-      </div>
-
         </div>
       <% end %>
     <% end %>
