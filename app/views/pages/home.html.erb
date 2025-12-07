@@ -172,16 +172,14 @@
                                .sort_by { |cs| [cs.weekday, cs.time] } %>
 
             <% if schedules.any? %>
+              <% formatted_slots = schedules.map { |cs|
+                   "#{weekdays[cs.weekday]} à #{cs.time.strftime('%Hh%M')}"
+                 }.join(" • ")
+              %>
               <p class="event-info">
-                <strong>Horaires hebdomadaires :</strong>
+                <strong>Horaires hebdomadaires :</strong>&nbsp;
+                <%= formatted_slots %>
               </p>
-              <ul class="course-recurring-list">
-                <% schedules.each do |cs| %>
-                  <li>
-                    <%= weekdays[cs.weekday] %> à <%= cs.time.strftime("%Hh%M") %>
-                  </li>
-                <% end %>
-              </ul>
             <% end %>
 
             <% if course.price.present? %>
@@ -288,6 +286,7 @@
     <a href="<%= hikes_path %>" class="events-link">Voir toutes les randonnées</a>
   </div>
 </div>
+
 
 
 
