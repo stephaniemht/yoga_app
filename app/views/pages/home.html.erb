@@ -96,7 +96,9 @@
 
     <h2 class="practice-title">Pratiquons ensemble</h2>
     <p class="practice-subtitle">
-      Deux façons de prendre soin de vous&nbsp;: sur le tapis, en studio, ou en pleine nature.
+      Deux expériences complémentaires pour prendre soin de vous&nbsp;:&nbsp;
+      <span class="practice-highlight">sur le tapis</span> et
+      <span class="practice-highlight">en pleine nature</span>.
     </p>
 
     <div class="practice-cards">
@@ -104,14 +106,18 @@
       <!-- CARTE YOGA -->
       <article class="practice-card">
         <div class="practice-card-header">
-          <%= image_tag "yoga.jpg", class: "practice-avatar-large", alt: "Cours de yoga" %>
+          <div class="practice-avatar-wrapper yoga">
+            <%= image_tag "yoga.jpg", class: "practice-avatar-large", alt: "Cours de yoga" %>
+          </div>
+          <span class="practice-chip yoga-chip">🧘‍♀️ Studio & Plein air</span>
         </div>
 
         <div class="practice-card-body">
           <h3 class="practice-card-title">Yoga</h3>
           <p class="practice-card-description">
-            Détendez votre esprit et renforcez votre corps avec des séances adaptées à tous les niveaux.
-            Mouvement, respiration, alignement et sérénité.
+            Détendez votre esprit, renforcez votre corps et retrouvez de
+            la fluidité dans le mouvement grâce au Vinyasa accessible à
+            tous les niveaux.
           </p>
           <a href="<%= courses_path %>" class="practice-card-button">
             Voir les cours de yoga →
@@ -119,17 +125,20 @@
         </div>
       </article>
 
-      <!-- CARTE RANDONNÉE -->
+      <!-- CARTE RANDONNÉE YOGA -->
       <article class="practice-card">
         <div class="practice-card-header">
-          <%= image_tag "rando_nature.jpg", class: "practice-avatar-large", alt: "Randonnée yoga" %>
+          <div class="practice-avatar-wrapper rando">
+            <%= image_tag "rando_nature.jpg", class: "practice-avatar-large", alt: "Randonnée yoga" %>
+          </div>
+          <span class="practice-chip rando-chip">⛰️ Nature & Marche</span>
         </div>
 
         <div class="practice-card-body">
           <h3 class="practice-card-title">Randonnée Yoga</h3>
           <p class="practice-card-description">
-            Respirez à plein poumons, reconnectez-vous à la nature,
-            et vivez une expérience profonde mêlant marche consciente et yoga.
+            Marchez, respirez, pratiquez. Des sorties qui mêlent
+            randonnée, yoga et reconnexion à soi au cœur de la nature de l’Ubaye.
           </p>
           <a href="<%= hikes_path %>" class="practice-card-button">
             Voir les randonnées →
@@ -140,6 +149,7 @@
     </div>
   </div>
 </div>
+
 
 
 
