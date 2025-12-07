@@ -94,50 +94,53 @@
 <div class="practice-section">
   <div class="practice-container">
 
-    <!-- Titre & sous-titre -->
     <h2 class="practice-title">Pratiquons ensemble</h2>
     <p class="practice-subtitle">
       Deux façons de prendre soin de vous&nbsp;: sur le tapis, en studio, ou en pleine nature.
     </p>
 
-    <!-- Cartes des pratiques -->
-    <div class="practice-grid">
+    <div class="practice-cards">
 
-      <!-- Yoga -->
-      <article class="practice-item">
-        <div class="practice-media">
-          <%= image_tag "yoga.jpg", class: "practice-avatar", alt: "Cours de yoga" %>
+      <!-- CARTE YOGA -->
+      <article class="practice-card">
+        <div class="practice-card-header">
+          <%= image_tag "yoga.jpg", class: "practice-avatar-large", alt: "Cours de yoga" %>
         </div>
 
-        <div class="practice-text">
-          <h3 class="practice-item-title">Yoga</h3>
-          <p class="practice-item-description">
-            Détendez votre esprit et renforcez votre corps avec des séances de Vinyasa adaptées à tous les niveaux.
-            Respiration, mouvement et présence pour retrouver équilibre et sérénité.
+        <div class="practice-card-body">
+          <h3 class="practice-card-title">Yoga</h3>
+          <p class="practice-card-description">
+            Détendez votre esprit et renforcez votre corps avec des séances adaptées à tous les niveaux.
+            Mouvement, respiration, alignement et sérénité.
           </p>
-          <a href="<%= courses_path %>" class="practice-link">Voir les cours de yoga →</a>
+          <a href="<%= courses_path %>" class="practice-card-button">
+            Voir les cours de yoga →
+          </a>
         </div>
       </article>
 
-      <!-- Randonnée Yoga -->
-      <article class="practice-item">
-        <div class="practice-media">
-          <%= image_tag "rando_nature.jpg", class: "practice-avatar", alt: "Randonnée yoga" %>
+      <!-- CARTE RANDONNÉE -->
+      <article class="practice-card">
+        <div class="practice-card-header">
+          <%= image_tag "rando_nature.jpg", class: "practice-avatar-large", alt: "Randonnée yoga" %>
         </div>
 
-        <div class="practice-text">
-          <h3 class="practice-item-title">Rando Yoga</h3>
-          <p class="practice-item-description">
-            Marchez, respirez, pratiquez le yoga en pleine nature. Des sorties pour vous ressourcer,
-            connecter au paysage et à vos sensations, loin du quotidien.
+        <div class="practice-card-body">
+          <h3 class="practice-card-title">Randonnée Yoga</h3>
+          <p class="practice-card-description">
+            Respirez à plein poumons, reconnectez-vous à la nature,
+            et vivez une expérience profonde mêlant marche consciente et yoga.
           </p>
-          <a href="<%= hikes_path %>" class="practice-link">Voir les randonnées yoga →</a>
+          <a href="<%= hikes_path %>" class="practice-card-button">
+            Voir les randonnées →
+          </a>
         </div>
       </article>
 
     </div>
   </div>
 </div>
+
 
 
 

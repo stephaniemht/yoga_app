@@ -1,7 +1,7 @@
 /* --- Section "Pratiquons ensemble" --- */
 .practice-section {
   padding: 80px 20px;
-  background: #ffeef7; /* léger rose, cohérent avec le reste */
+  background: #ffeef7;
   display: flex;
   justify-content: center;
 }
@@ -13,7 +13,7 @@
   text-align: center;
 }
 
-/* Titre & sous-titre */
+/* Titre */
 .practice-title {
   font-family: var(--font-title);
   font-size: 2rem;
@@ -37,110 +37,93 @@
   border-radius: 999px;
 }
 
+/* Sous-titre */
 .practice-subtitle {
   margin-top: 20px;
   margin-bottom: 40px;
   font-family: var(--font-text);
-  font-size: 0.98rem;
+  font-size: 1rem;
   color: var(--color-text-muted);
 }
 
-/* Grille des pratiques */
-.practice-grid {
-  background: #ffffff;
-  border-radius: 26px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-  padding: 30px 32px;
+/* --- Cartes séparées --- */
+.practice-cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
-/* Chaque "carte" de pratique */
-.practice-item {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+/* Carte */
+.practice-card {
+  background: #fff;
+  border-radius: 26px;
+  padding: 26px 24px 32px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Image ronde */
-.practice-media {
-  flex-shrink: 0;
+.practice-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.12);
 }
 
-.practice-avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
+/* Image en haut */
+.practice-card-header {
+  margin-bottom: 16px;
+}
+
+.practice-avatar-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;
   object-fit: cover;
-  border: 3px solid var(--color-primary);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Texte de la pratique */
-.practice-text {
-  text-align: left;
-}
-
-.practice-item-title {
+/* Titre */
+.practice-card-title {
   font-family: var(--font-title);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--color-text-main);
-  margin-bottom: 6px;
-}
-
-.practice-item-description {
-  font-family: var(--font-text);
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
   margin-bottom: 10px;
 }
 
-/* Lien / bouton */
-.practice-link {
-  font-family: var(--font-title);
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: #fff;
-  background: var(--color-primary);
-  padding: 0.6em 1.4em;
-  border-radius: 999px;
-  display: inline-block;
-  transition: background-color 0.2s ease, transform 0.15s ease,
-              box-shadow 0.15s ease;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+/* Description */
+.practice-card-description {
+  font-family: var(--font-text);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+  line-height: 1.5;
 }
 
-.practice-link:hover {
+/* Bouton */
+.practice-card-button {
+  display: inline-block;
+  padding: 0.7em 1.6em;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-title);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.practice-card-button:hover {
   background: var(--color-accent);
   transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
-/* --- Responsive --- */
-@media (max-width: 900px) {
-  .practice-grid {
+/* responsive */
+@media (max-width: 850px) {
+  .practice-cards {
     grid-template-columns: 1fr;
-    padding: 24px 20px;
   }
 
-  .practice-item {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 600px) {
-  .practice-section {
-    padding: 60px 16px;
-  }
-
-  .practice-avatar {
-    width: 70px;
-    height: 70px;
-  }
-
-  .practice-item-description {
-    font-size: 0.88rem;
+  .practice-card {
+    max-width: 90%;
+    margin: 0 auto;
   }
 }
