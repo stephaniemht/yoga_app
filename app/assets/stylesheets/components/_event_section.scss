@@ -1,4 +1,6 @@
 /* --- Section Événements --- */
+
+
 .events-section {
   padding: 80px 20px;
   width: 100%;
@@ -6,10 +8,13 @@
   color: var(--color-text-main);
   position: relative;
   overflow: hidden;
-  /* fond différent mais harmonisé */
-  background: radial-gradient(circle at top center, #fdf3ff 0, #ffffff 40%, #f5f7ff 100%);
-  border-top: 1px solid rgba(199, 184, 255, 0.3);
+
+  background:
+    linear-gradient(135deg, rgba(246, 243, 255, 0.7), rgba(255, 250, 255, 0.9)),
+    url("https://www.transparenttextures.com/patterns/pw-maze-white.png");
+  /* Texture légère type papier */
 }
+
 
 /* Petites touches décoratives en fond */
 .events-section::before,
