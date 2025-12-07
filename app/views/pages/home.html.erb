@@ -324,38 +324,46 @@
 <div class="contact-section" id="contact">
   <div class="contact-container">
 
-    <!-- Image à droite -->
-    <div class="contact-image-wrapper">
-      <%= image_tag asset_path('neige.jpg'), alt: 'Contact' %>
+    <!-- Bloc texte / contact -->
+    <div class="contact-info">
+      <h2>Contact</h2>
+
+      <p class="contact-tagline">
+        Une question sur les cours de yoga ou les randonnées bien-être ?<br>
+        Contactez directement Jennifer, elle se fera un plaisir de vous répondre.
+      </p>
+
+      <div class="contact-details">
+        <p><strong>Jennifer Camp</strong></p>
+        <p>
+          📞
+          <a href="tel:+33695218666">
+            06&nbsp;95&nbsp;21&nbsp;86&nbsp;66
+          </a>
+        </p>
+        <p>
+          ✉️
+          <a href="mailto:jennypraloup@gmail.com">
+            jennypraloup@gmail.com
+          </a>
+        </p>
+      </div>
+
+      <div class="contact-actions">
+        <a href="tel:+33695218666" class="contact-cta-button">
+          Appeler Jennifer
+        </a>
+        <a href="mailto:jennypraloup@gmail.com" class="contact-cta-button contact-cta-secondary">
+          Envoyer un email
+        </a>
+      </div>
     </div>
 
-    <!-- Formulaire à gauche -->
-    <div class="contact-form">
-      <h2>Contact</h2>
-      <%= form_with url: contacts_path, method: :post, local: true, html: { class: "contact-form-wrapper" } do |f| %>
-        <div class="form-group">
-          <%= f.label :first_name, "Prénom" %>
-          <%= f.text_field :first_name, required: true, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :last_name, "Nom" %>
-          <%= f.text_field :last_name, required: true, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :email, "Email" %>
-          <%= f.email_field :email, required: true, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :phone, "Numéro de téléphone" %>
-          <%= f.telephone_field :phone, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :message, "Message" %>
-          <%= f.text_area :message, rows: 4, required: true, class: "form-control" %>
-        </div>
-        <%= f.submit "Envoyer", class: "btn-primary" %>
-      <% end %>
+    <!-- Image à droite -->
+    <div class="contact-image-wrapper">
+      <%= image_tag asset_path('neige.jpg'), alt: "Montagnes enneigées à Praloup" %>
     </div>
 
   </div>
 </div>
+

@@ -110,13 +110,18 @@
 
 
 /* --- Section Contact --- */
+/* === SECTION CONTACT === */
+
 .contact-section {
   width: 100%;
-  background-color: var(--color-bg-section);
   padding: 80px 0;
   display: flex;
   justify-content: center;
   border-top: 1px solid rgba(199, 184, 255, 0.3);
+  background:
+    radial-gradient(circle at top left, rgba(221, 210, 255, 0.55), transparent 50%),
+    radial-gradient(circle at bottom right, rgba(255, 210, 230, 0.55), transparent 50%),
+    #fdfbff;
 }
 
 /* Conteneur aligné */
@@ -125,112 +130,123 @@
   width: 100%;
   max-width: 1200px;
   display: flex;
-  background: white;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  border: none; /* ancien cadre bleu supprimé */
+  box-shadow: 0 14px 40px rgba(24, 2, 61, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
-/* --- Formulaire Contact --- */
-.contact-form {
-  flex: 1;
-  padding: 50px;
-  background: white;
-}
-
-.contact-form h2 {
-  font-weight: 500;
+/* --- Bloc texte / infos --- */
+.contact-info {
+  flex: 1.1;
+  padding: 50px 45px;
   text-align: left;
+}
+
+.contact-info h2 {
+  font-weight: 500;
   font-family: var(--font-title);
   color: var(--color-text-main);
-  font-size: 1.8rem;
-  margin-bottom: 30px;
+  font-size: 1.9rem;
+  margin-bottom: 20px;
   position: relative;
 }
 
 /* Soulignement pastel */
-.contact-form h2::after {
+.contact-info h2::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -8px;
-  width: 60px;
+  width: 70px;
   height: 3px;
   background-color: var(--color-primary);
-  border-radius: 2px;
-}
-
-/* Formulaire */
-.contact-form form {
-  max-width: 100%;
-}
-
-/* Groupes de champs */
-.contact-form .form-group {
-  margin-bottom: 20px;
-}
-
-.contact-form .form-group label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: var(--color-text-main);
-  font-weight: 500;
-  font-family: var(--font-title);
-}
-
-/* Champs */
-.contact-form .form-control,
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px 4px;
-  font-size: 15px;
-  border: none;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
-  outline: none;
-  background: transparent;
-  font-family: var(--font-text);
-  resize: none;
-  transition: border-color 0.2s ease;
-}
-
-/* Focus pastel */
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-bottom-color: var(--color-primary);
-}
-
-/* Bouton pastel – on écrase l'ancien .btn-primary vert */
-.contact-form .btn-primary {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background: var(--color-primary) !important; /* forcer le pastel lavande */
-  color: white !important;
-  font-weight: 500;
-  font-family: var(--font-title);
-  border: none !important;
   border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s ease;
 }
 
-.contact-form .btn-primary:hover {
-  background: var(--color-accent) !important;
+/* Phrase d’intro */
+.contact-tagline {
+  margin-top: 24px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  font-family: var(--font-text);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Coordonnées */
+.contact-details {
+  margin-bottom: 24px;
+  font-family: var(--font-text);
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+}
+
+.contact-details p {
+  margin: 4px 0;
+}
+
+.contact-details a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+/* Boutons d’action */
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.contact-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(83, 54, 155, 0.25);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.contact-cta-button:hover {
+  background: var(--color-accent);
   transform: translateY(-2px);
+  box-shadow: 0 11px 24px rgba(83, 54, 155, 0.3);
+}
+
+.contact-cta-secondary {
+  background: #ffffff;
+  color: var(--color-primary);
+  border: 1px solid rgba(199, 184, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(83, 54, 155, 0.12);
+}
+
+.contact-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.95);
 }
 
 /* --- Image à droite --- */
-.contact-image {
-  flex: 1;
-  background-size: cover;
-  background-position: center;
+.contact-image-wrapper {
+  flex: 0.9;
+  min-height: 260px;
 }
 
-/* Si tu utilises une image <img>, alors : */
-.contact-image img {
+.contact-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -239,13 +255,27 @@
 /* --- Responsive --- */
 @media (max-width: 900px) {
   .contact-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
-  .contact-image {
-    height: 280px;
+  .contact-info {
+    padding: 30px 22px 36px;
+  }
+
+  .contact-image-wrapper {
+    height: 220px;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-cta-button {
+    width: 100%;
   }
 }
+
 
 /* --- Footer Général --- */
 .footer-section {
