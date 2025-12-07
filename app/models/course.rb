@@ -2,17 +2,19 @@ class Course < ApplicationRecord
   belongs_to :user, optional: true
   has_one_attached :photo
 
-  # Nouveau : un cours a plusieurs créneaux hebdomadaires
+  # Cours récurrents : plusieurs créneaux jour + heure
   has_many :course_schedules, dependent: :destroy
-  accepts_nested_attributes_for :course_schedules, allow_destroy: true
+
+  accepts_nested_attributes_for :course_schedules,
+                                allow_destroy: true,
+                                reject_if: proc { |attrs|
+                                  attrs["weekday"].blank? && attrs["time"].blank?
+                                }
 
   # Champs de base obligatoires
   validates :title, :location, presence: true
 
-  # Description pas obligatoire (tu peux la rendre required si tu veux)
-  # validates :description, presence: true
-
-  # Prix décimal
+  # Prix : décimal, mais pas obligatoire
   validates :price,
             numericality: { greater_than_or_equal_to: 0 },
             allow_nil: true
@@ -22,8 +24,8 @@ class Course < ApplicationRecord
             presence: true,
             unless: :recurring?
 
-  # Pour un cours récurrent : au moins un créneau (jour + heure)
-  validate :recurring_fields_coherent
+  # Pour un cours récurrent : on vérifie qu'il y ait au moins un créneau
+  validate :recurring_schedules_coherent
 
   # --- helpers ---
 
@@ -31,25 +33,18 @@ class Course < ApplicationRecord
     recurring == true
   end
 
-  def suspended?
-    suspended == true
-  end
-
-  # Pour afficher les créneaux dans l'ordre
-  def ordered_schedules
-    course_schedules.order(:weekday, :time)
-  end
-
   private
 
-  def recurring_fields_coherent
+  def recurring_schedules_coherent
     return unless recurring?
 
-    # On ignore les lignes marquées pour suppression dans le form
-    active_schedules = course_schedules.reject(&:marked_for_destruction?)
+    valides = course_schedules.reject do |cs|
+      cs.marked_for_destruction? ||
+        (cs.weekday.blank? && cs.time.blank?)
+    end
 
-    if active_schedules.empty?
-      errors.add(:base, "Pour un cours régulier, au moins un créneau (jour + heure) doit être renseigné.")
+    if valides.empty?
+      errors.add(:base, "Pour un cours régulier, ajoute au moins un créneau (jour + heure).")
     end
   end
 end

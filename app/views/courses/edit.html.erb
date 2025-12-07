@@ -16,28 +16,30 @@
     <!-- Badge si cours suspendu -->
     <% if @course.suspended? %>
       <div class="alert alert-warning" style="margin-bottom: 20px;">
-        ⚠️ Ce cours est actuellement <strong>suspendu</strong>.<br>
+        ⚠️ Ce cours est actuellement <strong>suspendu</strong>.
         Il n'est pas visible par les visiteurs du site.
       </div>
     <% end %>
 
-    <!-- 🧱 Informations générales -->
+    <!-- Nom du cours -->
     <div class="form-group">
       <%= f.label :title, "Nom du cours" %>
       <%= f.text_field :title, class: "form-control" %>
     </div>
 
+    <!-- Adresse -->
     <div class="form-group">
       <%= f.label :location, "Adresse" %>
       <%= f.text_field :location, class: "form-control" %>
     </div>
 
+    <!-- Description -->
     <div class="form-group">
       <%= f.label :description, "Description" %>
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
-    <!-- 🔁 RÉCURRENCE + PONCTUEL (Stimulus) -->
+    <!-- 🔁 RÉCURRENCE + PONCTUEL PILOTÉS PAR STIMULUS -->
     <div data-controller="course-recurring">
       <!-- Cours régulier ? -->
       <div class="form-group">
@@ -52,44 +54,64 @@
         </label>
       </div>
 
+      <!-- Combien de fois par semaine ? -->
+      <% existing_schedules = @course.course_schedules.reject { |cs| cs.weekday.blank? && cs.time.blank? } %>
+      <% initial_count = existing_schedules.size.zero? ? 1 : existing_schedules.size %>
+
+      <div class="form-group recurring-count-block <%= 'is-hidden' unless @course.recurring? %>"
+           data-course-recurring-target="countBlock">
+        <%= label_tag :weekly_occurrences, "Ce cours a lieu combien de fois par semaine ?" %>
+        <select class="form-control"
+                data-course-recurring-target="count"
+                data-action="change->course-recurring#updateSlots">
+          <% 1.upto(7) do |n| %>
+            <option value="<%= n %>" <%= 'selected' if n == initial_count %>>
+              <%= n %> fois par semaine
+            </option>
+          <% end %>
+        </select>
+      </div>
+
       <!-- Bloc pour les cours RÉGULIERS -->
       <div class="recurring-block <%= 'is-hidden' unless @course.recurring? %>"
            data-course-recurring-target="block">
-        <h3 style="font-size: 1rem; margin-bottom: 8px;">Récurrence du cours</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 10px;">
-          Tu peux définir plusieurs créneaux hebdomadaires (ex : Lundi 8h, Jeudi 18h, Samedi 10h).<br>
-          Pour supprimer un créneau, laisse le jour et l'heure vides.
-        </p>
+        <h3>Récurrence du cours</h3>
 
-        <%= f.fields_for :course_schedules do |cs_form| %>
-          <div class="form-group course-schedule-fields" style="margin-bottom: 10px;">
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <div style="flex: 1 1 180px;">
-                <%= cs_form.label :weekday, "Jour" %>
-                <%= cs_form.select :weekday,
-                      [
-                        ["Lundi", 1],
-                        ["Mardi", 2],
-                        ["Mercredi", 3],
-                        ["Jeudi", 4],
-                        ["Vendredi", 5],
-                        ["Samedi", 6],
-                        ["Dimanche", 7]
-                      ],
-                      { include_blank: "Choisir un jour" },
-                      class: "form-control" %>
-              </div>
+        <% weekdays = [
+          ["Lundi", 1],
+          ["Mardi", 2],
+          ["Mercredi", 3],
+          ["Jeudi", 4],
+          ["Vendredi", 5],
+          ["Samedi", 6],
+          ["Dimanche", 7]
+        ] %>
 
-              <div style="flex: 1 1 160px;">
-                <%= cs_form.label :time, "Heure" %>
-                <%= cs_form.time_field :time, class: "form-control" %>
+        <% @course.course_schedules.each_with_index do |schedule, index| %>
+          <%= f.fields_for :course_schedules, schedule do |cs_form| %>
+            <div class="schedule-row"
+                 data-course-recurring-target="slot"
+                 data-index="<%= index + 1 %>">
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <div style="flex: 1 1 180px;">
+                  <%= cs_form.label :weekday, "Jour ##{index + 1}" %>
+                  <%= cs_form.select :weekday,
+                        weekdays,
+                        { include_blank: "Choisir un jour" },
+                        class: "form-control" %>
+                </div>
+
+                <div style="flex: 1 1 160px;">
+                  <%= cs_form.label :time, "Heure" %>
+                  <%= cs_form.time_field :time, class: "form-control" %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
 
-        <!-- Suspendre un cours (réservé à l'admin, uniquement dans edit) -->
-        <div class="form-group" style="margin-top: 10px;">
+        <!-- Suspendre un cours régulier -->
+        <div class="form-group" style="margin-top: 15px;">
           <%= f.label :suspended, "Suspendre temporairement ce cours ?" %><br>
           <label>
             <%= f.check_box :suspended %>
@@ -108,9 +130,6 @@
                 controller: "flatpickr",
                 flatpickr_enable_time_value: true
               } %>
-        <small class="text-muted d-block" style="margin-top: 4px;">
-          Tu peux laisser ce champ vide si c’est uniquement un cours régulier.
-        </small>
       </div>
     </div>
 
