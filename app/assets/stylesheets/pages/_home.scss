@@ -1,92 +1,56 @@
-/* === HERO AVEC PHOTO + OVERLAY PASTEL === */
-
-.hero {
+.banner {
   position: relative;
-  height: 75vh;
-  min-height: 520px;
-  background: url('votre_photo_hero.jpg') center/cover no-repeat;
+  width: 100%;
+  min-height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
-  color: var(--color-text-main);
+  padding: 0 20px;
+
+  background: url('paysage_3.png') center/cover no-repeat;
   overflow: hidden;
 }
 
-/* Dégradé pastel doux pour harmoniser la photo */
-.hero-overlay {
+/* Voile pastel doux */
+.banner::before {
+  content: "";
   position: absolute;
   inset: 0;
+  backdrop-filter: blur(3px); /* léger flou = premium */
   background: linear-gradient(
-    120deg,
-    rgba(255, 247, 245, 0.85),
-    rgba(199, 184, 255, 0.55),
-    rgba(255, 181, 194, 0.55)
+    rgba(255, 247, 245, 0.65),
+    rgba(199, 184, 255, 0.45),
+    rgba(255, 181, 194, 0.45)
   );
-  mix-blend-mode: lighten;
+  mix-blend-mode: soft-light;
   z-index: 1;
 }
 
 /* Contenu centré */
-.hero-content {
+.banner-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 800px;
-}
-
-/* Petite phrase au-dessus */
-.hero-eyebrow {
-  font-family: var(--font-text);
-  letter-spacing: 0.15em;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin-bottom: 10px;
+  color: var(--color-text-main);
+  max-width: 850px;
 }
 
 /* Titre */
-.hero h1 {
+.banner-content h1 {
   font-family: var(--font-title);
   font-size: 2.6rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 15px;
-  color: var(--color-text-main);
-  line-height: 1.3;
+  letter-spacing: 1px;
 }
 
-/* Sous-titre */
-.hero-subtitle {
+/* Sous-texte */
+.banner-content p {
   font-family: var(--font-text);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   opacity: 0.85;
-  margin-bottom: 18px;
-  line-height: 1.6;
 }
 
-/* Ligne localisation */
-.hero-location {
-  font-family: var(--font-text);
-  font-size: 0.95rem;
-  opacity: 0.7;
-  letter-spacing: 0.03em;
-}
-
-/* Version mobile */
-@media (max-width: 768px) {
-  .hero {
-    height: 65vh;
-    min-height: 460px;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-}
 
 
 /* Titre principal doux & moderne */
