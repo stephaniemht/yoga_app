@@ -29,10 +29,19 @@
           <div class="course-main-content">
             <!-- Infos à droite -->
             <div class="course-info">
-              <h2 class="course-card-title"><%= course.title %></h2>
+              <h2 class="course-card-title">
+                <%= course.title %>
+
+                <%# Badge "Suspendu" visible seulement pour l'admin %>
+                <% if user_signed_in? && current_user.admin? && course.suspended? %>
+                  <span class="course-badge-suspended-inline">Suspendu</span>
+                <% end %>
+              </h2>
+
               <p><strong>Lieu :</strong> <%= course.location %></p>
 
-              <% if course.recurring? && course.course_schedules.any? %>
+              <%# --- Si cours récurrent : on affiche les jours/horaires via course_schedules --- %>
+              <% if course.recurring? %>
                 <% days = {
                   1 => "Lundi",
                   2 => "Mardi",
@@ -42,18 +51,37 @@
                   6 => "Samedi",
                   7 => "Dimanche"
                 } %>
-                <p><strong>Créneaux réguliers :</strong></p>
-                <ul class="course-recurring-list">
-                  <% course.course_schedules.order(:weekday, :time).each do |schedule| %>
-                    <% next if schedule.weekday.blank? || schedule.time.blank? %>
-                    <li><%= "#{days[schedule.weekday]} à #{schedule.time.strftime('%Hh%M')}" %></li>
-                  <% end %>
-                </ul>
-              <% elsif course.start_time.present? %>
-                <p><strong>Date :</strong> <%= l(course.start_time.to_date, format: :long) %></p>
-                <p><strong>Heure :</strong> <%= course.start_time.strftime("%Hh%M") %></p>
+
+                <% schedules = course.course_schedules
+                                     .where.not(weekday: nil, time: nil)
+                                     .order(:weekday, :time) %>
+
+                <% if schedules.any? %>
+                  <p><strong>Cours régulier :</strong></p>
+                  <ul class="course-recurring-list">
+                    <% schedules.each do |cs| %>
+                      <li><%= "#{days[cs.weekday]} à #{cs.time.strftime('%Hh%M')}" %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+
+                <%# Optionnel : si tu as aussi une prochaine date ponctuelle renseignée %>
+                <% if course.start_time.present? %>
+                  <p>
+                    <strong>Prochaine date ponctuelle :</strong>
+                    <%= l(course.start_time.to_date, format: :long) %> à
+                    <%= course.start_time.strftime("%Hh%M") %>
+                  </p>
+                <% end %>
+
               <% else %>
-                <p><strong>Date :</strong> à venir</p>
+                <%# --- Cours non récurrent : comme avant --- %>
+                <% if course.start_time.present? %>
+                  <p><strong>Date :</strong> <%= l(course.start_time.to_date, format: :long) %></p>
+                  <p><strong>Heure :</strong> <%= course.start_time.strftime("%Hh%M") %></p>
+                <% else %>
+                  <p><strong>Date :</strong> à venir</p>
+                <% end %>
               <% end %>
 
               <% if course.price.present? %>

@@ -50,63 +50,37 @@
       <!-- Bloc pour les cours RÉGULIERS -->
       <div class="recurring-block is-hidden" data-course-recurring-target="block">
         <h3 style="font-size: 1rem; margin-bottom: 8px;">Récurrence du cours</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 10px;">
+          Tu peux renseigner plusieurs créneaux hebdomadaires (ex : Lundi 8h, Jeudi 18h, Samedi 10h).
+          Laisse les lignes vides si tu n’en as pas besoin.
+        </p>
 
-        <!-- Premier créneau -->
-        <div class="form-group">
-          <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Premier créneau</h4>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <div style="flex: 1 1 180px;">
-              <%= f.label :day_1, "Jour" %>
-              <%= f.select :day_1,
-                    [
-                      ["Lundi", 1],
-                      ["Mardi", 2],
-                      ["Mercredi", 3],
-                      ["Jeudi", 4],
-                      ["Vendredi", 5],
-                      ["Samedi", 6],
-                      ["Dimanche", 7]
-                    ],
-                    { include_blank: "Choisir un jour" },
-                    class: "form-control" %>
-            </div>
+        <%= f.fields_for :course_schedules do |cs_form| %>
+          <div class="form-group course-schedule-fields" style="margin-bottom: 10px;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <div style="flex: 1 1 180px;">
+                <%= cs_form.label :weekday, "Jour" %>
+                <%= cs_form.select :weekday,
+                      [
+                        ["Lundi", 1],
+                        ["Mardi", 2],
+                        ["Mercredi", 3],
+                        ["Jeudi", 4],
+                        ["Vendredi", 5],
+                        ["Samedi", 6],
+                        ["Dimanche", 7]
+                      ],
+                      { include_blank: "Choisir un jour" },
+                      class: "form-control" %>
+              </div>
 
-            <div style="flex: 1 1 160px;">
-              <%= f.label :time_1, "Heure" %>
-              <%= f.time_field :time_1, class: "form-control" %>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deuxième créneau optionnel -->
-        <div class="form-group">
-          <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Deuxième créneau (optionnel)</h4>
-          <small class="text-muted d-block" style="margin-bottom: 6px;">
-            À remplir uniquement si le même cours a un deuxième jour/heure (ex. jeudi 18h).
-          </small>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <div style="flex: 1 1 180px;">
-              <%= f.label :day_2, "Jour" %>
-              <%= f.select :day_2,
-                    [
-                      ["Lundi", 1],
-                      ["Mardi", 2],
-                      ["Mercredi", 3],
-                      ["Jeudi", 4],
-                      ["Vendredi", 5],
-                      ["Samedi", 6],
-                      ["Dimanche", 7]
-                    ],
-                    { include_blank: "Aucun deuxième jour" },
-                    class: "form-control" %>
-            </div>
-
-            <div style="flex: 1 1 160px;">
-              <%= f.label :time_2, "Heure" %>
-              <%= f.time_field :time_2, class: "form-control" %>
+              <div style="flex: 1 1 160px;">
+                <%= cs_form.label :time, "Heure" %>
+                <%= cs_form.time_field :time, class: "form-control" %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
 
       <!-- 📅 Cours ponctuel (optionnel) -->

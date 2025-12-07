@@ -9,6 +9,9 @@ class Course < ApplicationRecord
   # Champs de base obligatoires
   validates :title, :location, presence: true
 
+  # Description pas obligatoire (tu peux la rendre required si tu veux)
+  # validates :description, presence: true
+
   # Prix décimal
   validates :price,
             numericality: { greater_than_or_equal_to: 0 },
@@ -32,7 +35,7 @@ class Course < ApplicationRecord
     suspended == true
   end
 
-  # Retourne les créneaux triés : lundi → dimanche, puis heure
+  # Pour afficher les créneaux dans l'ordre
   def ordered_schedules
     course_schedules.order(:weekday, :time)
   end
@@ -42,6 +45,7 @@ class Course < ApplicationRecord
   def recurring_fields_coherent
     return unless recurring?
 
+    # On ignore les lignes marquées pour suppression dans le form
     active_schedules = course_schedules.reject(&:marked_for_destruction?)
 
     if active_schedules.empty?
