@@ -1,6 +1,21 @@
-<div class="banner">
-  <%= image_tag "udslogo.png", alt: "Logo", class: "logo" %>
-</div>
+<section class="hero" id="accueil">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Yoga & Randonnées bien-être à la montagne</p>
+    <h1>Retrouvez équilibre & énergie avec Jennifer</h1>
+    <p class="hero-subtitle">
+      Des séances de yoga en studio et des randonnées yoga en pleine nature,
+      pour apaiser le mental, renforcer le corps et vous reconnecter à l’essentiel.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="<%= courses_path %>" class="hero-btn">Découvrir les cours de yoga</a>
+      <a href="<%= hikes_path %>" class="hero-btn hero-btn-secondary">Voir les randonnées</a>
+    </div>
+  </div>
+
+  <div class="hero-circle"></div>
+</section>
+
 
 <div class="about-section">
   <div class="about-content row-layout">
@@ -330,11 +345,10 @@
 
       <p class="contact-tagline">
         Une question sur les cours de yoga ou les randonnées bien-être ?<br>
-        Contactez directement Jennifer, elle se fera un plaisir de vous répondre.
       </p>
 
       <div class="contact-details">
-        <p><strong>Jennifer Camp</strong></p>
+        <p><strong>Jennifer CAMP</strong></p>
         <p>
           📞
           <a href="tel:+33695218666">
@@ -351,7 +365,7 @@
 
       <div class="contact-actions">
         <a href="tel:+33695218666" class="contact-cta-button">
-          Appeler Jennifer
+          Appeler
         </a>
         <a href="mailto:jennypraloup@gmail.com" class="contact-cta-button contact-cta-secondary">
           Envoyer un email
@@ -366,4 +380,3 @@
 
   </div>
 </div>
-
