@@ -34,9 +34,13 @@
       <!-- Bloc détails -->
       <div class="course-details">
         <% if @course.description.present? %>
-          <p><strong>Description :</strong> <%= @course.description %></p>
+          <div class="course-description">
+            <strong>Description :</strong>
+            <%= simple_format(@course.description) %>
+          </div>
           <hr>
         <% end %>
+
 
         <% if @course.location.present? %>
           <p><strong>Lieu :</strong> <%= @course.location %></p>
