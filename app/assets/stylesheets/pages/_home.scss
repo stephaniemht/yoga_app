@@ -1,114 +1,82 @@
-/* === HERO SECTION ÉPURÉE (remplace l'ancienne .banner) === */
+/* === HERO AVEC PHOTO + OVERLAY PASTEL === */
 
 .hero {
   position: relative;
-  min-height: 70vh;
+  height: 75vh;
+  min-height: 520px;
+  background: url('votre_photo_hero.jpg') center/cover no-repeat;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 90px 20px 70px; /* un peu de marge pour la navbar */
-  background:
-    radial-gradient(circle at top left, rgba(235, 219, 255, 0.45), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(255, 205, 227, 0.45), transparent 55%),
-    #faf7ff;
+  align-items: center;
+  padding: 80px 20px;
+  color: var(--color-text-main);
   overflow: hidden;
 }
 
-/* Cercle pastel flouté qui crée l'ambiance */
-.hero-circle {
+/* Dégradé pastel doux pour harmoniser la photo */
+.hero-overlay {
   position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
+  inset: 0;
   background: linear-gradient(
-    135deg,
-    rgba(199, 184, 255, 0.7),
-    rgba(255, 181, 194, 0.7)
+    120deg,
+    rgba(255, 247, 245, 0.85),
+    rgba(199, 184, 255, 0.55),
+    rgba(255, 181, 194, 0.55)
   );
-  filter: blur(70px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-40%, -55%);
-  z-index: 0;
+  mix-blend-mode: lighten;
+  z-index: 1;
 }
 
+/* Contenu centré */
 .hero-content {
-  text-align: center;
+  position: relative;
   z-index: 2;
-  max-width: 750px;
+  text-align: center;
+  max-width: 800px;
 }
 
-/* Petite ligne au-dessus du titre */
+/* Petite phrase au-dessus */
 .hero-eyebrow {
   font-family: var(--font-text);
-  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-text-muted);
+  opacity: 0.75;
   margin-bottom: 10px;
 }
 
-/* Titre principal */
+/* Titre */
 .hero h1 {
   font-family: var(--font-title);
   font-size: 2.6rem;
   font-weight: 500;
+  margin-bottom: 15px;
   color: var(--color-text-main);
-  margin-bottom: 14px;
+  line-height: 1.3;
 }
 
 /* Sous-titre */
 .hero-subtitle {
   font-family: var(--font-text);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  margin-bottom: 18px;
   line-height: 1.6;
-  color: var(--color-text-muted);
-  margin-bottom: 28px;
 }
 
-/* Boutons */
-.hero-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-btn {
-  padding: 11px 24px;
-  border-radius: 999px;
-  background: var(--color-primary);
-  color: #fff;
-  font-family: var(--font-title);
+/* Ligne localisation */
+.hero-location {
+  font-family: var(--font-text);
   font-size: 0.95rem;
-  text-decoration: none;
-  transition: 0.25s ease;
-  box-shadow: 0 10px 22px rgba(83, 54, 155, 0.25);
-  border: none;
+  opacity: 0.7;
+  letter-spacing: 0.03em;
 }
 
-.hero-btn:hover {
-  background: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-/* Bouton secondaire */
-.hero-btn-secondary {
-  background: #fff;
-  color: var(--color-primary);
-  border: 1px solid rgba(199, 184, 255, 0.7);
-  box-shadow: 0 8px 18px rgba(83, 54, 155, 0.12);
-}
-
-.hero-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.95);
-}
-
-/* Responsive */
+/* Version mobile */
 @media (max-width: 768px) {
   .hero {
-    padding: 80px 16px 60px;
-    min-height: 60vh;
+    height: 65vh;
+    min-height: 460px;
   }
 
   .hero h1 {
@@ -116,14 +84,7 @@
   }
 
   .hero-subtitle {
-    font-size: 0.98rem;
-  }
-
-  .hero-circle {
-    width: 420px;
-    height: 420px;
-    filter: blur(60px);
-    transform: translate(-50%, -55%);
+    font-size: 1rem;
   }
 }
 
