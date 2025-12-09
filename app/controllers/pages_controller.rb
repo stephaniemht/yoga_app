@@ -19,5 +19,7 @@ class PagesController < ApplicationController
       .where("date >= ?", Date.current)
       .order(:date, :time)
       .first
+
+    @presentation = Presentation.first_or_create
   end
 end

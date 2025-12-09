@@ -51,8 +51,8 @@
 <div class="presentation-section">
   <div class="presentation-container">
 
-    <% if user_signed_in? && current_user.admin? %>
-      <%= link_to edit_presentation_path(Presentation.first_or_create),
+    <% if user_signed_in? && current_user.admin? && @presentation.present? && @presentation.persisted? %>
+      <%= link_to edit_presentation_path(@presentation),
           class: "presentation-edit-button" do %>
         ✏️ Modifier la section
       <% end %>
@@ -60,21 +60,22 @@
 
     <div class="presentation-text">
       <span class="presentation-badge">Présentation</span>
-      <%= raw @presentation.content %>
+
+      <%# Sécurisé, permet les retours à la ligne et le HTML proprement %>
+      <%= simple_format(@presentation.content.presence || "Aucun texte disponible pour le moment.") %>
     </div>
 
     <div class="presentation-photo">
       <% if @presentation.photo.attached? %>
-        <%= image_tag @presentation.photo,
-            class: "presentation-image" %>
+        <%= image_tag @presentation.photo, class: "presentation-image" %>
       <% else %>
-        <%= image_tag "meditation.jpg",
-            class: "presentation-image" %>
+        <%= image_tag "meditation.jpg", class: "presentation-image" %>
       <% end %>
     </div>
 
   </div>
 </div>
+
 
 <!-- 🔸 FIN SECTION PRÉSENTATION 🔸 -->
 
