@@ -164,22 +164,122 @@
   }
 }
 
-.presentation-edit-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--color-primary);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  text-decoration: none;
-  box-shadow: 0px 4px 14px rgba(0,0,0,0.12);
-  transition: background 0.3s ease, transform 0.2s ease;
-  z-index: 10;
+/* === SECTION ENTIÈRE === */
+.presentation-edit-section {
+  width: 100%;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg-section);
 }
 
-.presentation-edit-button:hover {
+/* === CARD CENTRALE === */
+.presentation-edit-card {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(199, 184, 255, 0.4);
+}
+
+/* === TITRE === */
+.presentation-edit-title {
+  font-family: var(--font-title);
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  text-align: center;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.presentation-edit-title::after {
+  content: "";
+  width: 70px;
+  height: 3px;
+  background: var(--color-primary);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 999px;
+}
+
+/* === GROUPES DE CHAMPS === */
+.presentation-edit-group {
+  margin-bottom: 25px;
+}
+
+/* Label */
+.presentation-edit-label {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Inputs */
+.presentation-edit-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.6);
+  border-bottom: 2px solid rgba(0,0,0,0.15);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.presentation-edit-input:focus {
+  border-bottom-color: var(--color-primary);
+}
+
+/* Textarea spécifique */
+.presentation-edit-input.textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+/* Preview photo */
+.presentation-photo-preview {
+  margin-top: 12px;
+}
+
+.presentation-photo-thumb {
+  width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+/* === BOUTON SUBMIT === */
+.presentation-edit-submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-title);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.presentation-edit-submit:hover {
   background: var(--color-accent);
   transform: translateY(-2px);
+}
+
+/* === Mobile === */
+@media (max-width: 768px) {
+  .presentation-edit-card {
+    padding: 25px;
+  }
 }

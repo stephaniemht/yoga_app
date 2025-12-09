@@ -1,25 +1,31 @@
-<div class="presentation-edit-wrapper">
-  <h1>Modifier la présentation</h1>
+<div class="presentation-edit-section">
+  <div class="presentation-edit-card">
 
-  <%= form_with model: @presentation, local: true do |f| %>
+    <h1 class="presentation-edit-title">Modifier la présentation</h1>
 
-    <div class="form-group">
-      <%= f.label :content, "Texte" %>
-      <%= f.text_area :content, rows: 12, class: "form-control" %>
-    </div>
+    <%= form_with model: @presentation, local: true do |f| %>
 
-    <div class="form-group">
-      <%= f.label :photo, "Photo" %>
-      <%= f.file_field :photo, class: "form-control" %>
+      <!-- Champ texte -->
+      <div class="presentation-edit-group">
+        <%= f.label :content, "Texte", class: "presentation-edit-label" %>
+        <%= f.text_area :content, rows: 12, class: "presentation-edit-input textarea" %>
+      </div>
 
-      <% if @presentation.photo.attached? %>
-        <div class="preview">
-          <%= image_tag @presentation.photo, style: "max-width: 200px; margin-top: 10px;" %>
-        </div>
-      <% end %>
-    </div>
+      <!-- Upload photo -->
+      <div class="presentation-edit-group">
+        <%= f.label :photo, "Photo", class: "presentation-edit-label" %>
+        <%= f.file_field :photo, class: "presentation-edit-input file" %>
 
-    <%= f.submit "Enregistrer", class: "btn-submit" %>
+        <% if @presentation.photo.attached? %>
+          <div class="presentation-photo-preview">
+            <%= image_tag @presentation.photo, class: "presentation-photo-thumb" %>
+          </div>
+        <% end %>
+      </div>
 
-  <% end %>
+      <%= f.submit "Enregistrer", class: "presentation-edit-submit" %>
+
+    <% end %>
+
+  </div>
 </div>
