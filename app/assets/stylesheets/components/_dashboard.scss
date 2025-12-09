@@ -1,85 +1,165 @@
+/* === Dashboard Admin – style pastel cohérent avec le reste du site === */
+
 .admin-dashboard {
-  background-color: #38546b;
-  color: white;
-  padding: 60px 20px;
+  width: 100%;
   min-height: 100vh;
+  padding: 80px 20px 60px;
+  display: flex;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top left, rgba(199, 184, 255, 0.35), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(255, 181, 194, 0.30), transparent 55%),
+    var(--color-bg-section);
+}
+
+/* Conteneur centré */
+.admin-dashboard-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
   text-align: center;
-  font-family: 'Work Sans', sans-serif;
 }
 
+/* Titre principal */
 .admin-title {
-  font-family: 'Work Sans';
-  margin-top: 60px;
-  font-size: 24px;
-  text-transform: uppercase;
-  font-weight: lighter;
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: 32px;
+  letter-spacing: 1px;
   display: inline-block;
-  margin-bottom: 40px;
-  padding-bottom: 10px;
+  position: relative;
 }
 
+/* Soulignement pastel comme les autres sections */
+.admin-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 40%;
+  height: 3px;
+  background: var(--color-primary);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Petit texte sous le titre si tu veux en mettre un */
+.admin-subtitle {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-text);
+}
+
+/* Bloc des options */
 .admin-actions {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 24px;
   flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
+  margin-top: 40px;
 }
 
+/* Cartes admin */
 .admin-option {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 30px 20px;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  padding: 22px 22px 24px;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   text-align: left;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(199, 184, 255, 0.45);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Petit halo décoratif en fond de carte */
+.admin-option::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top right,
+              rgba(199, 184, 255, 0.25),
+              transparent 60%);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* Contenu au-dessus du halo */
+.admin-option > * {
+  position: relative;
+  z-index: 1;
 }
 
 .admin-option:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.10);
+  border-color: rgba(199, 184, 255, 0.85);
 }
 
+/* Titre de la carte */
 .admin-option h2 {
-  font-family: 'work sans';
-  font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--color-text-main);
 }
 
+/* Légende / explication */
 .admin-option p {
-  font-size: 14px;
-  margin-bottom: 20px;
-  opacity: 0.9;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  color: var(--color-text-muted);
+  font-family: var(--font-text);
 }
 
+/* Bouton admin cohérent avec les autres boutons du site */
 .admin-btn {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #a3de83;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background-color: var(--color-primary);
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
-  border-radius: 2px;
-  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: var(--font-title);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .admin-btn:hover {
-  background-color: white;
-  color: #38546b;
+  background-color: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.14);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 60px 16px 40px;
+  }
+
   .admin-actions {
     flex-direction: column;
     align-items: center;
   }
 
   .admin-option {
-    max-width: 90%;
+    max-width: 100%;
   }
 }

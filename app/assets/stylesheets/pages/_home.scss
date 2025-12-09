@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   padding: 120px 20px 80px; /* espace pour la navbar fixe + bas */
+
 }
 
 /* Overlay pastel doux */
@@ -16,6 +17,9 @@
   content: "";
   position: absolute;
   inset: 0;
+
+  filter: grayscale(100%);
+
 
   /* couche sombre discrète */
   background:
