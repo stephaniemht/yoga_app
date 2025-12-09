@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
-  
+
   def home
     # 🌿 Cours de yoga ponctuels (non récurrents) à venir : on en prend 2
     @upcoming_courses = Course

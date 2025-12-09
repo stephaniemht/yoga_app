@@ -1,0 +1,25 @@
+<div class="presentation-edit-wrapper">
+  <h1>Modifier la présentation</h1>
+
+  <%= form_with model: @presentation, local: true do |f| %>
+
+    <div class="form-group">
+      <%= f.label :content, "Texte" %>
+      <%= f.text_area :content, rows: 12, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :photo, "Photo" %>
+      <%= f.file_field :photo, class: "form-control" %>
+
+      <% if @presentation.photo.attached? %>
+        <div class="preview">
+          <%= image_tag @presentation.photo, style: "max-width: 200px; margin-top: 10px;" %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit "Enregistrer", class: "btn-submit" %>
+
+  <% end %>
+</div>

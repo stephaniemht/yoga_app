@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "presentations/update"
+  get "presentations/edit"
   devise_for :users
   get "admin/dashboard"
   get "/politique-de-confidentialite", to: "pages#privacy_policy", as: :privacy_policy

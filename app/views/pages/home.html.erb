@@ -51,43 +51,31 @@
 <div class="presentation-section">
   <div class="presentation-container">
 
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to edit_presentation_path(Presentation.first_or_create),
+          class: "presentation-edit-button" do %>
+        ✏️ Modifier la section
+      <% end %>
+    <% end %>
+
     <div class="presentation-text">
       <span class="presentation-badge">Présentation</span>
-      <h2>Je suis Jennifer</h2>
-
-      <p>
-        Je pratique le yoga depuis une dizaine d’années, en studio et lors de voyages, notamment au Népal où j’ai suivi un stage immersif. Au fil du temps, j’ai ressenti le besoin profond d’aller plus loin dans ma pratique, d’explorer au-delà des postures, et de me former pour transmettre à mon tour.
-      </p>
-
-      <p>
-        En décembre 2022, j’ai rejoint la formation de Yoga Vinyasa du Lab du Yoga. Cela a été une véritable aventure intérieure&nbsp;: un laboratoire avec moi-même, fait de découvertes, d’exploration du corps et de l’esprit, de joie, de rires… et parfois de larmes. Après avoir intégré la notion de calme et d’ancrage, j’ai choisi de compléter mon parcours avec une formation en Yin Yoga à partir de septembre 2025.
-      </p>
-
-      <p>
-        Aujourd’hui, je vous accompagne à travers des pratiques de yoga dynamiques et énergisantes autour du renforcement musculaire, de la mobilité, de la stabilité et de la création d’espace dans le corps. J’aime aussi proposer un yoga plus doux, axé sur le relâchement des tensions et l’apaisement du système nerveux, grâce aux pratiques de Yin Yoga.
-      </p>
-
-      <p>
-        Également accompagnatrice en montagne, j’organise des séjours alliant randonnée et yoga. La pratique du yoga, la nature et la marche forment un triangle harmonieux et subtil, propice au ressourcement, à l’énergie et à l’équilibre.
-      </p>
-
-      <p>
-        Pour moi, pratiquer le yoga, c’est cultiver son corps et son âme. C’est une union de la respiration, des ressentis, des émotions, des pensées et du corps.
-      </p>
-
-      <p class="presentation-slogan">
-        <strong>Mon mantra&nbsp;:</strong> RESPIRE, EXPLORE, RESSOURCE, RECHARGE et RELAX.
-      </p>
+      <%= raw @presentation.content %>
     </div>
 
     <div class="presentation-photo">
-      <%= image_tag asset_path('meditation.jpg'),
-            class: 'presentation-image',
-            alt: 'Jennifer en méditation' %>
+      <% if @presentation.photo.attached? %>
+        <%= image_tag @presentation.photo,
+            class: "presentation-image" %>
+      <% else %>
+        <%= image_tag "meditation.jpg",
+            class: "presentation-image" %>
+      <% end %>
     </div>
 
   </div>
 </div>
+
 <!-- 🔸 FIN SECTION PRÉSENTATION 🔸 -->
 
 
