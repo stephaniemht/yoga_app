@@ -37,44 +37,44 @@
   text-align: left;
 }
 
-/* Carrousel à gauche, style “photo flottante” */
-/* Conteneur global de la colonne carrousel */
+/* Colonne carrousel */
 .carousel-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* Fenêtre d’affichage : une seule image visible */
+/* Fenêtre : plus grande, format plutôt paysage */
 .carousel-window {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;     /* garde un joli format */
+  max-width: 560px;          /* un peu plus large */
+  aspect-ratio: 3 / 2;       /* plus “grand” visuellement */
   overflow: hidden;
   border-radius: 18px;
   border: 5px solid var(--color-primary);
-  background: #000;        /* couleur de fond si image tarde à charger */
+  background: #000;
+  margin: 0 auto;            /* centrer dans la colonne */
 }
 
-/* Bande de slides */
+/* Bande qui glisse */
 .carousel-track {
   display: flex;
   height: 100%;
-  width: 100%;
   transition: transform 0.6s ease;
 }
 
-/* Chaque image = 100% de la fenêtre, aucune marge */
+/* Chaque slide = toute la fenêtre */
 .carousel-image {
-  flex: 0 0 100%;      /* <= là, c’est la clé : une image = toute la largeur */
+  flex: 0 0 100%;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Boutons de navigation (optionnels) */
+/* Flèches */
 .carousel-controls {
   display: flex;
   justify-content: center;
@@ -86,7 +86,7 @@
   background: var(--color-primary);
   color: white;
   border-radius: 999px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   cursor: pointer;
   font-size: 0.9rem;
   font-family: var(--font-title);
@@ -98,12 +98,14 @@
   transform: translateY(-1px);
 }
 
-/* Responsive */
+/* Mobile : un peu plus vertical */
 @media (max-width: 768px) {
   .carousel-window {
-    aspect-ratio: 3 / 4; /* un peu plus vertical sur mobile */
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
   }
 }
+
 
 /* Animation inchangée */
 @keyframes slide {
