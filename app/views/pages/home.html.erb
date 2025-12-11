@@ -5,19 +5,18 @@
 <div class="about-section">
   <div class="about-content row-layout">
 
-    <%# 🔧 Bouton d’édition visible uniquement pour l’admin connecté %>
-    <% if user_signed_in? && current_user.admin? && @about_section.present? %>
-      <%= link_to edit_about_section_path(@about_section),
-          class: "about-edit-button" do %>
-        ✏️ Modifier les photos
-      <% end %>
-    <% end %>
-
     <!-- Colonne gauche : Carrousel -->
     <div class="carousel-container" data-controller="carousel">
+
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to edit_about_section_path(@about_section),
+            class: "presentation-edit-button" do %>
+          ✏️ Modifier le carrousel
+        <% end %>
+      <% end %>
+
       <div class="carousel-window">
         <div class="carousel-track" data-carousel-target="track">
-
           <% if @about_section&.photos&.attached? && @about_section.photos.any? %>
             <% @about_section.photos.each do |photo| %>
               <%= image_tag photo, class: "carousel-image", alt: "Photo de Jennifer" %>
@@ -29,11 +28,9 @@
             <%= image_tag "diapo 4.jpg", class: "carousel-image", alt: "Image 4" %>
             <%= image_tag "diapo 5.jpg", class: "carousel-image", alt: "Image 5" %>
           <% end %>
-
         </div>
       </div>
 
-      <!-- Flèches -->
       <div class="carousel-controls">
         <button type="button"
                 class="carousel-arrow"
@@ -50,10 +47,13 @@
 
     <!-- Colonne droite : Texte -->
     <div class="about-text">
+      <span class="about-badge">À propos</span>
+
       <h3>RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL</h3>
 
       <p>
-        Je vous invite à venir vous déposer sur un tapis de yoga pour une séance de Vinyasa, au studio Mouv’&Fit à Barcelonnette ou en plein air durant la belle saison.
+        Je vous invite à venir vous déposer sur un tapis de yoga pour une séance de Vinyasa,
+        au studio Mouv’&Fit à Barcelonnette ou en plein air durant la belle saison.
       </p>
 
       <p>
@@ -61,11 +61,14 @@
       </p>
 
       <p>
-        Le Vinyasa est une pratique en mouvement, où le souffle guide chaque posture pour créer de l’espace dans le corps et l’esprit. Les flows (enchaînements) sont variés afin de renforcer et relâcher le corps, et ainsi créer harmonie, équilibre, calme… Vous êtes votre propre photosynthèse !
+        Le Vinyasa est une pratique en mouvement, où le souffle guide chaque posture pour créer de l’espace
+        dans le corps et l’esprit. Les flows (enchaînements) sont variés afin de renforcer et relâcher le corps,
+        et ainsi créer harmonie, équilibre, calme… Vous êtes votre propre photosynthèse !
       </p>
 
       <p>
-        Professeure de yoga Vinyasa certifiée et accompagnatrice en montagne, la nature, le corps et l’esprit m’animent. Je vous accompagne pour une pratique de yoga adaptée à vous.
+        Professeure de yoga Vinyasa certifiée et accompagnatrice en montagne, la nature, le corps et l’esprit m’animent.
+        Je vous accompagne pour une pratique de yoga adaptée à vous.
       </p>
 
       <p>
@@ -77,9 +80,6 @@
 
   </div>
 </div>
-
-
-
 
 
 

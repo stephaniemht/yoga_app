@@ -1,3 +1,4 @@
+// app/javascript/controllers/carousel_controller.js
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -5,26 +6,22 @@ export default class extends Controller {
 
   connect() {
     this.index = 0
-    this.update()
-  }
-
-  get slides() {
-    return this.trackTarget.children
-  }
-
-  next() {
-    if (this.slides.length === 0) return
-    this.index = (this.index + 1) % this.slides.length
-    this.update()
+    this.slides = this.trackTarget.querySelectorAll(".carousel-image")
   }
 
   previous() {
     if (this.slides.length === 0) return
     this.index = (this.index - 1 + this.slides.length) % this.slides.length
-    this.update()
+    this.updatePosition()
   }
 
-  update() {
+  next() {
+    if (this.slides.length === 0) return
+    this.index = (this.index + 1) % this.slides.length
+    this.updatePosition()
+  }
+
+  updatePosition() {
     const offset = -this.index * 100
     this.trackTarget.style.transform = `translateX(${offset}%)`
   }
