@@ -21,7 +21,6 @@ class PagesController < ApplicationController
       .first
 
     @presentation = Presentation.first_or_create
-
     @about_section = AboutSection.first_or_create!(
       title: "RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL"
     )

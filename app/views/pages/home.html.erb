@@ -5,15 +5,31 @@
 <div class="about-section">
   <div class="about-content row-layout">
 
+    <%# 🔧 Bouton d’édition visible uniquement pour l’admin connecté %>
+    <% if user_signed_in? && current_user.admin? && @about_section.present? %>
+      <%= link_to edit_about_section_path(@about_section),
+          class: "about-edit-button" do %>
+        ✏️ Modifier les photos
+      <% end %>
+    <% end %>
+
     <!-- Colonne gauche : Carrousel -->
     <div class="carousel-container" data-controller="carousel">
       <div class="carousel-window">
         <div class="carousel-track" data-carousel-target="track">
-          <%= image_tag "diapo 1.jpg", class: "carousel-image", alt: "Image 1" %>
-          <%= image_tag "diapo 2.jpg", class: "carousel-image", alt: "Image 2" %>
-          <%= image_tag "diapo 3.jpg", class: "carousel-image", alt: "Image 3" %>
-          <%= image_tag "diapo 4.jpg", class: "carousel-image", alt: "Image 4" %>
-          <%= image_tag "diapo 5.jpg", class: "carousel-image", alt: "Image 5" %>
+
+          <% if @about_section&.photos&.attached? && @about_section.photos.any? %>
+            <% @about_section.photos.each do |photo| %>
+              <%= image_tag photo, class: "carousel-image", alt: "Photo de Jennifer" %>
+            <% end %>
+          <% else %>
+            <%= image_tag "diapo 1.jpg", class: "carousel-image", alt: "Image 1" %>
+            <%= image_tag "diapo 2.jpg", class: "carousel-image", alt: "Image 2" %>
+            <%= image_tag "diapo 3.jpg", class: "carousel-image", alt: "Image 3" %>
+            <%= image_tag "diapo 4.jpg", class: "carousel-image", alt: "Image 4" %>
+            <%= image_tag "diapo 5.jpg", class: "carousel-image", alt: "Image 5" %>
+          <% end %>
+
         </div>
       </div>
 
@@ -61,6 +77,7 @@
 
   </div>
 </div>
+
 
 
 

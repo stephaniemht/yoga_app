@@ -4,4 +4,7 @@ import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 import flatpickr from "./flatpickr_controller"
 application.register("flatpickr", flatpickr)
+import CarouselController from "./carousel_controller"
 
+window.Stimulus = Application.start()
+Stimulus.register("carousel", CarouselController)
