@@ -1,3 +1,3 @@
 class AboutSection < ApplicationRecord
-  has_many_attached :carousel_images
+  has_many_attached :photos
 end
