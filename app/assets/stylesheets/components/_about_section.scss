@@ -428,3 +428,23 @@
     padding: 32px 20px;
   }
 }
+
+.about-edit-button {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: var(--color-primary);
+  color: white;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.about-edit-button:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
