@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :hikes
   resources :contacts, only: [:new, :create]
   resources :presentations, only: [:edit, :update]
+  resource :about_section, only: [:edit, :update]
+
 
   namespace :admin do
     get 'dashboard', to: 'admin#dashboard'
