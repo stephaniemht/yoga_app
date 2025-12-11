@@ -28,10 +28,13 @@ class AboutSectionsController < ApplicationController
 
   private
 
-  def about_section_params
-    # pour l’instant, on laisse title/body optionnels
-    params.require(:about_section).permit(:title, :body)
-  end
+def about_section_params
+  params.require(:about_section).permit(
+    :title,
+    :body,
+    photos: [] 
+  )
+end
 
   def require_admin
     redirect_to root_path, alert: "Accès réservé." unless current_user&.admin?

@@ -1,32 +1,37 @@
 <div class="presentation-edit-section">
   <div class="presentation-edit-card">
 
-    <h1 class="presentation-edit-title">Modifier le carrousel</h1>
+    <h1 class="presentation-edit-title">Modifier la section "À propos"</h1>
 
-    <%= form_with model: @about_section, url: about_section_path, local: true do |f| %>
+    <%= form_with model: @about_section, local: true do |f| %>
 
+      <!-- Titre de la section -->
       <div class="presentation-edit-group">
         <%= f.label :title, "Titre de la section", class: "presentation-edit-label" %>
         <%= f.text_field :title, class: "presentation-edit-input" %>
       </div>
 
+      <!-- Texte à droite -->
       <div class="presentation-edit-group">
         <%= f.label :body, "Texte à droite (optionnel)", class: "presentation-edit-label" %>
-        <%= f.text_area :body, rows: 8, class: "presentation-edit-input textarea" %>
+        <%= f.text_area :body,
+              rows: 8,
+              class: "presentation-edit-input textarea" %>
         <p class="small-hint">
           Tu peux laisser vide pour garder le texte actuel codé dans la page.
         </p>
       </div>
 
+      <!-- Photos du carrousel -->
       <div class="presentation-edit-group">
-        <%= f.label :carousel_images, "Photos du carrousel", class: "presentation-edit-label" %>
-        <%= f.file_field :photo,
+        <%= f.label :photos, "Photos du carrousel", class: "presentation-edit-label" %>
+        <%= f.file_field :photos,
               multiple: true,
               class: "presentation-edit-input file" %>
 
-        <% if @about_section.photo.attached? %>
+        <% if @about_section.photos.attached? %>
           <div class="carousel-edit-preview">
-            <% @about_section.carousel_images.each do |image| %>
+            <% @about_section.photos.each do |image| %>
               <%= image_tag image, class: "presentation-photo-thumb" %>
             <% end %>
           </div>
