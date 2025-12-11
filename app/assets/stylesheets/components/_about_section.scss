@@ -37,35 +37,34 @@
   text-align: left;
 }
 
-/* Colonne carrousel : elle prend un peu plus de place que le texte */
+/* Colonne carrousel : taille plus raisonnable */
 .carousel-container {
-  flex: 1.2 1 480px;
+  flex: 1.1 1 420px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Fenêtre : plus grande, format plutôt paysage */
+/* Fenêtre : taille médiane, bien équilibrée */
 .carousel-window {
   position: relative;
   width: 100%;
-  max-width: 700px;          /* plus large qu'avant */
-  aspect-ratio: 4 / 3;       /* plus généreux visuellement */
+  max-width: 520px;     /* entre l'ancien 560 et le géant 700 */
+  aspect-ratio: 4 / 3;  /* format joli, pas trop haut */
   overflow: hidden;
   border-radius: 18px;
   border: 5px solid var(--color-primary);
   background: #000;
-  margin: 0 auto;            /* centrer dans la colonne */
+  margin: 0 auto;
 }
 
-/* Bande qui glisse */
+/* Slides */
 .carousel-track {
   display: flex;
   height: 100%;
   transition: transform 0.6s ease;
 }
 
-/* Chaque slide = toute la fenêtre */
 .carousel-image {
   flex: 0 0 100%;
   width: 100%;
@@ -98,13 +97,14 @@
   transform: translateY(-1px);
 }
 
-/* Mobile : un peu plus vertical */
+/* Mobile */
 @media (max-width: 768px) {
   .carousel-window {
     max-width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 5; /* vertical mais harmonieux */
   }
 }
+
 
 /* (ancienne animation auto non utilisée – laissée au cas où tu veux la réactiver) */
 @keyframes slide {
