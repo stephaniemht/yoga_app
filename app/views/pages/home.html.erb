@@ -11,7 +11,7 @@
       <% if user_signed_in? && current_user.admin? %>
         <%= link_to edit_about_section_path(@about_section),
             class: "presentation-edit-button" do %>
-          ✏️ Modifier le carrousel
+          ✏️ Modifier la section
         <% end %>
       <% end %>
 
@@ -50,16 +50,17 @@
   <h3><%= @about_section.title.presence || "RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL" %></h3>
 
   <% if @about_section.body.present? %>
-    <%= raw @about_section.body %>
+    <%= simple_format(@about_section.body, {}, wrapper_tag: "p") %>
   <% else %>
     <!-- Texte de fallback si aucun texte n'a encore été sauvegardé -->
-    <p>Je vous invite à venir vous déposer sur un tapis...</p>
+    <p>Je vous invite à venir vous déposer sur un tapis de yoga...</p>
     <p>Le yoga, c’est l’union...</p>
     <p>Le Vinyasa est une pratique...</p>
     <p>Professeure de yoga Vinyasa...</p>
     <p><strong>Les mercredis...</strong></p>
   <% end %>
 </div>
+
 
 
   </div>
