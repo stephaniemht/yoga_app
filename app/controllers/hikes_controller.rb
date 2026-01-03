@@ -67,6 +67,22 @@ class HikesController < ApplicationController
   private
 
   def hike_params
-    params.require(:hike).permit(:title, :location, :description, :date, :time, :end_date, :price, :photo, carousel_photos: [])
+    permitted = params.require(:hike).permit(
+      :title,
+      :location,
+      :description,
+      :date,
+      :time,
+      :end_date,
+      :price,
+      :photo,
+      carousel_photos: []
+    )
+
+    if permitted[:carousel_photos].blank?
+      permitted.delete(:carousel_photos)
+    end
+
+    permitted
   end
 end
