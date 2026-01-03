@@ -1,5 +1,44 @@
+<% content_for :title, "Yoga & Randonnée Yoga à Barcelonnette | L’Univers des Sens" %>
+<% content_for :meta_description, "Cours de yoga à Barcelonnette et randonnées yoga dans la vallée de l’Ubaye. Séjours bien-être en montagne avec Jennifer Camp." %>
+
+<% content_for :og_title, "Yoga & Randonnée Yoga à Barcelonnette | L’Univers des Sens" %>
+<% content_for :og_description, "Cours de yoga, randonnées yoga et séjours bien-être à Barcelonnette et vallée de l’Ubaye." %>
+
+<% content_for :head do %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "L’Univers des Sens",
+    "url": "<%= root_url %>",
+    "telephone": "+33695218666",
+    "email": "jennypraloup@gmail.com",
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Vallée de l’Ubaye" },
+      { "@type": "City", "name": "Barcelonnette" },
+      { "@type": "City", "name": "Pra Loup" }
+    ],
+    "serviceType": [
+      "Cours de yoga",
+      "Yoga Vinyasa",
+      "Yin Yoga",
+      "Randonnée Yoga",
+      "Séjour bien-être"
+    ],
+    "sameAs": [
+      "https://www.facebook.com/randoubaye?locale=fr_FR",
+      "https://www.instagram.com/univers_des_sens/",
+      "https://www.youtube.com/@jennycamp04yoga/videos"
+    ]
+  }
+  </script>
+<% end %>
+
+
 <div class="banner">
   <%= image_tag "udslogo.png", alt: "Logo", class: "logo" %>
+  <h1 class="sr-only">Cours de yoga et randonnées yoga à Barcelonnette – L’Univers des Sens</h1>
+  <p class="sr-only">Yoga, randonnées bien-être et séjours dans la vallée de l’Ubaye.</p>
 </div>
 
 <div class="about-section">
@@ -116,7 +155,7 @@
       <article class="practice-card">
         <div class="practice-card-header">
           <div class="practice-avatar-wrapper yoga">
-            <%= image_tag "yoga.jpg", class: "practice-avatar-large", alt: "Cours de yoga" %>
+            <%= image_tag "yoga.jpg", class: "practice-avatar-large", alt: "Cours de yoga à Barcelonnette (Ubaye)" %>
           </div>
           <span class="practice-chip yoga-chip">🧘‍♀️ Studio & Plein air</span>
         </div>
@@ -138,7 +177,7 @@
       <article class="practice-card">
         <div class="practice-card-header">
           <div class="practice-avatar-wrapper rando">
-            <%= image_tag "rando_nature.jpg", class: "practice-avatar-large", alt: "Randonnée yoga" %>
+            <%= image_tag "rando_nature.jpg", class: "practice-avatar-large", alt: "Randonnée yoga bien-être dans la vallée de l’Ubaye" %>
           </div>
           <span class="practice-chip rando-chip">⛰️ Nature & Marche</span>
         </div>
@@ -369,7 +408,7 @@
 
     <!-- Image à droite -->
     <div class="contact-image-wrapper">
-      <%= image_tag asset_path('neige.jpg'), alt: "Montagnes enneigées à Praloup" %>
+      <%= image_tag asset_path('neige.jpg'), alt: "Séjour bien-être à Pra Loup et Barcelonnette" %>
     </div>
 
   </div>

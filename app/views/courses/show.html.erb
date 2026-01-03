@@ -43,7 +43,11 @@
 
 
         <% if @course.location.present? %>
-          <p><strong>Lieu :</strong> <%= @course.location %></p>
+          <p>
+            <strong>Lieu :</strong>
+            <%= @course.location.presence || "Barcelonnette – Vallée de l’Ubaye / Pra Loup" %>
+          </p>
+
         <% end %>
 
         <%# --- Affichage du planning si cours récurrent (= via course_schedules) --- %>

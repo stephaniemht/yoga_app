@@ -1,7 +1,20 @@
+<% content_for :title do %>
+  <%= @hike.title %> – Randonnée yoga en Ubaye | Barcelonnette & Pra Loup
+<% end %>
+
+<% content_for :meta_description do %>
+  Randonnée yoga et séjour bien-être en Ubaye.
+  <%= @hike.title %> à Barcelonnette / Pra Loup :
+  yoga, nature et ressourcement en montagne.
+<% end %>
+
+
 <div class="hike-show">
   <!-- Image en pleine largeur -->
   <div class="hike-banner">
-    <%= image_tag "paysage.jpg", class: "hike-banner-image" %>
+    <%= image_tag "paysage.jpg",
+      class: "hike-banner-image",
+      alt: "Randonnée yoga en Ubaye – #{@hike.title}" %>
   </div>
 
   <!-- Contenu principal -->
@@ -32,9 +45,17 @@
       <% end %>
 
       <div class="hike-details">
-        <p><strong>Description :</strong> <%= simple_format(@hike.description) %></p>
+        <div class="hike-description">
+        <h2 class="sr-only">Description de la randonnée yoga</h2>
+        <%= simple_format(@hike.description) %>
+      </div>
+
         <hr>
-        <p><strong>Lieu :</strong> <%= @hike.location %></p>
+
+        <p>
+          <strong>Lieu :</strong>
+          <%= @hike.location.presence || "Vallée de l’Ubaye – Barcelonnette & Pra Loup" %>
+        </p>
 
         <% if @hike.date.present? && @hike.time.present? %>
           <% datetime = DateTime.new(@hike.date.year, @hike.date.month, @hike.date.day, @hike.time.hour, @hike.time.min) %>
