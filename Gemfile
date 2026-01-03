@@ -42,6 +42,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "cloudinary"
 gem "activestorage-cloudinary-service"
+gem 'sitemap_generator'
 
 group :development, :test do
   gem "dotenv-rails"
