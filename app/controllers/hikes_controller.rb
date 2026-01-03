@@ -44,6 +44,25 @@ class HikesController < ApplicationController
     redirect_to hikes_path, notice: "La randonnée a bien été supprimée."
   end
 
+  def destroy_carousel_photo
+    @hike = Hike.find(params[:id])
+
+    # sécurité : admin only
+    unless user_signed_in? && current_user.admin?
+      redirect_to @hike, alert: "Accès non autorisé."
+      return
+    end
+
+    attachment = @hike.carousel_photos.attachments.find_by(id: params[:attachment_id])
+
+    if attachment
+      attachment.purge
+      redirect_to edit_hike_path(@hike), notice: "Photo supprimée."
+    else
+      redirect_to edit_hike_path(@hike), alert: "Photo introuvable."
+    end
+  end
+
 
   private
 

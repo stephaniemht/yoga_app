@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'admin#dashboard'
   end
 
+  resources :hikes do
+    member do
+      delete "carousel_photos/:attachment_id", to: "hikes#destroy_carousel_photo", as: :destroy_carousel_photo
+    end
+  end
+
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
