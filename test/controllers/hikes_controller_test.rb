@@ -36,3 +36,5 @@ class HikesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 end
+
+

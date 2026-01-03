@@ -48,6 +48,6 @@ class HikesController < ApplicationController
   private
 
   def hike_params
-    params.require(:hike).permit(:title, :location, :description, :date, :time, :end_date, :price, :photo)
+    params.require(:hike).permit(:title, :location, :description, :date, :time, :end_date, :price, :photo, carousel_photos: [])
   end
 end

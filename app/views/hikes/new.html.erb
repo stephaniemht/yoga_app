@@ -53,9 +53,19 @@
     <%= f.number_field :price, class: "form-control" %>
   </div>
 
+  <!-- Photo principale (pour l'index / card) -->
   <div class="form-group">
-    <%= f.label :photo, "Photo (optionnelle)" %>
+    <%= f.label :photo, "Photo principale (pour la carte / index)" %>
     <%= f.file_field :photo, class: "form-control" %>
+  </div>
+
+  <!-- Photos du carrousel (pour la show) -->
+  <div class="form-group">
+    <%= f.label :carousel_photos, "Photos du carrousel (optionnel)" %>
+    <%= f.file_field :carousel_photos, multiple: true, class: "form-control" %>
+    <small class="text-muted d-block" style="margin-top: 6px;">
+      Tu peux sélectionner plusieurs photos (Ctrl/Cmd + clic). Elles s’afficheront en carrousel sur la page de la randonnée.
+    </small>
   </div>
 
   <div class="form-actions">
