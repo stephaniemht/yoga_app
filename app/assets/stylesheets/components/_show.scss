@@ -202,3 +202,61 @@
     padding: 9px 16px;
   }
 }
+
+/* --- Carrousel photos randonnée --- */
+.hike-carousel {
+  width: 100%;
+}
+
+.hike-carousel-window {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 5px solid var(--color-primary);
+  background: #000;
+}
+
+.hike-carousel-track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.hike-carousel-image {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contrôles */
+.hike-carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.hike-carousel-arrow {
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: var(--font-title);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.hike-carousel-arrow:hover {
+  background: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hike-carousel-image {
+    height: 260px;
+  }
+}

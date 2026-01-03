@@ -9,8 +9,30 @@
     <h1 class="hike-title"><%= @hike.title %></h1>
 
     <div class="hike-info-container">
+
+      <%# ✅ CARROUSEL PHOTOS (si présentes) %>
+      <% if @hike.carousel_photos.attached? && @hike.carousel_photos.any? %>
+        <div class="hike-carousel" data-carousel>
+          <div class="hike-carousel-window">
+            <div class="hike-carousel-track" data-track>
+              <% @hike.carousel_photos.each_with_index do |photo, index| %>
+                <%= image_tag photo, class: "hike-carousel-image", alt: "#{@hike.title} - photo #{index + 1}" %>
+              <% end %>
+            </div>
+          </div>
+
+          <%# flèches (si + d’une photo) %>
+          <% if @hike.carousel_photos.size > 1 %>
+            <div class="hike-carousel-controls">
+              <button type="button" class="hike-carousel-arrow" data-prev>←</button>
+              <button type="button" class="hike-carousel-arrow" data-next>→</button>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
       <div class="hike-details">
-        <p><strong>Description :</strong> <%= @hike.description %></p>
+        <p><strong>Description :</strong> <%= simple_format(@hike.description) %></p>
         <hr>
         <p><strong>Lieu :</strong> <%= @hike.location %></p>
 
@@ -25,13 +47,18 @@
           <p><strong>Retour :</strong> <%= l(@hike.end_date, format: "%A %d %B %Y") %></p>
         <% end %>
 
-        <p><strong>Tarif :</strong> <%= @hike.price %> €</p>
+        <% if @hike.price.present? %>
+          <p><strong>Tarif :</strong> <%= @hike.price %> €</p>
+        <% end %>
       </div>
 
       <% if user_signed_in? && current_user.admin? %>
         <div class="admin-actions">
           <%= link_to "Modifier", edit_hike_path(@hike), class: "btn btn-warning" %>
-          <%= link_to "Supprimer", hike_path(@hike), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr(e) de vouloir supprimer cette randonnée ?" }, class: "btn btn-danger" %>
+          <%= link_to "Supprimer", hike_path(@hike),
+                method: :delete,
+                data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr(e) de vouloir supprimer cette randonnée ?" },
+                class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>
@@ -39,3 +66,37 @@
     <a href="<%= hikes_path %>" class="hike-back-button">← Retour aux randonnées</a>
   </div>
 </div>
+
+<script>
+  (function() {
+    const root = document.querySelector("[data-carousel]");
+    if (!root) return;
+
+    const track = root.querySelector("[data-track]");
+    const slides = root.querySelectorAll(".hike-carousel-image");
+    const prevBtn = root.querySelector("[data-prev]");
+    const nextBtn = root.querySelector("[data-next]");
+
+    let index = 0;
+
+    function update() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        index = (index - 1 + slides.length) % slides.length;
+        update();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        index = (index + 1) % slides.length;
+        update();
+      });
+    }
+
+    update();
+  })();
+</script>
