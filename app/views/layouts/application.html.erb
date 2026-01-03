@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "L Univers Des Sens" %></title>
+    <%# --- TITLE --- %>
+    <title><%= content_for?(:title) ? yield(:title) : "Yoga & Randonnée Yoga à Barcelonnette | L’Univers des Sens" %></title>
+
+    <%# --- META DESCRIPTION --- %>
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Cours de yoga (Vinyasa, Yin) et randonnées yoga à Barcelonnette et vallée de l’Ubaye. Séjours bien-être, nature et ressourcement avec Jennifer Camp." %>">
+
+    <%# --- INDEXING --- %>
+    <meta name="robots" content="index,follow">
+
+    <%# --- VIEWPORT --- %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <%# --- CANONICAL (évite contenu dupliqué) --- %>
+    <link rel="canonical" href="<%= request.original_url.split('?').first %>">
+
+    <%# --- OpenGraph (Facebook / WhatsApp) --- %>
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : "Yoga & Randonnée Yoga à Barcelonnette | L’Univers des Sens" %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : "Cours de yoga et randonnées yoga à Barcelonnette. Séjours bien-être en montagne avec Jennifer Camp." %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url.split('?').first %>">
+    <%# Idéalement une image 1200x630 dans /app/assets/images/og.jpg %>
+    <meta property="og:image" content="<%= image_url("og.jpg") rescue "" %>">
+
+    <%# --- Twitter --- %>
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -17,6 +40,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
@@ -24,6 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
   </head>
+
 
   <body>
     <%= render "shared/navbar" %>
@@ -61,7 +86,7 @@
     </footer>
 
     <!-- JS Rails -->
-    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+    <%# <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
 
     <!-- Animation logo -->
     <script>
