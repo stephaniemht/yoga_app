@@ -31,6 +31,8 @@ class HikesController < ApplicationController
 
   def update
     @hike = Hike.find(params[:id])
+    Rails.logger.info "PARAMS HIKE: #{params[:hike].inspect}"
+
     if @hike.update(hike_params)
       redirect_to hike_path(@hike), notice: "La randonnée a bien été mise à jour."
     else
@@ -79,8 +81,15 @@ class HikesController < ApplicationController
       carousel_photos: []
     )
 
-    if permitted[:carousel_photos].blank?
-      permitted.delete(:carousel_photos)
+    # ✅ Normalise : peut être [""] ou "" ou nil ou un fichier
+    if permitted.key?(:carousel_photos)
+      files = Array.wrap(permitted[:carousel_photos]).reject(&:blank?)
+
+      if files.empty?
+        permitted.delete(:carousel_photos) # => Rails ne touche pas aux photos existantes
+      else
+        permitted[:carousel_photos] = files
+      end
     end
 
     permitted
