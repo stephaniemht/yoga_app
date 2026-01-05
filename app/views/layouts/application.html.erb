@@ -128,7 +128,7 @@
     <!-- Scroll fluide vers les ancres -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const links = document.querySelectorAll('a[href^="/#"], a[href^="#"]');
+        const links = document.querySelectorAll('a[href^="#"]:not([href="#"])');
         const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 0;
 
         links.forEach(link => {
