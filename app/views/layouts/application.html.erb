@@ -87,7 +87,7 @@
       </div>
     </footer>
 
-    <!-- JS Rails -->
+
 
     <!-- Animation logo -->
     <script>
@@ -125,29 +125,41 @@
     </script>
 
     <!-- Scroll fluide vers les ancres -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const links = document.querySelectorAll('a[href^="#"]:not([href="#"])');
-        const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 0;
+  <script>
+    function smoothScrollAnchors() {
+      const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 0;
 
-        links.forEach(link => {
-          link.addEventListener("click", function (e) {
-            const hash = this.hash || this.href.split("#")[1];
-            const target = document.getElementById(hash.replace("#", ""));
+      // On cible UNIQUEMENT les liens qui pointent vers une ancre sur la HOME : "/#..."
+      const links = document.querySelectorAll('a[href^="/#"]');
 
-            if (target) {
-              e.preventDefault();
-              const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 10;
+      links.forEach(link => {
+        link.addEventListener("click", function (e) {
+          const url = new URL(this.href, window.location.origin);
 
-              window.scrollTo({
-                top: top,
-                behavior: "smooth"
-              });
-            }
+          // si on n'est pas sur la home, on laisse Rails naviguer normalement
+          if (window.location.pathname !== "/" ) return;
+
+          const hash = url.hash; // ex: "#contact"
+          if (!hash) return;
+
+          const target = document.querySelector(hash);
+          if (!target) return;
+
+          e.preventDefault();
+
+          const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 10;
+
+          window.scrollTo({
+            top,
+            behavior: "smooth"
           });
         });
       });
-    </script>
+    }
+
+    document.addEventListener("turbo:load", smoothScrollAnchors);
+  </script>
+
 
     <!-- Rechargement après retour arrière -->
     <script>
