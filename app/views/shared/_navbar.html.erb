@@ -19,6 +19,9 @@
       <li class="nav-item"><%= link_to "Rando Yoga", hikes_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Événements", root_path(anchor: 'evenements'), class: "nav-link", data: { turbo: false } %></li>
       <li class="nav-item"><%= link_to "Contact", root_path(anchor: 'contact'), class: "nav-link", data: { turbo: false } %></li>
+      <li class="nav-item">
+        <%= link_to "Admin direct", admin_dashboard_path, class: "nav-link", data: { turbo: false } %>
+      </li>
 
 
         <% if user_signed_in? && current_user.admin? %>
