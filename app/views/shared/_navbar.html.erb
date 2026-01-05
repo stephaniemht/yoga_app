@@ -19,21 +19,13 @@
       <li class="nav-item"><%= link_to "Rando Yoga", hikes_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Événements", root_path(anchor: 'evenements'), class: "nav-link", data: { turbo: false } %></li>
       <li class="nav-item"><%= link_to "Contact", root_path(anchor: 'contact'), class: "nav-link", data: { turbo: false } %></li>
-      <li class="nav-item">
-        <%= link_to "Admin direct", admin_dashboard_path, class: "nav-link", data: { turbo: false } %>
-      </li>
 
 
         <% if user_signed_in? && current_user.admin? %>
           <li class="nav-item dropdown">
-            <button class="nav-link dropdown-toggle btn btn-link"
-              id="adminDropdown"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              type="button">
+            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Admin
-            </button>
-
+            </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
               <li><%= link_to "Tableau de bord", admin_dashboard_path, class: "dropdown-item", data: { turbo: false } %></li>
               <li><hr class="dropdown-divider"></li>
@@ -42,12 +34,7 @@
                   <input type="hidden" name="_method" value="delete">
                   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                 </form>
-                <button type="button"
-                  class="dropdown-item"
-                  onclick="document.getElementById('logout-form').submit();">
-                  Déconnexion
-                </button>
-
+                <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Déconnexion</a>
               </li>
             </ul>
           </li>
