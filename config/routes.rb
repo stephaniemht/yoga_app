@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "admin/dashboard"
   get "/politique-de-confidentialite", to: "pages#privacy_policy", as: :privacy_policy
   get "/mentions-legales", to: "pages#legal_mentions", as: :legal_mentions
+  get "/randonnee", to: "pages#randonnee", as: :randonnee
 
   resources :courses
   resources :hikes

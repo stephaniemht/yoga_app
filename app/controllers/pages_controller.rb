@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :randonnee ]
 
   def home
     # 🌿 Cours de yoga ponctuels (non récurrents) à venir : on en prend 2
@@ -24,5 +24,8 @@ class PagesController < ApplicationController
     @about_section = AboutSection.first_or_create!(
       title: "RANDONNÉE & YOGA POUR SE RECONNECTER À L’ESSENTIEL"
     )
+  end
+
+  def randonnee
   end
 end

@@ -1,0 +1,56 @@
+<% content_for :title, "Randonnée guidée en montagne | L’Univers des Sens" %>
+<% content_for :meta_description, "Randonnées guidées en montagne avec Jennifer, guide de haute montagne. Sorties nature adaptées à votre niveau, en petit groupe ou en privé." %>
+
+<section class="randonnee-hero">
+  <%= image_tag "rando_nature.jpg", class: "randonnee-hero-image", alt: "Randonnée guidée en montagne" %>
+  <div class="randonnee-hero-overlay"></div>
+
+  <div class="randonnee-hero-content">
+    <span class="randonnee-chip">Randonnée guidée</span>
+    <h1>RANDONNEE</h1>
+    <p>
+      Découvrez la montagne autrement avec des randonnées accompagnées,
+      pensées pour respirer, marcher et vous reconnecter à l'essentiel.
+    </p>
+    <%= link_to "Demander une sortie", root_path(anchor: "contact"), class: "btn", data: { turbo: false } %>
+  </div>
+</section>
+
+<section class="randonnee-intro">
+  <div class="randonnee-container">
+    <div class="randonnee-text-card">
+      <h2>Une expérience encadrée par une guide de haute montagne</h2>
+      <p>
+        Jennifer propose des randonnées guidées pour les particuliers, les familles,
+        les groupes d'amis et les entreprises. Chaque itinéraire est adapté à votre
+        niveau, au rythme du groupe et aux conditions du moment.
+      </p>
+      <p>
+        L'objectif: vivre une sortie en montagne en toute sérénité, profiter des paysages,
+        apprendre à observer la nature et repartir avec une vraie sensation de bien-être.
+      </p>
+      <p>
+        En demi-journée, journée complète ou format sur mesure, les sorties sont conçues
+        pour offrir un moment authentique, accessible et sécurisant.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="randonnee-gallery">
+  <div class="randonnee-container">
+    <h2>Ambiance nature</h2>
+    <div class="randonnee-grid">
+      <article class="randonnee-photo-card">
+        <%= image_tag "rando_nature.jpg", alt: "Sortie guidée en montagne", class: "randonnee-photo" %>
+      </article>
+      <article class="randonnee-photo-card">
+        <%= image_tag "rendo_nature2.jpg", alt: "Paysage de randonnée nature", class: "randonnee-photo" %>
+      </article>
+      <article class="randonnee-photo-card">
+        <%= image_tag "rendo_nature3.jpg", alt: "Chemin de montagne", class: "randonnee-photo" %>
+      </article>
+    </div>
+  </div>
+</section>
+
