@@ -41,16 +41,94 @@
 <section class="randonnee-gallery">
   <div class="randonnee-container">
     <h2>Ambiance nature</h2>
-    <div class="randonnee-grid">
-      <article class="randonnee-photo-card">
-        <%= image_tag "rando_nature.jpg", alt: "Sortie guidée en montagne", class: "randonnee-photo" %>
-      </article>
-      <article class="randonnee-photo-card">
-        <%= image_tag "rendo_nature2.jpg", alt: "Paysage de randonnée nature", class: "randonnee-photo" %>
-      </article>
-      <article class="randonnee-photo-card">
-        <%= image_tag "rendo_nature3.jpg", alt: "Chemin de montagne", class: "randonnee-photo" %>
-      </article>
+    <div class="randonnee-carousel" data-randonnee-carousel>
+      <button class="randonnee-carousel-control prev" type="button" aria-label="Photo précédente" data-carousel-prev>
+        &#10094;
+      </button>
+
+      <div class="randonnee-carousel-viewport">
+        <div class="randonnee-carousel-track" data-carousel-track>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_1.jpg", alt: "Randonnée en altitude", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_2.jpg", alt: "Groupe au bord d'un lac de montagne", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_3.jpg", alt: "Sortie randonnée sur terrain volcanique", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_4.jpg", alt: "Bivouac en montagne au lever du jour", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_5.jpg", alt: "Papillon en pleine nature", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_6.jpg", alt: "Vue panoramique en randonnée", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_7.jpg", alt: "Marche en montagne sur sentier rouge", class: "randonnee-photo" %>
+          </article>
+          <article class="randonnee-photo-card">
+            <%= image_tag "rando_carousel_8.jpg", alt: "Pause de groupe au sommet", class: "randonnee-photo" %>
+          </article>
+        </div>
+      </div>
+
+      <button class="randonnee-carousel-control next" type="button" aria-label="Photo suivante" data-carousel-next>
+        &#10095;
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    document.querySelectorAll("[data-randonnee-carousel]").forEach(function (carousel) {
+      if (carousel.dataset.ready === "true") return;
+      carousel.dataset.ready = "true";
+
+      var track = carousel.querySelector("[data-carousel-track]");
+      var prevButton = carousel.querySelector("[data-carousel-prev]");
+      var nextButton = carousel.querySelector("[data-carousel-next]");
+      var index = 0;
+
+      function perView() {
+        if (window.innerWidth <= 700) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+      }
+
+      function maxIndex() {
+        return Math.max(0, track.children.length - perView());
+      }
+
+      function update() {
+        var gap = parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap || "0");
+        var cardWidth = track.children[0].getBoundingClientRect().width;
+        var offset = index * (cardWidth + gap);
+        track.style.transform = "translateX(-" + offset + "px)";
+
+        prevButton.disabled = index <= 0;
+        nextButton.disabled = index >= maxIndex();
+      }
+
+      prevButton.addEventListener("click", function () {
+        index = Math.max(0, index - 1);
+        update();
+      });
+
+      nextButton.addEventListener("click", function () {
+        index = Math.min(maxIndex(), index + 1);
+        update();
+      });
+
+      window.addEventListener("resize", function () {
+        index = Math.min(index, maxIndex());
+        update();
+      });
+
+      update();
+    });
+  });
+</script>
