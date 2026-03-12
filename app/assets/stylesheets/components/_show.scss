@@ -112,6 +112,11 @@
   font-weight: 600;
 }
 
+/* Préserve les espaces multiples dans la description de randonnée */
+.hike-show .hike-description {
+  white-space: pre-wrap;
+}
+
 /* Actions admin */
 .course-show .admin-actions,
 .hike-show .admin-actions {

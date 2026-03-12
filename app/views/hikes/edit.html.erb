@@ -1,101 +1,101 @@
-<h1 class="edit-title">Modifier la Randonnée Yoga</h1>
+<div class="new-course-wrapper">
+  <h1>Modifier la Randonnée Yoga</h1>
 
-<%= form_with model: @hike, local: true, data: { controller: "image-compress" } do |f| %>
-  <% if @hike.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= pluralize(@hike.errors.count, "erreur") %> empêchent la mise à jour de la randonnée :</h4>
-      <ul>
-        <% @hike.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with model: @hike, local: true, data: { controller: "image-compress" } do |f| %>
+    <% if @hike.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@hike.errors.count, "erreur") %> empêchent la mise à jour de la randonnée :</h4>
+        <ul>
+          <% @hike.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title, "Nom de la randonnée" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :location, "Adresse" %>
+      <%= f.text_field :location, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date, "Date de début du séjour" %>
+      <%= f.text_field :date,
+            class: "form-control",
+            value: (@hike.date ? @hike.date.strftime("%Y-%m-%d") : ""),
+            data: { controller: "flatpickr" } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :time, "Heure de départ" %>
+      <%= f.time_select :time, { prompt: { hour: 'Heure', minute: 'Minute' } }, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :end_date, "Date de fin du séjour" %>
+      <%= f.text_field :end_date,
+            class: "form-control",
+            value: (@hike.end_date ? @hike.end_date.strftime("%Y-%m-%d") : ""),
+            data: { controller: "flatpickr" } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price, "Tarif" %>
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :photo, "Photo principale" %>
+      <%= f.file_field :photo, class: "form-control" %>
+
+      <% if @hike.photo.attached? %>
+        <div style="margin-top: 10px;">
+          <%= image_tag @hike.photo, style: "max-width: 220px; border-radius: 12px;" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :carousel_photos, "Photos du carrousel (optionnel)" %>
+      <%= f.file_field :carousel_photos, multiple: true, class: "form-control", data: { "image-compress-target": "input" } %>
+      <small class="text-muted d-block" style="margin-top: 6px;">
+        Tu peux en ajouter d’autres : elles s’ajouteront à celles déjà présentes.
+      </small>
+      <small class="text-muted d-block" style="margin-top: 4px;" data-image-compress-target="status">
+        Les images seront automatiquement optimisées avant l’envoi.
+      </small>
+
+      <% if @hike.carousel_photos.attached? %>
+        <div class="carousel-edit-grid" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <% @hike.carousel_photos.each do |photo| %>
+            <div class="carousel-edit-thumb" style="position:relative; width:110px;">
+              <%= image_tag photo, style: "width:110px; height:110px; object-fit:cover; border-radius:12px;" %>
+
+              <% if user_signed_in? && current_user.admin? %>
+                <%= link_to "✕",
+                      destroy_carousel_photo_hike_path(@hike, attachment_id: photo.id),
+                      data: { turbo_method: :delete, turbo_confirm: "Supprimer cette photo ?" },
+                      class: "carousel-delete-btn",
+                      style: "position:absolute; top:6px; right:6px; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:999px; background: rgba(0,0,0,0.55); color:#fff; text-decoration:none; font-weight:600;" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Mettre à jour la randonnée", class: "btn-submit" %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :title, "Nom de la randonnée" %>
-    <%= f.text_field :title, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :location, "Adresse" %>
-    <%= f.text_field :location, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :description, "Description" %>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date, "Date de début du séjour" %>
-    <%= f.text_field :date,
-          class: "form-control",
-          value: (@hike.date ? @hike.date.strftime("%Y-%m-%d") : ""),
-          data: { controller: "flatpickr" } %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :time, "Heure de départ" %>
-    <%= f.time_select :time, { prompt: { hour: 'Heure', minute: 'Minute' } }, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :end_date, "Date de fin du séjour" %>
-    <%= f.text_field :end_date,
-          class: "form-control",
-          value: (@hike.end_date ? @hike.end_date.strftime("%Y-%m-%d") : ""),
-          data: { controller: "flatpickr" } %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :price, "Tarif" %>
-    <%= f.number_field :price, class: "form-control" %>
-  </div>
-
-  <!-- Photo principale (index) -->
-  <div class="form-group">
-    <%= f.label :photo, "Photo principale" %>
-    <%= f.file_field :photo, class: "form-control" %>
-
-    <% if @hike.photo.attached? %>
-      <div style="margin-top: 10px;">
-        <%= image_tag @hike.photo, style: "max-width: 220px; border-radius: 12px;" %>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- Photos du carrousel -->
-  <div class="form-group">
-    <%= f.label :carousel_photos, "Photos du carrousel (optionnel)" %>
-    <%= f.file_field :carousel_photos, multiple: true, class: "form-control", data: { "image-compress-target": "input" } %>
-    <small class="text-muted d-block" style="margin-top: 6px;">
-      Tu peux en ajouter d’autres : elles s’ajouteront à celles déjà présentes.
-    </small>
-    <small class="text-muted d-block" style="margin-top: 4px;" data-image-compress-target="status">
-      Les images seront automatiquement optimisées avant l’envoi.
-    </small>
-
-    <% if @hike.carousel_photos.attached? %>
-      <div class="carousel-edit-grid" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-        <% @hike.carousel_photos.each do |photo| %>
-          <div class="carousel-edit-thumb" style="position:relative; width:110px;">
-            <%= image_tag photo, style: "width:110px; height:110px; object-fit:cover; border-radius:12px;" %>
-
-            <% if user_signed_in? && current_user.admin? %>
-              <%= link_to "✕",
-                    destroy_carousel_photo_hike_path(@hike, attachment_id: photo.id),
-                    data: { turbo_method: :delete, turbo_confirm: "Supprimer cette photo ?" },
-                    class: "carousel-delete-btn",
-                    style: "position:absolute; top:6px; right:6px; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:999px; background: rgba(0,0,0,0.55); color:#fff; text-decoration:none; font-weight:600;" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit "Mettre à jour la randonnée", class: "btn-submit" %>
-  </div>
-<% end %>
+</div>
