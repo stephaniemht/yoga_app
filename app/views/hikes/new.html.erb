@@ -1,6 +1,6 @@
 <h1 class="edit-title">Créer une Randonnée Yoga</h1>
 
-<%= form_with model: @hike, url: hikes_path, local: true do |f| %>
+<%= form_with model: @hike, url: hikes_path, local: true, data: { controller: "image-compress" } do |f| %>
   <% if @hike.errors.any? %>
     <div class="alert alert-danger">
       <h4><%= pluralize(@hike.errors.count, "erreur") %> empêchent la création de la randonnée :</h4>
@@ -62,9 +62,12 @@
   <!-- Photos du carrousel (pour la show) -->
   <div class="form-group">
     <%= f.label :carousel_photos, "Photos du carrousel (optionnel)" %>
-    <%= f.file_field :carousel_photos, multiple: true, class: "form-control" %>
+    <%= f.file_field :carousel_photos, multiple: true, class: "form-control", data: { "image-compress-target": "input" } %>
     <small class="text-muted d-block" style="margin-top: 6px;">
       Tu peux sélectionner plusieurs photos (Ctrl/Cmd + clic). Elles s’afficheront en carrousel sur la page de la randonnée.
+    </small>
+    <small class="text-muted d-block" style="margin-top: 4px;" data-image-compress-target="status">
+      Les images seront automatiquement optimisées avant l’envoi.
     </small>
   </div>
 
