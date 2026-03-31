@@ -1,3 +1,5 @@
+require "stringio"
+
 namespace :active_storage do
   desc "Copy blobs from one service to another and switch blob.service_name"
   task migrate_service: :environment do
@@ -11,12 +13,7 @@ namespace :active_storage do
     batch_size = (ENV["BATCH_SIZE"] || 100).to_i
 
     services = ActiveStorage::Blob.services
-    begin
-      services.fetch(from_service)
-    rescue KeyError
-      abort "Unknown FROM_SERVICE: #{from_service}"
-    end
-
+    source = services.fetch(from_service) { abort "Unknown FROM_SERVICE: #{from_service}" }
     target = services.fetch(to_service) { abort "Unknown TO_SERVICE: #{to_service}" }
 
     scope = ActiveStorage::Blob.where(service_name: from_service)
@@ -38,11 +35,17 @@ namespace :active_storage do
             skipped += 1
           else
             unless dry_run
-              upload_options = {}
-              upload_options[:checksum] = blob.checksum if blob.checksum.present?
+              begin
+                upload_options = {}
+                upload_options[:checksum] = blob.checksum if blob.checksum.present?
 
-              blob.open do |io|
-                target.upload(blob.key, io, **upload_options)
+                blob.open do |io|
+                  target.upload(blob.key, io, **upload_options)
+                end
+              rescue ActiveStorage::IntegrityError => integrity_error
+                warn "WARN blob_id=#{blob.id} key=#{blob.key} integrity mismatch via open, retrying raw download: #{integrity_error.message}"
+                data = source.download(blob.key)
+                target.upload(blob.key, StringIO.new(data))
               end
             end
           end
