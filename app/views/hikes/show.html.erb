@@ -1,11 +1,47 @@
 <% content_for :title do %>
-  <%= @hike.title %> – Randonnée yoga en Ubaye | Barcelonnette & Pra Loup
+  <%= @hike.title %> – Randonnée yoga en Ubaye | Jennifer Camp
 <% end %>
 
 <% content_for :meta_description do %>
-  Randonnée yoga et séjour bien-être en Ubaye.
-  <%= @hike.title %> à Barcelonnette / Pra Loup :
-  yoga, nature et ressourcement en montagne.
+  <%= @hike.title %> avec Jennifer Camp : randonnée yoga et séjour bien-être
+  à <%= @hike.location %>. Dates, programme et tarif de cette expérience en montagne.
+<% end %>
+
+<% content_for :head do %>
+  <script type="application/ld+json">
+    <%= raw json_escape({
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": @hike.title,
+      "description": @hike.description,
+      "startDate": @hike.date.iso8601,
+      "endDate": @hike.end_date.iso8601,
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": @hike.location,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": @hike.location,
+          "addressRegion": "Alpes-de-Haute-Provence",
+          "addressCountry": "FR"
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": hike_url(@hike, host: "luniversdessens.com", protocol: "https"),
+        "price": @hike.price,
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "L’Univers des Sens – Jennifer Camp",
+        "url": "https://luniversdessens.com/"
+      }
+    }.to_json) %>
+  </script>
 <% end %>
 
 

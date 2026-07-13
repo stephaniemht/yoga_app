@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
+    <% page_title = content_for?(:title) ? CGI.unescapeHTML(strip_tags(yield(:title))).squish : "L'Univers des Sens – Yoga & Randonnée Yoga en Ubaye" %>
+    <% page_description = content_for?(:meta_description) ? CGI.unescapeHTML(strip_tags(yield(:meta_description))).squish : "Cours de yoga (Vinyasa, Yin) et randonnées yoga à Barcelonnette et vallée de l’Ubaye. Séjours bien-être, nature et ressourcement avec Jennifer Camp." %>
+    <% canonical_url = "https://luniversdessens.com#{request.path}" %>
+
     <%# --- TITLE --- %>
-    <title><%= content_for?(:title) ? yield(:title) : "L'Univers des Sens – Yoga & Randonnée Yoga en Ubaye" %></title>
+    <title><%= page_title %></title>
 
     <%# --- META DESCRIPTION --- %>
-    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Cours de yoga (Vinyasa, Yin) et randonnées yoga à Barcelonnette et vallée de l’Ubaye. Séjours bien-être, nature et ressourcement avec Jennifer Camp." %>">
+    <meta name="description" content="<%= page_description %>">
 
     <%# --- INDEXING --- %>
     <meta name="robots" content="index,follow">
@@ -15,15 +19,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <%# --- CANONICAL (évite contenu dupliqué) --- %>
-    <link rel="canonical" href="<%= request.original_url.split('?').first %>">
+    <link rel="canonical" href="<%= canonical_url %>">
 
     <%# --- OpenGraph (Facebook / WhatsApp) --- %>
-    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : "Yoga & Randonnée Yoga à Barcelonnette | L’Univers des Sens" %>">
-    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : "Cours de yoga et randonnées yoga à Barcelonnette. Séjours bien-être en montagne avec Jennifer Camp." %>">
+    <meta property="og:title" content="<%= content_for?(:og_title) ? CGI.unescapeHTML(strip_tags(yield(:og_title))).squish : page_title %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? CGI.unescapeHTML(strip_tags(yield(:og_description))).squish : page_description %>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<%= request.original_url.split('?').first %>">
+    <meta property="og:url" content="<%= canonical_url %>">
+    <meta property="og:site_name" content="L’Univers des Sens">
+    <meta property="og:locale" content="fr_FR">
     <%# Idéalement une image 1200x630 dans /app/assets/images/og.jpg %>
-    <meta property="og:image" content="<%= image_url("og.jpg") rescue "" %>">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? CGI.unescapeHTML(strip_tags(yield(:og_image))).squish : image_url("paysage_2.jpg") %>">
 
     <%# --- Twitter --- %>
     <meta name="twitter:card" content="summary_large_image">

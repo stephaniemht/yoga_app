@@ -196,17 +196,43 @@
   transform: translateY(-2px);
 }
 
+.course-index .local-seo-content,
+.hike-index .local-seo-content {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  text-align: left;
+}
+
+.course-index .local-seo-content h2,
+.hike-index .local-seo-content h2 {
+  font-family: var(--font-title);
+  font-size: 1.35rem;
+}
+
+.course-index .local-seo-content p,
+.hike-index .local-seo-content p {
+  font-family: var(--font-text);
+  color: var(--color-text-muted);
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
   .course-index .course-banner,
   .hike-index .hike-banner {
-    height: 260px;
+    height: 280px;
   }
 
   .course-index .course-content,
   .hike-index .hike-content {
-    margin: -50px auto 30px;
+    margin: -90px auto 30px;
     padding: 0 16px 30px;
+  }
+
+  .course-index .course-title,
+  .hike-index .hike-title {
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 1.25;
   }
 
   .course-index .course-card,

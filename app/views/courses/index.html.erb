@@ -1,6 +1,6 @@
-<% content_for :title, "Cours de yoga à Barcelonnette – Yoga Vinyasa & Yin en Ubaye" %>
+<% content_for :title, "Cours de yoga à Barcelonnette et en Ubaye | Jennifer Camp" %>
 <% content_for :meta_description,
-  "Découvrez les cours de yoga à Barcelonnette : yoga Vinyasa et Yin Yoga, en studio ou en plein air dans la vallée de l’Ubaye et à Pra Loup." %>
+  "Cours de yoga à Barcelonnette, Pra Loup et en vallée de l’Ubaye avec Jennifer Camp : Vinyasa, Yin, yoga famille, séances en studio ou en plein air." %>
 
 <p class="sr-only">
   Cours de yoga à Barcelonnette et dans la vallée de l’Ubaye : Vinyasa, Yin Yoga, bien-être et mobilité.
@@ -10,11 +10,11 @@
 <div class="course-index">
   <!-- Image de bannière -->
   <div class="course-banner">
-    <%= image_tag "paysage_2.jpg", class: "course-banner-image" %>
+    <%= image_tag "paysage_2.jpg", class: "course-banner-image", alt: "Cours de yoga à Barcelonnette dans la vallée de l’Ubaye" %>
   </div>
 
   <div class="course-content">
-    <h1 class="course-title">Prochains Cours de Yoga</h1>
+    <h1 class="course-title">Cours de yoga à Barcelonnette</h1>
 
     <div class="course-list">
       <% @courses.each do |course| %>
@@ -109,6 +109,18 @@
         </div>
       <% end %>
     </div>
+
+    <section class="local-seo-content">
+      <h2>Yoga à Barcelonnette, Pra Loup et dans la vallée de l’Ubaye</h2>
+      <p>
+        Jennifer Camp, professeure de yoga multistyles, propose des cours de Yoga Vinyasa,
+        Yin Yoga et Yoga Famille à Barcelonnette, à Pra Loup et en plein air dans l’Ubaye.
+        Les séances sont accessibles à différents niveaux, en groupe ou en cours particulier.
+      </p>
+      <p>
+        Retrouvez ici les dates, horaires, lieux et tarifs des prochains cours de yoga en Ubaye.
+      </p>
+    </section>
 
     <a href="<%= root_path %>" class="btn btn-secondary" data-turbo="false">← Retour à l'accueil</a>
   </div>

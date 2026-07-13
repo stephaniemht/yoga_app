@@ -1,6 +1,6 @@
-<% content_for :title, "Randonnées yoga & séjours bien-être en Ubaye – Barcelonnette & Pra Loup" %>
+<% content_for :title, "Randonnée yoga en Ubaye et Barcelonnette | Jennifer Camp" %>
 <% content_for :meta_description,
-  "Randonnées yoga et séjours bien-être à Barcelonnette et dans la vallée de l’Ubaye. Yoga, nature et ressourcement en montagne." %>
+  "Randonnées yoga, treks et séjours bien-être dans la vallée de l’Ubaye avec Jennifer Camp, accompagnatrice en montagne : Barcelonnette, Pra Loup et alentours." %>
 
 <p class="sr-only">
   Randonnée yoga, séjour bien-être et yoga en montagne dans la vallée de l’Ubaye (Barcelonnette, Pra Loup).
@@ -12,11 +12,11 @@
 <div class="hike-index">
   <!-- Image de bannière -->
   <div class="hike-banner">
-    <%= image_tag "paysage_4.jpg", class: "hike-banner-image" %>
+    <%= image_tag "paysage_4.jpg", class: "hike-banner-image", alt: "Randonnée yoga près de Barcelonnette dans la vallée de l’Ubaye" %>
   </div>
 
   <div class="hike-content">
-    <h1 class="hike-title">Prochaines Randonnées Yoga</h1>
+    <h1 class="hike-title">Randonnées yoga en Ubaye</h1>
 
     <div class="hike-list">
       <% @hikes.each do |hike| %>
@@ -59,6 +59,19 @@
         </div>
       <% end %>
     </div>
+
+    <section class="local-seo-content">
+      <h2>Randonnée à Barcelonnette et séjours rando yoga en Ubaye</h2>
+      <p>
+        Partez avec Jennifer Camp, accompagnatrice en montagne et professeure de yoga,
+        pour une randonnée autour de Barcelonnette, Pra Loup et dans la vallée de l’Ubaye.
+        Les sorties associent marche, nature, respiration et pratique du yoga.
+      </p>
+      <p>
+        Découvrez les prochaines randonnées yoga, journées en montagne, treks et séjours
+        bien-être, avec les dates, lieux et tarifs de chaque expérience.
+      </p>
+    </section>
 
     <a href="<%= root_path %>" class="btn btn-secondary" data-turbo="false">← Retour à l'accueil</a>
   </div>

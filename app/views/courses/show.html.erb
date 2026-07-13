@@ -1,3 +1,45 @@
+<% content_for :title, "#{@course.title} – Yoga à #{@course.location} | Jennifer Camp" %>
+<% content_for :meta_description,
+  "#{@course.title} avec Jennifer Camp, professeure de yoga à #{@course.location}. Horaires, lieu et tarif de ce cours de yoga en Ubaye." %>
+
+<% if @course.start_time.present? %>
+  <% content_for :head do %>
+    <script type="application/ld+json">
+      <%= raw json_escape({
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": @course.title,
+        "description": @course.description,
+        "startDate": @course.start_time.iso8601,
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": @course.location,
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": @course.location,
+            "addressRegion": "Alpes-de-Haute-Provence",
+            "addressCountry": "FR"
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": course_url(@course, host: "luniversdessens.com", protocol: "https"),
+          "price": @course.price,
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "L’Univers des Sens – Jennifer Camp",
+          "url": "https://luniversdessens.com/"
+        }
+      }.to_json) %>
+    </script>
+  <% end %>
+<% end %>
+
 <div class="course-show">
   <!-- Bannière pleine largeur -->
   <div class="course-banner" style="position: relative;">

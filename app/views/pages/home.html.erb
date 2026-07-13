@@ -8,23 +8,42 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "SportsActivityLocation"],
+    "@id": "https://luniversdessens.com/#business",
     "name": "L’Univers des Sens",
-    "url": "<%= root_url %>",
+    "url": "https://luniversdessens.com/",
+    "image": "<%= image_url("Jenny.jpg") %>",
+    "description": "Cours de yoga et randonnées yoga à Barcelonnette, Pra Loup et dans la vallée de l’Ubaye avec Jennifer Camp.",
     "telephone": "+33695218666",
     "email": "jennypraloup@gmail.com",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Barcelonnette",
+      "addressRegion": "Alpes-de-Haute-Provence",
+      "postalCode": "04400",
+      "addressCountry": "FR"
+    },
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "Vallée de l’Ubaye" },
       { "@type": "City", "name": "Barcelonnette" },
       { "@type": "City", "name": "Pra Loup" }
     ],
-    "serviceType": [
-      "Cours de yoga",
-      "Yoga Vinyasa",
-      "Yin Yoga",
-      "Randonnée Yoga",
-      "Séjour bien-être"
-    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Jennifer Camp",
+      "jobTitle": "Professeure de yoga et accompagnatrice en montagne",
+      "knowsAbout": ["Yoga Vinyasa", "Yin Yoga", "Hatha Yoga", "Ashtanga Yoga", "Randonnée en montagne"]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Yoga et randonnée en Ubaye",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cours de yoga à Barcelonnette et Pra Loup" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Randonnée yoga dans la vallée de l’Ubaye" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Séjour randonnée et yoga" } }
+      ]
+    },
     "sameAs": [
       "https://www.facebook.com/randoubaye?locale=fr_FR",
       "https://www.instagram.com/univers_des_sens/",
